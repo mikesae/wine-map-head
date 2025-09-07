@@ -18,8 +18,7 @@ jobs:
       run: yarn install
 
     - name: Build the app
-      run: yarn build buildame: Azure Static Web Apps CI/CD
-
+      run: yarn build
 on:
   push:
     branches:
