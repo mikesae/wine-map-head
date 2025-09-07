@@ -36,6 +36,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.12.0
+      - name: Verify Node.js Version
+        run: node -v # Ensure the correct Node.js version is being usedß
       - name: Install OIDC Client from Core Package
         run: yarn add @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
