@@ -1,0 +1,240 @@
+[
+  {
+    "name": "Ch\u00e2teau Lafite Rothschild",
+    "region": "Pauillac, Bordeaux",
+    "country": "France",
+    "latitude": 45.2051,
+    "longitude": -0.747
+  },
+  {
+    "name": "Ch\u00e2teau Margaux",
+    "region": "Margaux, Bordeaux",
+    "country": "France",
+    "latitude": 45.0419,
+    "longitude": -0.6666
+  },
+  {
+    "name": "Roman\u00e9e-Conti (Domaine de la Roman\u00e9e-Conti)",
+    "region": "Vosne-Roman\u00e9e, Bourgogne",
+    "country": "France",
+    "latitude": 47.1672,
+    "longitude": 4.9503
+  },
+  {
+    "name": "La T\u00e2che (DRC)",
+    "region": "Vosne-Roman\u00e9e, Bourgogne",
+    "country": "France",
+    "latitude": 47.1647,
+    "longitude": 4.9496
+  },
+  {
+    "name": "Opus One Winery",
+    "region": "Oakville, Napa Valley",
+    "country": "USA",
+    "latitude": 38.4633,
+    "longitude": -122.422
+  },
+  {
+    "name": "Robert Mondavi Winery",
+    "region": "Oakville, Napa Valley",
+    "country": "USA",
+    "latitude": 38.4375,
+    "longitude": -122.4014
+  },
+  {
+    "name": "Martha's Vineyard (Heitz Cellar)",
+    "region": "Oakville, Napa Valley",
+    "country": "USA",
+    "latitude": 38.4298,
+    "longitude": -122.4094
+  },
+  {
+    "name": "Ridge Vineyards (Monte Bello)",
+    "region": "Santa Cruz Mountains (near Palo Alto)",
+    "country": "USA",
+    "latitude": 37.395,
+    "longitude": -122.1572
+  },
+  {
+    "name": "Clos de Vougeot",
+    "region": "Vougeot, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1716,
+    "longitude": 4.9533
+  },
+  {
+    "name": "Chambertin",
+    "region": "Gevrey-Chambertin, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.2068,
+    "longitude": 4.9588
+  },
+  {
+    "name": "Musigny",
+    "region": "Chambolle-Musigny, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1730,
+    "longitude": 4.9523
+  },
+  {
+    "name": "Griotte-Chambertin",
+    "region": "Gevrey-Chambertin, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.2085,
+    "longitude": 4.9673
+  },
+  {
+    "name": "Chapelle-Chambertin",
+    "region": "Gevrey-Chambertin, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.2093,
+    "longitude": 4.9678
+  },
+  {
+    "name": "Charmes-Chambertin",
+    "region": "Gevrey-Chambertin, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.2067,
+    "longitude": 4.9672
+  },
+  {
+    "name": "Clos Saint-Denis",
+    "region": "Morey-Saint-Denis, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1791,
+    "longitude": 4.9558
+  },
+  {
+    "name": "Echezeaux",
+    "region": "Flagey-Echezeaux, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1815,
+    "longitude": 4.9611
+  },
+  {
+    "name": "Grands-Echezeaux",
+    "region": "Flagey-Echezeaux, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1822,
+    "longitude": 4.9615
+  },
+  {
+    "name": "La Roman\u00e9e (DRC)",
+    "region": "Vosne-Roman\u00e9e, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1675,
+    "longitude": 4.9505
+  },
+  {
+    "name": "Richebourg",
+    "region": "Vosne-Roman\u00e9e, Côte de Nuits, Bourgogne",
+    "country": "France",
+    "latitude": 47.1686,
+    "longitude": 4.9513
+  },
+  {
+    "name": "Volnay",
+    "region": "Volnay, Côte de Beaune, Bourgogne",
+    "country": "France",
+    "latitude": 47.0561,
+    "longitude": 4.7153
+  },
+  {
+    "name": "Pommard",
+    "region": "Pommard, Côte de Beaune, Bourgogne",
+    "country": "France",
+    "latitude": 47.0528,
+    "longitude": 4.7183
+  },
+  {
+    "name": "Corton-Charlemagne",
+    "region": "Aloxe-Corton, Côte de Beaune, Bourgogne",
+    "country": "France",
+    "latitude": 47.0569,
+    "longitude": 4.7241
+  },
+  {
+    "name": "Montrachet",
+    "region": "Chassagne-Montrachet, Côte de Beaune, Bourgogne",
+    "country": "France",
+    "latitude": 47.0536,
+    "longitude": 4.7785
+  },
+  {
+    "name": "Cheval Blanc (Ch\u00e2teau Cheval Blanc)",
+    "region": "Saint-Emilion, Bordeaux",
+    "country": "France",
+    "latitude": 44.9333,
+    "longitude": -0.1667
+  },
+  {
+    "name": "Ch\u00e2teau d'Yquem",
+    "region": "Sauternes, Bordeaux",
+    "country": "France",
+    "latitude": 44.4931,
+    "longitude": -0.2044
+  },
+  {
+    "name": "Ch\u00e2teau Haut-Brion",
+    "region": "Pessac, Bordeaux",
+    "country": "France",
+    "latitude": 44.8181,
+    "longitude": -0.5933
+  },
+  {
+    "name": "Ch\u00e2teau Mouton Rothschild",
+    "region": "Pauillac, Bordeaux",
+    "country": "France",
+    "latitude": 45.1897,
+    "longitude": -0.7472
+  },
+  {
+    "name": "Ch\u00e2teau Latour",
+    "region": "Pauillac, Bordeaux",
+    "country": "France",
+    "latitude": 45.195,
+    "longitude": -0.7461
+  },
+  {
+    "name": "Ch\u00e2teau Pichon Longueville Comtesse de Lalande",
+    "region": "Pauillac, Bordeaux",
+    "country": "France",
+    "latitude": 45.1864,
+    "longitude": -0.7436
+  },
+  {
+    "name": "Ch\u00e2teau Palmer",
+    "region": "Margaux, Bordeaux",
+    "country": "France",
+    "latitude": 45.0358,
+    "longitude": -0.6651
+  },
+  {
+    "name": "Ch\u00e2teau Leoville Las Cases",
+    "region": "Saint-Julien, Bordeaux",
+    "country": "France",
+    "latitude": 45.1853,
+    "longitude": -0.7564
+  },
+  {
+    "name": "Ch\u00e2teau Ducru-Beaucaillou",
+    "region": "Saint-Julien, Bordeaux",
+    "country": "France",
+    "latitude": 45.1867,
+    "longitude": -0.7551
+  },
+  {
+    "name": "Ch\u00e2teau Cos d'Estournel",
+    "region": "Saint-Estephe, Bordeaux",
+    "country": "France",
+    "latitude": 45.2064,
+    "longitude": -0.7725
+  },
+  {
+    "name": "Ch\u00e2teau Lynch-Bages",
+    "region": "Pauillac, Bordeaux",
+    "country": "France",
+    "latitude": 45.1976,
+    "longitude": -0.7445
+  }
+]
