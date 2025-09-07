@@ -1,4 +1,24 @@
-name: Azure Static Web Apps CI/CD
+# azure-static-web-apps-wonderful-bay-0d26a3d0f.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Add a step to set up Node.js 22.12.0
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22.12.0
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build the app
+      run: yarn build buildame: Azure Static Web Apps CI/CD
 
 on:
   push:
@@ -23,7 +43,7 @@ jobs:
           submodules: true
           lfs: false
       - name: Install OIDC Client from Core Package
-        run: npm install @actions/core@1.6.0 @actions/http-client
+        run: yarn install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
