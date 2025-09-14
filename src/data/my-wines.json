@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Ch\u00e2teau Du Retout",
+        "vintage": 2022,
+        "drinkYear": 2025,
+        "varietals": [
+            "Cabernet Sauvignon",
+            "Merlot",
+            "Petit Verdot"
+        ],
+        "region": "Haut-M\u00e9edoc, Bordeaux",
+        "country": "France",
+        "latitude": 45.1012141,
+        "longitude": -0.7605561
+    },
+    {
+        "name": "Evolution",
+        "vintage": 2023,
+        "drinkYear": 2025,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Willamette Valley, Oregon",
+        "country": "USA",
+        "latitude": 45.2517339,
+        "longitude": -123.0524044
+    }
+]

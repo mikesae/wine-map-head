@@ -5,13 +5,17 @@ import AzureMap, { type Marker } from './components/AzureMap'
 
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
+  const [myMarkers, setMyMarkers] = useState<Marker[]>([]);
+
 
   // Dynamically load vineyard data
   useEffect(() => {
     const loadVineyards = async () => {
       try {
-        const data = await import('./data/vineyards.json'); // Dynamically import JSON
-        setMarkers(data.default); // Set markers from imported data
+        const famousWines = await import('./data/famous-wines.json'); // Dynamically import JSON
+        const myWines = await import('./data/my-wines.json'); // Dynamically import JSON
+        setMarkers(famousWines.default); // Set markers from imported data
+        setMyMarkers(myWines.default); // Set my markers from imported data
       } catch (error) {
         console.error('Error loading vineyard data:', error);
       }
@@ -26,7 +30,7 @@ const App: FC = () => {
 
   return (
     <>
-      <AzureMap markers={markers} />
+      <AzureMap markers={markers} myMarkers={myMarkers} />
     </>
   )
 }
