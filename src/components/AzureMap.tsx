@@ -26,6 +26,9 @@ function addMapControls(map: atlas.Map) {
     map.controls.add(new atlas.control.ScaleControl({ unit: "imperial" }), {
         position: ControlPosition.BottomRight,
     });
+    map.controls.add(new atlas.control.StyleControl(), {
+        position: ControlPosition.TopRight,
+    });
 }
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
@@ -38,12 +41,15 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
         const map = new atlas.Map(mapRef.current, {
             center: [-0.7445, 45.1976],
             zoom: 10,
-            style: "road", // built-in style
+            style: "road_shaded_relief", // built-in style
+            styleOverrides: {
+                roadDetails: { visible: false }, // Hide road details
+            },
             authOptions: {
                 authType: atlas.AuthenticationType.subscriptionKey,
                 subscriptionKey: import.meta.env.VITE_AZURE_MAPS_KEY,
             },
-            showLogo: true, // Azure Maps logo
+            showLogo: false, // Azure Maps logo
             showFeedbackLink: false, // Disable feedback link
             showAttribution: true, // attribution
             enableAccessibility: false, // Disable accessibility control
