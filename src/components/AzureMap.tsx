@@ -14,6 +14,20 @@ export interface AzureMapProps {
     myMarkers: Marker[];
 }
 
+function addMapControls(map: atlas.Map) {
+    // Add zoom/rotation controls
+    map.controls.add(new atlas.control.ZoomControl(), {
+        position: ControlPosition.TopRight,
+    });
+    map.controls.add(new atlas.control.CompassControl(), {
+        position: ControlPosition.TopRight,
+    });
+
+    map.controls.add(new atlas.control.ScaleControl({ unit: "imperial" }), {
+        position: ControlPosition.BottomRight,
+    });
+}
+
 const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
     const mapRef = useRef(null);
 
@@ -37,13 +51,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
         });
 
         map.events.add("ready", () => {
-            // Add zoom/rotation controls
-            map.controls.add(new atlas.control.ZoomControl(), {
-                position: ControlPosition.TopRight,
-            });
-            map.controls.add(new atlas.control.CompassControl(), {
-                position: ControlPosition.TopRight,
-            });
+            addMapControls(map);
 
             // // Add contour layer
             // const contourLayer = new atlas.layer.TileLayer({
@@ -99,16 +107,16 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
             }
             map.sources.add(myMarkersDataSource);
             map.layers.add(new atlas.layer.SymbolLayer(myMarkersDataSource, "my-wines-individual-markers", {
-                // iconOptions: {
-                //     image: 'wine-glass', // Use a built-in icon
-                //     anchor: 'center',
-                //     allowOverlap: true,
-                //     size: 0.5 // Adjust size as needed
-                // },
+                iconOptions: {
+                    image: 'marker-black', // Use a built-in icon
+                    anchor: 'center',
+                    allowOverlap: true,
+                    size: 0.5 // Adjust size as needed
+                },
                 textOptions: {
                     textField: ['get', 'name'],
                     offset: [0, 1.2],
-                    color: 'purple',
+                    color: 'black',
                     font: ['SegoeUi-Bold']
                 },
                 filter: ['!', ['has', 'point_count']] // Only show individual markers (non-clustered points)
@@ -117,11 +125,17 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
             // Add a layer for individual markers
             map.layers.add(
                 new atlas.layer.SymbolLayer(datasource, "vineyards-individual-markers", {
+                    iconOptions: {
+                        image: 'pin-darkblue', // Use a built-in icon
+                        anchor: 'center',
+                        allowOverlap: true,
+                        size: 0.8 // Adjust size as needed
+                    },
                     textOptions: {
                         textField: ["get", "name"], // Display the name of the marker
-                        color: "gray",
+                        color: "darkblue",
                         font: ["SegoeUi-Bold"],
-                        offset: [0, 0.4],
+                        offset: [0, 0.9],
                     },
                     filter: ["!", ["has", "point_count"]], // Only show individual markers (non-clustered points)
                 })
@@ -129,6 +143,12 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
 
             map.layers.add(
                 new atlas.layer.SymbolLayer(datasource, "vineyards-cluster-labels", {
+                    iconOptions: {
+                        image: 'pin-darkblue', // Use a built-in icon
+                        anchor: 'center',
+                        allowOverlap: true,
+                        size: 1 // Adjust size as needed
+                    },
                     textOptions: {
                         textField: [
                             "format",
@@ -136,20 +156,13 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
                             ["get", "point_count"], // Display the cluster count
                             ")",
                         ],
-                        color: "darkgray",
+                        color: "darkblue",
                         font: ["SegoeUi-Bold"],
-                        offset: [0, 0.4],
+                        offset: [0, 1],
                     },
                     filter: ["has", "point_count"], // Only show labels for clusters
                 })
             );
-
-            map.events.add("click", (e) => {
-                if (e.shapes && e.shapes.length > 0) {
-                    const cluster = e.shapes[0];
-                    console.log("Cluster data:", cluster);
-                }
-            });
         });
 
         return () => map.dispose();
