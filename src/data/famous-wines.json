@@ -136,29 +136,29 @@
     "name": "Volnay",
     "region": "Volnay, Côte de Beaune, Bourgogne",
     "country": "France",
-    "latitude": 47.0561,
-    "longitude": 4.7153
+    "latitude": 47.0033,
+    "longitude": 4.7833
   },
   {
     "name": "Pommard",
     "region": "Pommard, Côte de Beaune, Bourgogne",
     "country": "France",
-    "latitude": 47.0528,
-    "longitude": 4.7183
+    "latitude": 47.0022,
+    "longitude": 4.7928
   },
   {
     "name": "Corton-Charlemagne",
     "region": "Aloxe-Corton, Côte de Beaune, Bourgogne",
     "country": "France",
-    "latitude": 47.0569,
-    "longitude": 4.7241
+    "latitude": 47.0400,
+    "longitude": 4.8350
   },
   {
     "name": "Montrachet",
     "region": "Chassagne-Montrachet, Côte de Beaune, Bourgogne",
     "country": "France",
-    "latitude": 47.0536,
-    "longitude": 4.7785
+    "latitude": 46.9506,
+    "longitude": 4.7508
   },
   {
     "name": "Ch\u00e2teau Cheval Blanc",

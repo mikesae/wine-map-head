@@ -24,5 +24,31 @@
         "country": "USA",
         "latitude": 45.2517339,
         "longitude": -123.0524044
+    },
+    {
+        "name": "Domaine Georges Glantenay",
+        "fullName": "Maison Dieu",
+        "vintage": 2021,
+        "drinkYear": 2025,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Volnay, Bourgogne",
+        "country": "France",
+        "latitude": 47.0033,
+        "longitude": 4.7833
+    },
+    {
+        "name": "Trediberry",
+        "fullName": "Trediberry Nebbiolo",
+        "vintage": 2021,
+        "drinkYear": 2024,
+        "varietals": [
+            "Nebbiolo"
+        ],
+        "region": "Piemonte",
+        "country": "Italy",
+        "latitude": 44.5711,
+        "longitude": 7.9235
     }
 ]
