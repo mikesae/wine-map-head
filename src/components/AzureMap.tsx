@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import atlas, { ControlPosition } from "azure-maps-control";
+import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
+import { addMapControls } from "./mapping/controls";
 
 export interface Marker {
     name: string;
@@ -14,23 +15,6 @@ export interface AzureMapProps {
     myMarkers: Marker[];
 }
 
-function addMapControls(map: atlas.Map) {
-    // Add zoom/rotation controls
-    map.controls.add(new atlas.control.ZoomControl(), {
-        position: ControlPosition.TopRight,
-    });
-    map.controls.add(new atlas.control.CompassControl(), {
-        position: ControlPosition.TopRight,
-    });
-
-    map.controls.add(new atlas.control.ScaleControl({ unit: "imperial" }), {
-        position: ControlPosition.BottomRight,
-    });
-    map.controls.add(new atlas.control.StyleControl(), {
-        position: ControlPosition.TopRight,
-    });
-}
-
 const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
     const mapRef = useRef(null);
 
@@ -39,7 +23,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
 
         // Create map
         const map = new atlas.Map(mapRef.current, {
-            center: [-0.7445, 45.1976],
+            center: [4.7833, 47.0033],
             zoom: 10,
             style: "road_shaded_relief", // built-in style
             styleOverrides: {
