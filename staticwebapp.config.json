@@ -1,8 +1,0 @@
-{
-    "routes": [
-        {
-            "route": "/service-worker.js",
-            "serve": "/service-worker.js"
-        }
-    ]
-}
