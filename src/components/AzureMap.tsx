@@ -105,7 +105,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
                 },
                 textOptions: {
                     textField: ['get', 'name'],
-                    offset: [0, 1.2],
+                    offset: [0, 2.0],
                     color: 'black',
                     font: ['SegoeUi-Bold']
                 },
