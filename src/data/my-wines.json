@@ -42,7 +42,7 @@
         "name": "Trediberry",
         "fullName": "Trediberry Nebbiolo",
         "vintage": 2021,
-        "drinkYear": 2024,
+        "drinkYear": 2025,
         "varietals": [
             "Nebbiolo"
         ],
@@ -50,5 +50,128 @@
         "country": "Italy",
         "latitude": 44.5711,
         "longitude": 7.9235
+    },
+    {
+        "name": "Ballot Millot 1er Cru Santenots",
+        "fullName": "Ballot Millot Volnay Santenots 1er Cru",
+        "vintage": 2022,
+        "drinkYear": 2028,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Volnay, Bourgogne",
+        "country": "France",
+        "climat": "Santenots",
+        "latitude": 47.00050,
+        "longitude": 4.77830
+    },
+    {
+        "name": "Camus-Bruchon 1er Cru Gravains",
+        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
+        "vintage": 2022,
+        "drinkYear": 2028,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Savigny-lès-Beaune, Bourgogne",
+        "country": "France",
+        "climat": "Gravains",
+        "latitude": 47.0100,
+        "longitude": 4.8480
+    },
+    {
+        "name": "Camus-Bruchon 1er Cru Lavières",
+        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
+        "vintage": 2022,
+        "drinkYear": 2028,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Savigny-lès-Beaune, Bourgogne",
+        "country": "France",
+        "climat": "Lavières",
+        "latitude": 47.0487,
+        "longitude": 4.8318
+    },
+    {
+        "name": "Camus-Bruchon 1er Cru Les Narbantons",
+        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
+        "vintage": 2022,
+        "drinkYear": 2028,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Savigny-lès-Beaune, Bourgogne",
+        "country": "France",
+        "climat": "Les Narbantons",
+        "latitude": 47.0459,
+        "longitude": 4.8318
+    },
+    {
+        "name": "Georges Glantenay Chambolle-Musigny Village",
+        "fullName": "Georges Glantenay Chambolle-Musigny Village",
+        "vintage": 2022,
+        "drinkYear": 2027,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Chambolle-Musigny, Bourgogne",
+        "country": "France",
+        "latitude": 47.1936,
+        "longitude": 4.9500
+    },
+    {
+        "name": "Les Terres De Phileandre Marsannay",
+        "fullName": "Les Terres De Phileandre Marsannay",
+        "vintage": 2021,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Marsannay, Bourgogne",
+        "country": "France",
+        "latitude": 47.2700,
+        "longitude": 4.9710
+    },
+    {
+        "name": "Rostaing Condrieu",
+        "fullName": "Rostaing Condrieu",
+        "vintage": 2021,
+        "drinkYear": 2025,
+        "varietals": [
+            "Viognier"
+        ],
+        "region": "Condrieu, Côte-Rôtie",
+        "country": "France",
+        "latitude": 45.4700,
+        "longitude": 4.7830
+    },
+    {
+        "name": "Rostaing Ampodium",
+        "fullName": "Rostaing Ampodium Côte-Rôtie",
+        "vintage": 2020,
+        "drinkYear": 2028,
+        "varietals": [
+            "Syrah"
+        ],
+        "region": "Côte-Rôtie",
+        "country": "France",
+        "climat": "Multiple lieux-dits (Côte Blonde, Côte Brune, etc.)",
+        "latitude": 45.4700,
+        "longitude": 4.7830
+    },
+    {
+        "name": "Rostaing La Landonne",
+        "fullName": "Rostaing La Landonne Côte-Rôtie",
+        "vintage": 2019,
+        "drinkYear": 2030,
+        "varietals": [
+            "Syrah"
+        ],
+        "region": "Côte-Rôtie",
+        "climat": "La Landonne",
+        "country": "France",
+        "latitude": 45.4708,
+        "longitude": 4.7830
     }
 ]
