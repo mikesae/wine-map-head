@@ -173,5 +173,20 @@
         "country": "France",
         "latitude": 45.4708,
         "longitude": 4.7830
+    },
+    {
+        "name": "Domaine Marc Roy Gevrey-Chambertin La Justice",
+        "fullName": "Domaine Marc Roy 2013 Gevrey-Chambertin La Justice",
+        "vintage": 2013,
+        "drinkYear": 2023,
+        "drankYear": 2023,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "region": "Gevrey-Chambertin, Bourgogne",
+        "climat": "La Justice",
+        "country": "France",
+        "latitude": 47.2330,
+        "longitude": 4.9500
     }
 ]
