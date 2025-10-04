@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
-import { addMapControls } from "./mapping/controls";
+import { addMapControls, createMap } from "./mapping/controls";
 
 export interface Marker {
     name: string;
@@ -16,48 +16,14 @@ export interface AzureMapProps {
 }
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
-    const mapRef = useRef(null);
+    const mapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!mapRef.current) return;
-
-        // Create map
-        const map = new atlas.Map(mapRef.current, {
-            center: [4.7833, 47.0033],
-            zoom: 10,
-            style: "road_shaded_relief", // built-in style
-            styleOverrides: {
-                roadDetails: { visible: false }, // Hide road details
-            },
-            authOptions: {
-                authType: atlas.AuthenticationType.subscriptionKey,
-                subscriptionKey: import.meta.env.VITE_AZURE_MAPS_KEY,
-            },
-            showLogo: false, // Azure Maps logo
-            showFeedbackLink: false, // Disable feedback link
-            showAttribution: true, // attribution
-            enableAccessibility: false, // Disable accessibility control
-            enableAccessibilityLocationFallback: false, // Disable accessibility location fallback
-        });
+        const map = createMap(mapRef.current);
 
         map.events.add("ready", () => {
             addMapControls(map);
-
-            // // Add contour layer
-            // const contourLayer = new atlas.layer.TileLayer({
-            //     tileUrl: `https://atlas.microsoft.com/map/tile?api-version=2.1&layer=contour&style=default&zoom={z}&x={x}&y={y}&subscription-key=${import.meta.env.VITE_AZURE_MAPS_KEY}`,
-            //     opacity: 0.7, // Adjust opacity
-            // });
-            // map.layers.add(contourLayer);
-
-            const preprocessMarkers = (markers: Marker[]) => {
-                return markers.map((marker) => ({
-                    ...marker,
-                    region: marker.region || "Unknown", // Default to "Unknown" if region is missing
-                }));
-            };
-
-            const processedMarkers = preprocessMarkers(markers);
 
             const datasource = new atlas.source.DataSource("vineyards", {
                 cluster: true, // Enable clustering
@@ -68,9 +34,9 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
                 },
             });
 
-            if (processedMarkers.length > 0) {
+            if (markers.length > 0) {
                 datasource.add(
-                    processedMarkers.map((m) =>
+                    markers.map((m) =>
                         new atlas.data.Feature(
                             new atlas.data.Point([m.longitude, m.latitude]),
                             { name: m.name, region: m.region }

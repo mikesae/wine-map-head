@@ -16,3 +16,24 @@ export function addMapControls(map: atlas.Map) {
         position: ControlPosition.TopRight,
     });
 }
+
+// Function to create the map
+export const createMap = (element: HTMLDivElement) => {
+    return new atlas.Map(element, {
+        center: [4.7833, 47.0033],
+        zoom: 10,
+        style: "road_shaded_relief", // built-in style
+        styleOverrides: {
+            roadDetails: { visible: false }, // Hide road details
+        },
+        authOptions: {
+            authType: atlas.AuthenticationType.subscriptionKey,
+            subscriptionKey: import.meta.env.VITE_AZURE_MAPS_KEY,
+        },
+        showLogo: false, // Azure Maps logo
+        showFeedbackLink: false, // Disable feedback link
+        showAttribution: true, // attribution
+        enableAccessibility: false, // Disable accessibility control
+        enableAccessibilityLocationFallback: false, // Disable accessibility location fallback
+    });
+};
