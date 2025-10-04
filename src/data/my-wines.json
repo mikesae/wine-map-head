@@ -55,7 +55,7 @@
         "name": "Ballot Millot 1er Cru Santenots",
         "fullName": "Ballot Millot Volnay Santenots 1er Cru",
         "vintage": 2022,
-        "drinkYear": 2028,
+        "drinkYear": 2025,
         "varietals": [
             "Pinot Noir"
         ],
@@ -188,5 +188,131 @@
         "country": "France",
         "latitude": 47.2330,
         "longitude": 4.9500
+    },
+    {
+        "name": "Marie Duffau Napoleon",
+        "fullName": "Marie Duffau Napoleon",
+        "vintage": 2022,
+        "drinkYear": 2025,
+        "region": "Bas Armagnac",
+        "country": "France",
+        "latitude": 43.858879,
+        "longitude": 0.0587778
+    },
+    {
+        "name": "Chateau Haut-Bages",
+        "fullName": "Liberal",
+        "vintage": 2019,
+        "drinkYear": 2025,
+        "varietals": [
+            "Cabernet Sauvignon",
+            "Merlot"
+        ],
+        "region": "Pauillac, Bordeaux",
+        "country": "France",
+        "latitude": 45.1897,
+        "longitude": -0.7472
+    },
+    {
+        "name": "Moccagatta",
+        "fullName": "Moccagatta Barbarescco Bric Balin",
+        "vintage": 2015,
+        "drinkYear": 2025,
+        "varietals": [
+            "Nebbiolo"
+        ],
+        "region": "Barbaresco, Piemonte",
+        "country": "Italy",
+        "latitude": 44.7033,
+        "longitude": 8.1044
+    },
+    {
+        "name": "Domaine Vincent Paris",
+        "fullName": "Domaine Vincent Paris Saint-Joseph",
+        "vintage": 2020,
+        "drinkYear": 2025,
+        "varietals": [
+            "Syrah"
+        ],
+        "region": "Saint-Joseph, Rhône",
+        "country": "France",
+        "latitude": 45.2000,
+        "longitude": 4.7500
+    },
+    {
+        "name": "Domaine Jean Dauvissat",
+        "fullName": "Vendages Chablis",
+        "vintage": 2022,
+        "drinkYear": 2025,
+        "varietals": [
+            "Chardonnay"
+        ],
+        "region": "Chablis, Bourgogne",
+        "country": "France",
+        "latitude": 47.7833,
+        "longitude": 3.8000
+    },
+    {
+        "name": "Anne Boisson",
+        "fullName": "Anne Boisson Bourgogne Blanc",
+        "vintage": 2019,
+        "drinkYear": 2025,
+        "varietals": [
+            "Chardonnay"
+        ],
+        "region": "Meursault, Bourgogne",
+        "country": "France",
+        "latitude": 46.4333,
+        "longitude": 5.0000
+    },
+    {
+        "name": "Chateau Montifaud",
+        "fullName": "Chateau Montifaud VS Cognac",
+        "vintage": 1998,
+        "drinkYear": 2025,
+        "region": "Cognac",
+        "country": "France",
+        "latitude": 45.5587868,
+        "longitude": -0.3867709
+    },
+    {
+        "name": "Cain Cuvee",
+        "fullName": "NV 14",
+        "vintage": 2014,
+        "drinkYear": 2025,
+        "varietals": [
+            "Cabernet Sauvignon"
+        ],
+        "region": "Napa Valley, California",
+        "country": "USA",
+        "latitude": 38.5025,
+        "longitude": -122.2654
+    },
+    {
+        "name": "Sonoma-Cutrer",
+        "fullName": "Sonoma-Cutrer Russian River Ranches Chardonnay",
+        "vintage": 2022,
+        "drinkYear": 2024,
+        "varietals": [
+            "Chardonnay"
+        ],
+        "region": "Russian River Valley, California",
+        "country": "USA",
+        "latitude": 38.4400,
+        "longitude": -122.8700
+    },
+    {
+        "name": "Vosgros Chablis Premier Cru",
+        "fullName": "Vosgros Chablis Premier Cru",
+        "vintage": 2017,
+        "drinkYear": 2024,
+        "varietals": [
+            "Chardonnay"
+        ],
+        "region": "Chablis, Bourgogne",
+        "country": "France",
+        "climat": "Fourchaume",
+        "latitude": 47.7833,
+        "longitude": 3.8000
     }
 ]
