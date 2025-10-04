@@ -15,6 +15,46 @@ export interface AzureMapProps {
     myMarkers: Marker[];
 }
 
+function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
+    const dataSource = new atlas.source.DataSource(sourceId, {
+        cluster: true, // Enable clustering
+        clusterRadius: 45, // Adjust the radius for clustering
+        clusterMaxZoom: 15, // Maximum zoom level for clustering
+    });
+
+    if (markers.length > 0) {
+        dataSource.add(
+            markers.map((m) =>
+                new atlas.data.Feature(
+                    new atlas.data.Point([m.longitude, m.latitude]),
+                    { name: m.name, region: m.region }
+                )
+            )
+        );
+    }
+    map.sources.add(dataSource);
+    return dataSource;
+}
+
+function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, individualOnly = true) {
+    map.layers.add(new atlas.layer.SymbolLayer(dataSource, layerId, {
+        iconOptions: {
+            image: iconImage, // Use a built-in icon
+            anchor: 'center',
+            allowOverlap: true,
+            size: 0.5 // Adjust size as needed
+        },
+        textOptions: {
+            textField: ['get', 'name'],
+            offset: [0, 2.0],
+            color: 'black',
+            font: ['SegoeUi-Bold']
+        },
+        // only filter if individualOnly is true
+        filter: individualOnly ? ['!', ['has', 'point_count']] : undefined // Only show individual markers (non-clustered points)
+    }));
+}
+
 const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
     const mapRef = useRef<HTMLDivElement>(null);
 
@@ -25,100 +65,12 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
         map.events.add("ready", () => {
             addMapControls(map);
 
-            const datasource = new atlas.source.DataSource("vineyards", {
-                cluster: true, // Enable clustering
-                clusterRadius: 45, // Adjust the radius for clustering
-                clusterMaxZoom: 15, // Maximum zoom level for clustering
-                clusterProperties: {
-                    region: ["get", "region"], // Assign the "region" property from one of the points in the cluster
-                },
-            });
+            const dataSource = addDataSource(map, markers, "vineyards");
+            addSymbolLayer(map, dataSource, "vineyards-layer", 'marker-black', false);
 
-            if (markers.length > 0) {
-                datasource.add(
-                    markers.map((m) =>
-                        new atlas.data.Feature(
-                            new atlas.data.Point([m.longitude, m.latitude]),
-                            { name: m.name, region: m.region }
-                        )
-                    )
-                );
-            }
-            map.sources.add(datasource);
+            const myMarkersDataSource = addDataSource(map, myMarkers, "my-wines");
+            addSymbolLayer(map, myMarkersDataSource, "my-wines-layer", 'pin-red', false);
 
-            const myMarkersDataSource = new atlas.source.DataSource("my-wines", {
-                cluster: true,
-                clusterRadius: 45,
-                clusterMaxZoom: 5
-            });
-            if (myMarkers.length > 0) {
-                myMarkersDataSource.add(
-                    myMarkers.map((m) =>
-                        new atlas.data.Feature(
-                            new atlas.data.Point([m.longitude, m.latitude]),
-                            { name: m.name, region: m.region }
-                        )
-                    )
-                );
-            }
-            map.sources.add(myMarkersDataSource);
-            map.layers.add(new atlas.layer.SymbolLayer(myMarkersDataSource, "my-wines-individual-markers", {
-                iconOptions: {
-                    image: 'marker-black', // Use a built-in icon
-                    anchor: 'center',
-                    allowOverlap: true,
-                    size: 0.5 // Adjust size as needed
-                },
-                textOptions: {
-                    textField: ['get', 'name'],
-                    offset: [0, 2.0],
-                    color: 'black',
-                    font: ['SegoeUi-Bold']
-                },
-                filter: ['!', ['has', 'point_count']] // Only show individual markers (non-clustered points)
-            }));
-
-            // Add a layer for individual markers
-            map.layers.add(
-                new atlas.layer.SymbolLayer(datasource, "vineyards-individual-markers", {
-                    iconOptions: {
-                        image: 'pin-darkblue', // Use a built-in icon
-                        anchor: 'center',
-                        allowOverlap: true,
-                        size: 0.8 // Adjust size as needed
-                    },
-                    textOptions: {
-                        textField: ["get", "name"], // Display the name of the marker
-                        color: "darkblue",
-                        font: ["SegoeUi-Bold"],
-                        offset: [0, 0.9],
-                    },
-                    filter: ["!", ["has", "point_count"]], // Only show individual markers (non-clustered points)
-                })
-            );
-
-            map.layers.add(
-                new atlas.layer.SymbolLayer(datasource, "vineyards-cluster-labels", {
-                    iconOptions: {
-                        image: 'pin-darkblue', // Use a built-in icon
-                        anchor: 'center',
-                        allowOverlap: true,
-                        size: 1 // Adjust size as needed
-                    },
-                    textOptions: {
-                        textField: [
-                            "format",
-                            "Sites (",
-                            ["get", "point_count"], // Display the cluster count
-                            ")",
-                        ],
-                        color: "darkblue",
-                        font: ["SegoeUi-Bold"],
-                        offset: [0, 1],
-                    },
-                    filter: ["has", "point_count"], // Only show labels for clusters
-                })
-            );
         });
 
         return () => map.dispose();
