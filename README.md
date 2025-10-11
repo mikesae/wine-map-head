@@ -17,6 +17,15 @@ This project is a React application built with TypeScript and Vite. It provides 
 - **Vite**: For fast builds and development.
 - **Azure Maps**: For map rendering and data visualization.
 
+## Data Attribution
+
+Wine appellation boundaries (AOC) © Institut national de l’origine et de la qualité (INAO)  
+and Institut national de l'information géographique et forestière (IGN).  
+Sourced from [data.gouv.fr](https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/)  
+Licensed under [Etalab Open Licence v2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/).
+
+Note: The data has been simplified and split into separate JSON files.
+
 ## Getting Started
 
 ### Prerequisites
