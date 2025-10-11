@@ -13,7 +13,7 @@ export interface Marker {
 export interface AzureMapProps {
     markers: Marker[];
     myMarkers: Marker[];
-    regions: any; // Add aocs.json data as a prop
+    regions: any[];
 }
 
 function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
@@ -55,12 +55,12 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
     }));
 }
 
-function addPolygonLayer(map: atlas.Map, features: any) {
-    const dataSource = new atlas.source.DataSource("aocs-polygons");
+function addPolygonLayer(map: atlas.Map, featureSet: any) {
+    const dataSource = new atlas.source.DataSource(featureSet.name);
     map.sources.add(dataSource);
 
     // Add polygons to the data source
-    features.forEach((feature: any) => {
+    featureSet.features.forEach((feature: any) => {
         if (feature.geometry.type === "MultiPolygon") {
             const coordinates = feature.geometry.coordinates;
             coordinates.forEach((polygonCoords: any) => {
@@ -72,22 +72,11 @@ function addPolygonLayer(map: atlas.Map, features: any) {
     });
 
     // Add a polygon layer
-    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "aocs-polygon-layer", {
+    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSet.name, {
         fillColor: "rgba(128, 0, 128, 0.8)", // Semi-transparent purple
         strokeColor: "blue",
         strokeWidth: 3,
     }));
-
-    // Add a symbol layer for labels
-    // map.layers.add(new atlas.layer.SymbolLayer(dataSource, "aocs-label-layer", {
-    //     textOptions: {
-    //         textField: ['get', 'denom'],
-    //         offset: [0, 1.5],
-    //         color: 'black',
-    //         font: ['SegoeUi-Bold'],
-    //         size: 14,
-    //     },
-    // }));
 }
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
@@ -100,7 +89,9 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
         map.events.add("ready", () => {
             addMapControls(map);
 
-            addPolygonLayer(map, regions);
+            regions.forEach((region) => {
+                addPolygonLayer(map, region);
+            });
 
             const dataSource = addDataSource(map, markers, "vineyards");
             addSymbolLayer(map, dataSource, "vineyards-layer", 'marker-black', false);
