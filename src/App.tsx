@@ -37,6 +37,9 @@ const App: FC = () => {
   return (
     <>
       <AzureMap markers={markers} myMarkers={myMarkers} regions={[aocs, bordeaux]} />
+      <div className="attribution">
+        AOC © INAO/IGN, <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">data.gouv.fr</a>, Etalab v2.0
+      </div>
     </>
   )
 }

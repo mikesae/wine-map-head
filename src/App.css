@@ -7,3 +7,15 @@
   width: 100vw;
   height: 100vh;
 }
+
+.attribution {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 4px 8px;
+  font-size: 10px;
+  color: #000;
+  border-radius: 4px;
+  z-index: 1000;
+}
