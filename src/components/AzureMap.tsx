@@ -13,13 +13,14 @@ export interface Marker {
 export interface AzureMapProps {
     markers: Marker[];
     myMarkers: Marker[];
+    regions: any; // Add aocs.json data as a prop
 }
 
 function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
     const dataSource = new atlas.source.DataSource(sourceId, {
-        cluster: true, // Enable clustering
-        clusterRadius: 45, // Adjust the radius for clustering
-        clusterMaxZoom: 15, // Maximum zoom level for clustering
+        cluster: true,
+        clusterRadius: 45,
+        clusterMaxZoom: 15,
     });
 
     if (markers.length > 0) {
@@ -36,13 +37,13 @@ function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any
     return dataSource;
 }
 
-function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, individualOnly = true) {
+function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, individualOnly: boolean) {
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, layerId, {
         iconOptions: {
-            image: iconImage, // Use a built-in icon
+            image: iconImage,
             anchor: 'center',
             allowOverlap: true,
-            size: 0.5 // Adjust size as needed
+            size: 0.5
         },
         textOptions: {
             textField: ['get', 'name'],
@@ -50,12 +51,46 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
             color: 'black',
             font: ['SegoeUi-Bold']
         },
-        // only filter if individualOnly is true
-        filter: individualOnly ? ['!', ['has', 'point_count']] : undefined // Only show individual markers (non-clustered points)
+        filter: individualOnly ? ['!', ['has', 'point_count']] : undefined
     }));
 }
 
-const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
+function addPolygonLayer(map: atlas.Map, features: any) {
+    const dataSource = new atlas.source.DataSource("aocs-polygons");
+    map.sources.add(dataSource);
+
+    // Add polygons to the data source
+    features.forEach((feature: any) => {
+        if (feature.geometry.type === "MultiPolygon") {
+            const coordinates = feature.geometry.coordinates;
+            coordinates.forEach((polygonCoords: any) => {
+                const polygon = new atlas.data.Polygon(polygonCoords[0]);
+                const atlasFeature = new atlas.data.Feature(polygon);
+                dataSource.add(new atlas.Shape(atlasFeature));
+            });
+        }
+    });
+
+    // Add a polygon layer
+    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "aocs-polygon-layer", {
+        fillColor: "rgba(128, 0, 128, 0.8)", // Semi-transparent purple
+        strokeColor: "blue",
+        strokeWidth: 3,
+    }));
+
+    // Add a symbol layer for labels
+    // map.layers.add(new atlas.layer.SymbolLayer(dataSource, "aocs-label-layer", {
+    //     textOptions: {
+    //         textField: ['get', 'denom'],
+    //         offset: [0, 1.5],
+    //         color: 'black',
+    //         font: ['SegoeUi-Bold'],
+    //         size: 14,
+    //     },
+    // }));
+}
+
+const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
     const mapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -65,16 +100,17 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers }) => {
         map.events.add("ready", () => {
             addMapControls(map);
 
+            addPolygonLayer(map, regions);
+
             const dataSource = addDataSource(map, markers, "vineyards");
             addSymbolLayer(map, dataSource, "vineyards-layer", 'marker-black', false);
 
             const myMarkersDataSource = addDataSource(map, myMarkers, "my-wines");
             addSymbolLayer(map, myMarkersDataSource, "my-wines-layer", 'pin-red', false);
-
         });
 
         return () => map.dispose();
-    }, [markers]);
+    }, [markers, myMarkers, regions]);
 
     return <div ref={mapRef} id="map" />;
 };

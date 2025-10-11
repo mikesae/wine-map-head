@@ -24,7 +24,11 @@ export const createMap = (element: HTMLDivElement) => {
         zoom: 10,
         style: "road_shaded_relief", // built-in style
         styleOverrides: {
-            roadDetails: { visible: false }, // Hide road details
+            roadDetails: { visible: false },
+            adminDistrict: { borderVisible: true },
+            adminDistrict2: { borderVisible: true },
+            countryRegion: { borderVisible: true },
+
         },
         authOptions: {
             authType: atlas.AuthenticationType.subscriptionKey,
