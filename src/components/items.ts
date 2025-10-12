@@ -3,6 +3,7 @@ export const items = [
     { id: 2, name: 'Beaune', lat: 47.026, lng: 4.84 },
     { id: 3, name: 'Bouzeron', lat: 46.997, lng: 4.746 },
     { id: 4, name: 'Chambolle-Musigny', lat: 47.151, lng: 4.965 },
+    { id: 42, name: 'Chablis', lat: 47.8, lng: 3.8 },
     { id: 5, name: 'Chassagne-Montrachet', lat: 46.992, lng: 4.724 },
     { id: 6, name: 'Côte Chalonnaise', lat: 46.85, lng: 4.7 },
     { id: 7, name: 'Côte de Beaune', lat: 47.0, lng: 4.8 },

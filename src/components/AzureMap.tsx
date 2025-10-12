@@ -56,7 +56,14 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
     }));
 }
 
-function addPolygonLayer(map: atlas.Map, featureSet: any) {
+// color fills for regions
+const regionColors = [
+    "rgba(128, 0, 128, 0.8)", // Semi-transparent purple
+    "rgba(0,192, 0, 0.8)",
+    "rgba(255, 215, 0, 0.8)", // Semi-transparent gold
+];
+
+function addPolygonLayer(map: atlas.Map, featureSet: any, color?: string) {
     const dataSource = new atlas.source.DataSource(featureSet.name);
     map.sources.add(dataSource);
 
@@ -74,7 +81,7 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
 
     // Add a polygon layer
     map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSet.name, {
-        fillColor: "rgba(128, 0, 128, 0.8)" // Semi-transparent purple
+        fillColor: color
     }));
 }
 
@@ -88,8 +95,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
         map.events.add("ready", () => {
             addMapControls(map);
 
-            regions.forEach((region) => {
-                addPolygonLayer(map, region);
+            regions.forEach((region, index) => {
+                addPolygonLayer(map, region, regionColors[index]);
             });
 
             const dataSource = addDataSource(map, markers, "vineyards");

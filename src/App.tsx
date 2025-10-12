@@ -7,8 +7,13 @@ import SearchBar from './components/SearchBar';
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [myMarkers, setMyMarkers] = useState<Marker[]>([]);
-  const [aocs, setAocs] = useState<any>([]);
+  const [regions, setRegions] = useState<any>([]);
 
+  const regionFiles = [
+    './data/bourgogne.json',
+    './data/chalonnaise.json',
+    './data/chablis.json'
+  ];
 
   // Dynamically load vineyard data
   useEffect(() => {
@@ -16,10 +21,15 @@ const App: FC = () => {
       try {
         const famousWines = await import('./data/famous-wines.json'); // Dynamically import JSON
         const myWines = await import('./data/my-wines.json'); // Dynamically import JSON
-        const aocs = await import('./data/bourgogne.json'); // Dynamically import JSON
         setMarkers(famousWines.default); // Set markers from imported data
         setMyMarkers(myWines.default); // Set my markers from imported data
-        setAocs(aocs); // Set AOCs data from imported data if it exists
+
+        const regions = [];
+        regions.push(await import(regionFiles[0]));
+        regions.push(await import(regionFiles[1]));
+        regions.push(await import(regionFiles[2]));
+        setRegions(regions);
+
       } catch (error) {
         console.error('Error loading vineyard data:', error);
       }
@@ -35,7 +45,7 @@ const App: FC = () => {
   return (
     <>
       <SearchBar />
-      <AzureMap markers={markers} myMarkers={myMarkers} regions={[aocs]} />
+      <AzureMap markers={markers} myMarkers={myMarkers} regions={regions} />
       <div className="attribution">
         AOC © INAO/IGN, <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">data.gouv.fr</a>, Etalab v2.0
       </div>
