@@ -10,17 +10,17 @@ const App: FC = () => {
   const [regions, setRegions] = useState<any>([]);
 
   const regionFiles = [
-    './data/bourgogne.json',
-    './data/chalonnaise.json',
-    './data/chablis.json'
+    './assets/bourgogne.json',
+    './assets/chalonnaise.json',
+    './assets/chablis.json'
   ];
 
   // Dynamically load vineyard data
   useEffect(() => {
     const loadData = async () => {
       try {
-        const famousWines = await import('./data/famous-wines.json'); // Dynamically import JSON
-        const myWines = await import('./data/my-wines.json'); // Dynamically import JSON
+        const famousWines = await import('./assets/famous-wines.json'); // Dynamically import JSON
+        const myWines = await import('./assets/my-wines.json'); // Dynamically import JSON
         setMarkers(famousWines.default); // Set markers from imported data
         setMyMarkers(myWines.default); // Set my markers from imported data
 
