@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
 import { addMapControls, createMap } from "./mapping/controls";
+import events from "./events";
 
 export interface Marker {
     name: string;
@@ -73,9 +74,7 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
 
     // Add a polygon layer
     map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSet.name, {
-        fillColor: "rgba(128, 0, 128, 0.8)", // Semi-transparent purple
-        strokeColor: "blue",
-        strokeWidth: 3,
+        fillColor: "rgba(128, 0, 128, 0.8)" // Semi-transparent purple
     }));
 }
 
@@ -100,7 +99,25 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
             addSymbolLayer(map, myMarkersDataSource, "my-wines-layer", 'pin-red', false);
         });
 
-        return () => map.dispose();
+        // Subscribe to the recenter event
+        const handleRecenter = ({ lat, lng }: { lat: number; lng: number }) => {
+            console.log('Recenter map to:', lat, lng);
+
+            // Update the map's center
+            map.setCamera({
+                center: [lng, lat], // Azure Maps uses [longitude, latitude]
+                zoom: 12, // Optional: Adjust zoom level,
+                type: 'fly', // Optional: Animation type
+                duration: 1000 // Optional: Animation duration in milliseconds
+            });
+        };
+
+        events.on('recenter', handleRecenter);
+
+        return () => {
+            events.off('recenter', handleRecenter);
+            map.dispose();
+        }
     }, [markers, myMarkers, regions]);
 
     return <div ref={mapRef} id="map" />;

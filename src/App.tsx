@@ -2,6 +2,7 @@
 import { useState, useEffect, type FC } from 'react';
 import './App.css'
 import AzureMap, { type Marker } from './components/AzureMap'
+import SearchBar from './components/SearchBar';
 
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -36,6 +37,7 @@ const App: FC = () => {
 
   return (
     <>
+      <SearchBar />
       <AzureMap markers={markers} myMarkers={myMarkers} regions={[aocs, bordeaux]} />
       <div className="attribution">
         AOC © INAO/IGN, <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">data.gouv.fr</a>, Etalab v2.0
