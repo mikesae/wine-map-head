@@ -59,6 +59,7 @@ export const items = [
     { id: 58, name: 'Saint-Amour', lat: 46.300000, lng: 4.830000 },
     { id: 59, name: 'Saint-Véran', lat: 46.300000, lng: 4.830000 },
     { id: 60, name: 'Santenay', lat: 46.992000, lng: 4.780000 },
+    { id: 65, name: 'Savigny-lès-Beaune', lat: 47.063478201135666, lng: 4.84408754894676 },
     { id: 61, name: 'Viré-Clessé', lat: 46.300000, lng: 4.830000 },
     { id: 62, name: 'Volnay', lat: 47.026000, lng: 4.840000 },
     { id: 63, name: 'Vosne-Romanée', lat: 47.150000, lng: 4.965000 },

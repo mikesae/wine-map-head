@@ -66,7 +66,7 @@
         "longitude": 4.77830
     },
     {
-        "name": "Camus-Bruchon 1er Cru Gravains",
+        "name": "1er Cru Gravains",
         "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
         "vintage": 2022,
         "drinkYear": 2028,
@@ -76,12 +76,12 @@
         "region": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "climat": "Gravains",
-        "latitude": 47.0100,
-        "longitude": 4.8480
+        "latitude": 47.062143159774024,
+        "longitude": 4.833567462967977
     },
     {
-        "name": "Camus-Bruchon 1er Cru Lavières",
-        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
+        "name": "1er Cru Les Lavières",
+        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Les Lavières",
         "vintage": 2022,
         "drinkYear": 2028,
         "varietals": [
@@ -90,12 +90,12 @@
         "region": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "climat": "Lavières",
-        "latitude": 47.0487,
-        "longitude": 4.8318
+        "latitude": 47.06057856589328,
+        "longitude": 4.841496404187723
     },
     {
-        "name": "Camus-Bruchon 1er Cru Les Narbantons",
-        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
+        "name": "1er Cru Les Narbantons",
+        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Les Narbantons",
         "vintage": 2022,
         "drinkYear": 2028,
         "varietals": [
@@ -104,8 +104,8 @@
         "region": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "climat": "Les Narbantons",
-        "latitude": 47.0459,
-        "longitude": 4.8318
+        "latitude": 47.05379191479676,
+        "longitude": 4.836296138923899
     },
     {
         "name": "Georges Glantenay Chambolle-Musigny Village",

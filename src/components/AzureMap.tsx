@@ -50,7 +50,8 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
             textField: ['get', 'name'],
             offset: [0, 2.0],
             color: 'black',
-            font: ['SegoeUi-Bold']
+            font: ['SegoeUi-Bold'],
+            allowOverlap: true,
         },
         filter: individualOnly ? ['!', ['has', 'point_count']] : undefined
     }));
@@ -91,6 +92,12 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
     useEffect(() => {
         if (!mapRef.current) return;
         const map = createMap(mapRef.current);
+
+        map.events.add('mouseup', (e: atlas.MapMouseEvent) => {
+            const pixel = e.pixel || [0, 0];
+            const ll = map.pixelsToPositions([pixel]);
+            console.log(`Mouse at: ${ll[0][1]}, ${ll[0][0]}`); // Latitude, Longitude
+        });
 
         map.events.add("ready", () => {
             addMapControls(map);
