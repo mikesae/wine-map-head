@@ -37,21 +37,22 @@ function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any
     return dataSource;
 }
 
-function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, individualOnly: boolean) {
+function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, showLabels: boolean) {
+    const individualOnly = true;
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, layerId, {
         iconOptions: {
             image: iconImage,
             anchor: 'center',
             allowOverlap: true,
-            size: 0.5
+            size: 1.0
         },
-        textOptions: {
+        textOptions: showLabels ? {
             textField: ['get', 'name'],
             offset: [0, 2.0],
             color: 'black',
             font: ['SegoeUi-Bold'],
             allowOverlap: true,
-        },
+        } : undefined,
         filter: individualOnly ? ['!', ['has', 'point_count']] : undefined
     }));
 }
