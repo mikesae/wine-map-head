@@ -13,7 +13,6 @@ export interface Marker {
 
 export interface AzureMapProps {
     markers: Marker[];
-    myMarkers: Marker[];
     regions: any[];
 }
 
@@ -59,9 +58,9 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
 
 // color fills for regions
 const regionColors = [
-    "rgba(128, 0, 128, 0.8)", // Semi-transparent purple
-    "rgba(0,192, 0, 0.8)",
-    "rgba(255, 215, 0, 0.8)", // Semi-transparent gold
+    "rgba(128,  0,  128, 0.8)", // Semi-transparent purple
+    "rgba(   0, 192,  0, 0.8)",
+    "rgba(255,  215,  0, 0.8)", // Semi-transparent gold
 ];
 
 function addPolygonLayer(map: atlas.Map, featureSet: any, color?: string) {
@@ -86,7 +85,7 @@ function addPolygonLayer(map: atlas.Map, featureSet: any, color?: string) {
     }));
 }
 
-const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
+const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
     const mapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -106,11 +105,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
                 addPolygonLayer(map, region, regionColors[index]);
             });
 
-            const dataSource = addDataSource(map, markers, "vineyards");
-            addSymbolLayer(map, dataSource, "vineyards-layer", 'marker-black', false);
-
-            const myMarkersDataSource = addDataSource(map, myMarkers, "my-wines");
-            addSymbolLayer(map, myMarkersDataSource, "my-wines-layer", 'pin-red', false);
+            const myMarkersDataSource = addDataSource(map, markers, "markers");
+            addSymbolLayer(map, myMarkersDataSource, "markers-layer", 'pin-red', false);
         });
 
         // Subscribe to the recenter event
@@ -132,7 +128,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, myMarkers, regions }) => {
             events.off('recenter', handleRecenter);
             map.dispose();
         }
-    }, [markers, myMarkers, regions]);
+    }, [markers, regions]);
 
     return <div ref={mapRef} id="map" />;
 };

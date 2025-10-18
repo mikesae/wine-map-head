@@ -35,7 +35,7 @@ const App: FC = () => {
   return (
     <>
       <SearchBar />
-      <AzureMap markers={[]} myMarkers={markers} regions={regions} />
+      <AzureMap markers={markers} regions={regions} />
       <div className="attribution">
         AOC © INAO/IGN,
         <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">data.gouv.fr</a>,
