@@ -16,9 +16,9 @@ const App: FC = () => {
         setMarkers(myWines.default);
 
         const regions = [];
-        regions.push(await import('./assets/data/bourgogne.json'));
+        regions.push(await import('./assets/data/cote-d-or.json'));
         regions.push(await import('./assets/data/chalonnaise.json'));
-        regions.push(await import('./assets/data/chablis.json'));
+        regions.push(await import('./assets/data/chablis-enriched.json'));
         setRegions(regions);
       } catch (error) {
         console.error('Error loading vineyard data:', error);

@@ -38,7 +38,7 @@ function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any
 }
 
 function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, showLabels: boolean) {
-    const individualOnly = true;
+    const individualOnly = false;
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, layerId, {
         iconOptions: {
             image: iconImage,
