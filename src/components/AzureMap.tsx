@@ -69,6 +69,8 @@ const vinsRouges = {
     Village: '#D8BFD8',
 }
 
+const mixedColor = '#C08040'; // blend of purple and yellow
+
 function addPolygonLayer(map: atlas.Map, featureSet: any) {
     const dataSource = new atlas.source.DataSource(featureSet.name);
     map.sources.add(dataSource);
@@ -100,14 +102,16 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
             ['all', ['==', ['get', 'aoc_level'], 'Grand Cru'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.GrandCru,
             ['all', ['==', ['get', 'aoc_level'], 'Premier Cru'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.PremierCru,
             ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.Village,
-            'aqua' // Default if no match
+            ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Mixed']], mixedColor,
+            // Default color
+            'aqua'
         ],
         fillOpacity: 0.8
     }));
     // Add a line layer for polygon borders
     map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSet.name, {
         strokeColor: '#BBBBBB',
-        strokeWidth: 1
+        strokeWidth: 1,
     }));
     // Add a symbol layer for labels
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + featureSet.name, {

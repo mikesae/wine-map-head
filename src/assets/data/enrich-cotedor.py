@@ -14,8 +14,8 @@ pinot_noir_appellations = [
     "marsannay", 
     "couchey", "marsannay-la-côte",
     "comblanchien",
-    "pernand-vergelesses", "ladoix-serrigny", 
-    "côte de nuits-villages",
+    "pernand-vergelesses", 
+    "ladoix-serrigny", 
     "côte de beaune-villages",
     "bonnes-mares",
     "chambertin",
@@ -24,16 +24,25 @@ pinot_noir_appellations = [
     "clos-de-vougeot",
     "clos saint-denis",
     "clos de tart",
+    "clos de la roche",
+    "clos des lambrays",
     "richebourg",
     "la tâche",
+    "la romanée",
     "romanée-conti",
     "romanée-saint-vivant",
-    'charmes-chambertin',
-    'latricières-chambertin',
-    'mazis-chambertin',
-    'griotte-chambertin',
-    'ladoix',
-    'ruchottes-chambertin',
+    "charmes-chambertin",
+    "latricières-chambertin",
+    "mazis-chambertin",
+    "griotte-chambertin",
+    "ladoix",
+    "ruchottes-chambertin",
+    "mazoyères-chambertin",
+    "chapelle-chambertin",
+    "maranges",
+    "charlemagne",
+    "musigny",
+    "côte de nuits-villages ou vins fins de la côte de nuits"
 ]
 
 chardonnay_appellations = [
@@ -43,10 +52,12 @@ chardonnay_appellations = [
     "bâtard-montrachet",
     "blagny",
     "chevalier-montrachet",
-    "criots-bâtard-montrachet"
+    "criots-bâtard-montrachet",
+    "bienvenues-bâtard-montrachet",
 ]
 
 mixed_aocs = [
+    "saint-romain"
 ]
 
 # Map AOC to dominant color
@@ -98,7 +109,8 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
         props["aoc_level"] = aoc_level
         props["climat"] = climat_name
         props["appellation"] = appellation
-        props["varietal"] = get_varietal(appellation)
+        props["varietal"] = get_varietal(appellation)    
+        print(f"App: {appellation}  -> AOC Level: {aoc_level}, Climat: {climat_name}, Varietal: {props['varietal']}")
 
         enriched_features.append(feature)
 # Write FeatureCollection with one feature per line
