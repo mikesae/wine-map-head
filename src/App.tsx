@@ -16,8 +16,8 @@ const App: FC = () => {
         setMarkers(myWines.default);
 
         const regions = [];
-        regions.push(await import('./assets/data/cote-d-or.json'));
-        regions.push(await import('./assets/data/chalonnaise.json'));
+        regions.push(await import('./assets/data/cote-d-or-enriched.json'));
+        regions.push(await import('./assets/data/chalonnaise-enriched.json'));
         regions.push(await import('./assets/data/chablis-enriched.json'));
         setRegions(regions);
       } catch (error) {

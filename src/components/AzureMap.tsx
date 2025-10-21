@@ -57,14 +57,19 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
     }));
 }
 
-// color fills for regions
-const regionColors = [
-    "rgba(128,  0,  128, 0.8)", // Semi-transparent purple
-    "rgba(   0, 192,  0, 0.8)",
-    "rgba(255,  215,  0, 0.8)", // Semi-transparent gold
-];
+const vinsBlancs = {
+    GrandCru: '#FFFF00',
+    PremierCru: '#FFD700',
+    Village: '#FFFFE0'
+};
 
-function addPolygonLayer(map: atlas.Map, featureSet: any, color?: string) {
+const vinsRouges = {
+    GrandCru: '#800000',
+    PremierCru: '#800080',
+    Village: '#D8BFD8',
+}
+
+function addPolygonLayer(map: atlas.Map, featureSet: any) {
     const dataSource = new atlas.source.DataSource(featureSet.name);
     map.sources.add(dataSource);
 
@@ -74,7 +79,12 @@ function addPolygonLayer(map: atlas.Map, featureSet: any, color?: string) {
             const coordinates = feature.geometry.coordinates;
             coordinates.forEach((polygonCoords: any) => {
                 const polygon = new atlas.data.Polygon(polygonCoords[0]);
-                const atlasFeature = new atlas.data.Feature(polygon);
+                const atlasFeature = new atlas.data.Feature(polygon, {
+                    aoc_level: feature.properties.aoc_level,
+                    appellation: feature.properties.appellation,
+                    climat: feature.properties.climat,
+                    varietal: feature.properties.varietal,
+                });
                 dataSource.add(new atlas.Shape(atlasFeature));
             });
         }
@@ -82,7 +92,36 @@ function addPolygonLayer(map: atlas.Map, featureSet: any, color?: string) {
 
     // Add a polygon layer
     map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSet.name, {
-        fillColor: color
+        fillColor: [
+            'case',
+            ['all', ['==', ['get', 'aoc_level'], 'Grand Cru'], ['==', ['get', 'varietal'], 'Chardonnay']], vinsBlancs.GrandCru,
+            ['all', ['==', ['get', 'aoc_level'], 'Premier Cru'], ['==', ['get', 'varietal'], 'Chardonnay']], vinsBlancs.PremierCru,
+            ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Chardonnay']], vinsBlancs.Village,
+            ['all', ['==', ['get', 'aoc_level'], 'Grand Cru'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.GrandCru,
+            ['all', ['==', ['get', 'aoc_level'], 'Premier Cru'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.PremierCru,
+            ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.Village,
+            'aqua' // Default if no match
+        ],
+        fillOpacity: 0.8
+    }));
+    // Add a line layer for polygon borders
+    map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSet.name, {
+        strokeColor: '#BBBBBB',
+        strokeWidth: 1
+    }));
+    // Add a symbol layer for labels
+    map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + featureSet.name, {
+        iconOptions: {
+            image: ""
+        },
+        textOptions: {
+            textField: ['concat', ['get', 'appellation'], '\n', ['get', 'climat'], ' ', ['get', 'aoc_level'], ' (', ['get', 'varietal'], ')'],
+            offset: [0, 0],
+            color: 'gray',
+            font: ['SegoeUi-Bold'],
+            size: 10,
+            allowOverlap: false,
+        }
     }));
 }
 
@@ -102,8 +141,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
         map.events.add("ready", () => {
             addMapControls(map);
 
-            regions.forEach((region, index) => {
-                addPolygonLayer(map, region, regionColors[index]);
+            regions.forEach((region) => {
+                addPolygonLayer(map, region);
             });
 
             const myMarkersDataSource = addDataSource(map, markers, "markers");

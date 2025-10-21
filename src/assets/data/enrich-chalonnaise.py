@@ -4,6 +4,9 @@ import json
 with open("chalonnaise.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
+# Enrich features
+enriched_features = []
+
 # Map AOC to dominant color
 def get_varietal(aoc_name):
     aoc = aoc_name.lower()
@@ -49,7 +52,14 @@ with open("chalonnaise-enriched.json", "w", encoding="utf-8") as out_f:
         props["appellation"] = appellation
         props["varietal"] = get_varietal(appellation)
 
-        # Write one feature per line
-        out_f.write(json.dumps(feature, ensure_ascii=False) + "\n")
+        enriched_features.append(feature)
+# Write FeatureCollection with one feature per line
+with open("chalonnaise-enriched.json", "w", encoding="utf-8") as f:
+    f.write('{"type": "FeatureCollection", "name": "chablis", "features": [\n')
+    for i, feature in enumerate(enriched_features):
+        f.write(json.dumps(feature, ensure_ascii=False))
+        if i < len(enriched_features) - 1:
+            f.write(",\n")  # comma between features
+    f.write("\n]}\n")
 
 print("✅ Enriched file saved as chalonnaise-enriched.json")
