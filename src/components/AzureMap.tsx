@@ -79,16 +79,15 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
     featureSet.features.forEach((feature: any) => {
         if (feature.geometry.type === "MultiPolygon") {
             const coordinates = feature.geometry.coordinates;
-            coordinates.forEach((polygonCoords: any) => {
-                const polygon = new atlas.data.Polygon(polygonCoords[0]);
-                const atlasFeature = new atlas.data.Feature(polygon, {
-                    aoc_level: feature.properties.aoc_level,
-                    appellation: feature.properties.appellation,
-                    climat: feature.properties.climat,
-                    varietal: feature.properties.varietal,
-                });
-                dataSource.add(new atlas.Shape(atlasFeature));
+            console.log('appellation:', feature.properties.appellation, ', coordinates length:', coordinates.length);
+            const polygon = new atlas.data.MultiPolygon(coordinates);
+            const atlasFeature = new atlas.data.Feature(polygon, {
+                aoc_level: feature.properties.aoc_level,
+                appellation: feature.properties.appellation,
+                climat: feature.properties.climat,
+                varietal: feature.properties.varietal,
             });
+            dataSource.add(new atlas.Shape(atlasFeature));
         }
     });
 
