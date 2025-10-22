@@ -58,15 +58,15 @@ function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, lay
 }
 
 const vinsBlancs = {
-    GrandCru: '#FFFF00',
-    PremierCru: '#FFD700',
-    Village: '#FFFFE0'
+    GrandCru: '#ffff59',
+    PremierCru: '#ffcd54',
+    Village: '#fff171'
 };
 
 const vinsRouges = {
-    GrandCru: '#800000',
-    PremierCru: '#800080',
-    Village: '#D8BFD8',
+    GrandCru: '#ef4865',
+    PremierCru: '#c475b0',
+    Village: '#fb766d',
 }
 
 const mixedColor = '#C08040'; // blend of purple and yellow
@@ -140,8 +140,16 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
 
         map.events.add('mouseup', (e: atlas.MapMouseEvent) => {
             const pixel = e.pixel || [0, 0];
-            const ll = map.pixelsToPositions([pixel]);
-            console.log(`Mouse at: ${ll[0][1]}, ${ll[0][0]}`); // Latitude, Longitude
+            const latLong = map.pixelsToPositions([pixel]);
+            //console.log(`Mouse at: ${ll[0][1]}, ${ll[0][0]}`); // Latitude, Longitude
+
+            // lookup shapes at this position
+            const shapes = map.layers.getRenderedShapes(latLong[0]);
+            shapes.forEach((shape) => {
+                if (shape instanceof atlas.Shape) {
+                    console.log('Shape properties:', shape.getProperties());
+                }
+            })
         });
 
         map.events.add("ready", () => {
