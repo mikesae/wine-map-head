@@ -112,9 +112,11 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
     map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSet.name, {
         strokeColor: '#BBBBBB',
         strokeWidth: 1,
+        minZoom: 12
     }));
-    // Add a symbol layer for labels
+    // Add a layer for labels
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + featureSet.name, {
+        minZoom: 12,
         iconOptions: {
             image: ""
         },
