@@ -42,7 +42,9 @@ pinot_noir_appellations = [
     "maranges",
     "charlemagne",
     "musigny",
-    "côte de nuits-villages ou vins fins de la côte de nuits"
+    "côte de nuits-villages ou vins fins de la côte de nuits",
+    "echezeaux", 
+    "grands-echezeaux"
 ]
 
 chardonnay_appellations = [
@@ -74,7 +76,7 @@ def get_varietal(appellation):
 grand_crus = (
     "bonnes-mares", "chambertin", "chambertin-clos-de-bèze", "clos de la roche", 
     "clos saint-denis", "clos de tart", "clos des lambrays", "vougeot", 
-    "échezeaux", "grands-échezeaux", "richebourg", "romanée-conti", "la-romanée", 
+    "echezeaux", "grands-echezeaux", "richebourg", "romanée-conti", "la-romanée", 
     "la tâche", "romanée-saint-vivant", "mazis-chambertin", "griotte-chambertin", 
     "chapelle-chambertin", "charmes-chambertin", "mazoyères-chambertin", 
     "latricières-chambertin", "ruchottes-chambertin", "corton", "corton-charlemagne", 
