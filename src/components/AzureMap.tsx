@@ -69,6 +69,12 @@ const vinsRouges = {
     Village: '#fb766d',
 }
 
+const fillOpacity = {
+    GrandCru: 1.0,
+    PremierCru: 0.8,
+    Village: 0.6
+}
+
 const mixedColor = '#C08040'; // blend of purple and yellow
 
 function addPolygonLayer(map: atlas.Map, featureSet: any) {
@@ -80,8 +86,8 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
         if (feature.geometry.type === "MultiPolygon") {
             const coordinates = feature.geometry.coordinates;
             console.log('appellation:', feature.properties.appellation, ', coordinates length:', coordinates.length);
-            const polygon = new atlas.data.MultiPolygon(coordinates);
-            const atlasFeature = new atlas.data.Feature(polygon, {
+            const multiPolygon = new atlas.data.MultiPolygon(coordinates);
+            const atlasFeature = new atlas.data.Feature(multiPolygon, {
                 aoc_level: feature.properties.aoc_level,
                 appellation: feature.properties.appellation,
                 climat: feature.properties.climat,
@@ -105,7 +111,14 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
             // Default color
             'aqua'
         ],
-        fillOpacity: 0.8
+        fillOpacity: [
+            'case',
+            ['==', ['get', 'aoc_level'], 'Grand Cru'], fillOpacity.GrandCru,
+            ['==', ['get', 'aoc_level'], 'Premier Cru'], fillOpacity.PremierCru,
+            ['==', ['get', 'aoc_level'], 'Village'], fillOpacity.Village,
+            // Default opacity
+            0.5
+        ]
     }));
     // Add a line layer for polygon borders
     map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSet.name, {
@@ -120,10 +133,12 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
             image: ""
         },
         textOptions: {
-            textField: ['concat', ['get', 'appellation'], '\n', ['get', 'climat'], ' ', ['get', 'aoc_level'], ' (', ['get', 'varietal'], ')'],
+            textField: ['get', 'appellation'],
             offset: [0, 0],
             color: 'gray',
-            font: ['SegoeUi-Bold'],
+            haloColor: 'white',
+            haloWidth: 1,
+            font: ['StandardCondensedSegoeUi-Bold'],
             size: 10,
             allowOverlap: false,
         }
