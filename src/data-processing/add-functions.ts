@@ -19,6 +19,21 @@ const fillOpacity = {
     Village: 0.6
 }
 
+const grandCruVarietalColors = {
+    Chardonnay: vinsBlancs.GrandCru,
+    PinotNoir: vinsRouges.GrandCru
+}
+
+const premierCruVarietalColors = {
+    Chardonnay: vinsBlancs.PremierCru,
+    PinotNoir: vinsRouges.PremierCru
+}
+
+const villageVarietalColors = {
+    Chardonnay: vinsBlancs.Village,
+    PinotNoir: vinsRouges.Village
+}
+
 const mixedColor = '#C08040'; // blend of purple and yellow
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
@@ -62,57 +77,70 @@ export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSour
     }));
 }
 
-export function addPolygonLayer(map: atlas.Map, featureSet: any) {
-    const dataSource = new atlas.source.DataSource(featureSet.name);
-    map.sources.add(dataSource);
+export function addFeatureSet(map: atlas.Map, featureSet: any) {
+
+    // Create a data source for three levels of appellations
+    const dataSources: { [key: string]: atlas.source.DataSource } = {};
+
+    dataSources['Village'] = new atlas.source.DataSource(featureSet.name + '-Village');
+    dataSources['Premier Cru'] = new atlas.source.DataSource(featureSet.name + '-PremierCru');
+    dataSources['Grand Cru'] = new atlas.source.DataSource(featureSet.name + '-GrandCru');
+
+    map.sources.add(dataSources['Village']);
+    map.sources.add(dataSources['Premier Cru']);
+    map.sources.add(dataSources['Grand Cru']);
 
     // Add polygons to the data source
     featureSet.features.forEach((feature: any) => {
         if (feature.geometry.type === "MultiPolygon") {
             const coordinates = feature.geometry.coordinates;
             const multiPolygon = new atlas.data.MultiPolygon(coordinates);
+            const aoc_level = feature.properties.aoc_level;
             const atlasFeature = new atlas.data.Feature(multiPolygon, {
-                aoc_level: feature.properties.aoc_level,
+                aoc_level: aoc_level,
                 appellation: feature.properties.appellation,
                 climat: feature.properties.climat,
                 varietal: feature.properties.varietal,
                 label: feature.properties.label
             });
-            dataSource.add(new atlas.Shape(atlasFeature));
+            if (['Village', 'Premier Cru', 'Grand Cru'].includes(aoc_level)) {
+                dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
+            }
         }
     });
+    addRegionLayers(map, dataSources['Village'], featureSet.name, 'Village', villageVarietalColors);
+    addRegionLayers(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', premierCruVarietalColors);
+    addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruVarietalColors);
 
+    // Add label layers last so they are on top.
+    // Note: none for village level
+    addLabelLayer(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', 11);
+    addLabelLayer(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', 13);
+}
+
+function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
     // Add a polygon layer
-    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSet.name, {
+    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSetName + '-' + aocLevel, {
         fillColor: [
             'case',
-            ['all', ['==', ['get', 'aoc_level'], 'Grand Cru'], ['==', ['get', 'varietal'], 'Chardonnay']], vinsBlancs.GrandCru,
-            ['all', ['==', ['get', 'aoc_level'], 'Premier Cru'], ['==', ['get', 'varietal'], 'Chardonnay']], vinsBlancs.PremierCru,
-            ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Chardonnay']], vinsBlancs.Village,
-            ['all', ['==', ['get', 'aoc_level'], 'Grand Cru'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.GrandCru,
-            ['all', ['==', ['get', 'aoc_level'], 'Premier Cru'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.PremierCru,
-            ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Pinot Noir']], vinsRouges.Village,
-            ['all', ['==', ['get', 'aoc_level'], 'Village'], ['==', ['get', 'varietal'], 'Mixed']], mixedColor,
+            ['==', ['get', 'varietal'], 'Chardonnay'], colors.Chardonnay,
+            ['==', ['get', 'varietal'], 'Pinot Noir'], colors.PinotNoir,
             // Default color
             'aqua'
         ],
-        fillOpacity: [
-            'case',
-            ['==', ['get', 'aoc_level'], 'Grand Cru'], fillOpacity.GrandCru,
-            ['==', ['get', 'aoc_level'], 'Premier Cru'], fillOpacity.PremierCru,
-            ['==', ['get', 'aoc_level'], 'Village'], fillOpacity.Village,
-            // Default opacity
-            0.5
-        ]
+        fillOpacity: 1.0 // TODO: may vary opacity based on AOC level
     }));
     // Add a line layer for polygon borders
-    map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSet.name, {
+    map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
         strokeColor: '#BBBBBB',
         strokeWidth: 1,
         minZoom: 12
     }));
+}
+
+function addLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, labelSize: number) {
     // Add a layer for labels
-    map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + featureSet.name, {
+    map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + featureSetName + aocLevel, {
         minZoom: 12,
         iconOptions: {
             image: ""
@@ -125,7 +153,7 @@ export function addPolygonLayer(map: atlas.Map, featureSet: any) {
             haloColor: 'white',
             haloWidth: 1,
             font: ['StandardCondensedSegoeUi-Bold'],
-            size: 10,
+            size: labelSize,
             allowOverlap: false,
         }
     }));

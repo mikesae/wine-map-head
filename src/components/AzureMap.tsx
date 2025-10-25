@@ -1,7 +1,7 @@
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
 import { useEffect, useRef } from "react";
-import { addDataSource, addPolygonLayer, addSymbolLayer } from "../data-processing/add-functions";
+import { addDataSource, addFeatureSet, addSymbolLayer } from "../data-processing/add-functions";
 import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
 import type { AzureMapProps } from "../types/map-stuff";
@@ -31,7 +31,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
             addMapControls(map);
 
             regions.forEach((region) => {
-                addPolygonLayer(map, region);
+                addFeatureSet(map, region);
             });
 
             const myMarkersDataSource = addDataSource(map, markers, "markers");
