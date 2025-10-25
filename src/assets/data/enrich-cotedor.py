@@ -98,7 +98,7 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
             aoc_level = "Premier Cru"
             parts = denom_lower.split("premier cru")
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
-        elif any(keyword in denom_lower for keyword in grand_crus):
+        elif denom_lower in grand_crus:
             aoc_level = "Grand Cru"
         elif "-villages" in denom_lower:
             aoc_level = "Village"
