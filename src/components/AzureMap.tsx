@@ -6,7 +6,6 @@ import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
 import type { AzureMapProps } from "../types/map-stuff";
 
-
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
     const mapRef = useRef<HTMLDivElement>(null);
 

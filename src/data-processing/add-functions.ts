@@ -13,12 +13,6 @@ const vinsRouges = {
     Village: '#fb766d',
 }
 
-const fillOpacity = {
-    GrandCru: 1.0,
-    PremierCru: 0.8,
-    Village: 0.6
-}
-
 const grandCruVarietalColors = {
     Chardonnay: vinsBlancs.GrandCru,
     PinotNoir: vinsRouges.GrandCru
@@ -33,8 +27,6 @@ const villageVarietalColors = {
     Chardonnay: vinsBlancs.Village,
     PinotNoir: vinsRouges.Village
 }
-
-const mixedColor = '#C08040'; // blend of purple and yellow
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
     const dataSource = new atlas.source.DataSource(sourceId, {

@@ -1,8 +1,9 @@
 
 import { useEffect, useState, type FC } from 'react';
 import './App.css';
-import AzureMap, { type Marker } from './components/AzureMap';
+import AzureMap from './components/AzureMap';
 import SearchBar from './components/SearchBar';
+import type { Marker } from './types/map-stuff';
 
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
