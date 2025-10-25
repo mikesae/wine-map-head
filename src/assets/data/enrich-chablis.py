@@ -14,6 +14,7 @@ for feature in data.get("features", []):
     aoc_level = "Village"
     climat_name = ""
     appellation = ""
+    label = ""
 
     denom_lower = denom.lower()
     if "grand cru" in denom_lower:
@@ -21,11 +22,13 @@ for feature in data.get("features", []):
         parts = denom_lower.split("grand cru")
         appellation = parts[0].strip().title() or "Chablis"
         climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+        label = denom
     elif "premier cru" in denom_lower:
         aoc_level = "Premier Cru"
         parts = denom_lower.split("premier cru")
         appellation = parts[0].strip().title() or "Chablis"
         climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+        label = climat_name
     else:
         aoc_level = "Village"
         tokens = denom.strip().split(" ", 1)
@@ -36,6 +39,11 @@ for feature in data.get("features", []):
     props["climat"] = climat_name
     props["appellation"] = appellation
     props["varietal"] = "Chardonnay"
+    props["label"] = label.title()
+
+    # do not append if aoc_level premier cru and climat is empty
+    if aoc_level == "Premier Cru" and climat_name == "":
+        continue
 
     enriched_features.append(feature)
 

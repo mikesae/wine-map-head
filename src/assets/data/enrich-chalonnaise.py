@@ -29,6 +29,7 @@ with open("chalonnaise-enriched.json", "w", encoding="utf-8") as out_f:
         aoc_level = "Village"
         climat_name = ""
         appellation = ""
+        label = ""
 
         denom_lower = denom.lower()
         if "premier cru" in denom_lower:
@@ -36,11 +37,13 @@ with open("chalonnaise-enriched.json", "w", encoding="utf-8") as out_f:
             parts = denom_lower.split("premier cru")
             appellation = parts[0].strip().title()
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+            label = climat_name
         elif "grand cru" in denom_lower:
             aoc_level = "Grand Cru"
             parts = denom_lower.split("grand cru")
             appellation = parts[0].strip().title()
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+            label = denom
         else:
             # No premier/grand cru: assume first word is AOC
             tokens = denom.strip().split(" ", 1)
@@ -51,11 +54,16 @@ with open("chalonnaise-enriched.json", "w", encoding="utf-8") as out_f:
         props["climat"] = climat_name
         props["appellation"] = appellation
         props["varietal"] = get_varietal(appellation)
+        props["label"] = label.title()
+        
+        # do not append if aoc_level premier cru and climat is empty
+        if aoc_level == "Premier Cru" and climat_name == "":
+            continue
 
         enriched_features.append(feature)
 # Write FeatureCollection with one feature per line
 with open("chalonnaise-enriched.json", "w", encoding="utf-8") as f:
-    f.write('{"type": "FeatureCollection", "name": "chablis", "features": [\n')
+    f.write('{"type": "FeatureCollection", "name": "chalonnaise", "features": [\n')
     for i, feature in enumerate(enriched_features):
         f.write(json.dumps(feature, ensure_ascii=False))
         if i < len(enriched_features) - 1:

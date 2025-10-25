@@ -92,14 +92,17 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
         # Default values
         aoc_level = "Village"
         climat_name = ""
+        label = ""
 
         denom_lower = denom.lower()
         if "premier cru" in denom_lower:
             aoc_level = "Premier Cru"
             parts = denom_lower.split("premier cru")
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+            label = climat_name
         elif denom_lower in grand_crus:
             aoc_level = "Grand Cru"
+            label = denom.title()
         elif "-villages" in denom_lower:
             aoc_level = "Village"
         else:
@@ -109,8 +112,13 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
         props["aoc_level"] = aoc_level
         props["climat"] = climat_name
         props["appellation"] = appellation
-        props["varietal"] = get_varietal(appellation)    
+        props["varietal"] = get_varietal(appellation)   
+        props["label"] = label
         print(f"App: {appellation}  -> AOC Level: {aoc_level}, Climat: {climat_name}, Varietal: {props['varietal']}")
+
+        # do not append if aoc_level premier cru and climat is empty
+        if aoc_level == "Premier Cru" and climat_name == "":
+            continue
 
         enriched_features.append(feature)
 # Write FeatureCollection with one feature per line

@@ -92,6 +92,7 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
                 appellation: feature.properties.appellation,
                 climat: feature.properties.climat,
                 varietal: feature.properties.varietal,
+                label: feature.properties.label
             });
             dataSource.add(new atlas.Shape(atlasFeature));
         }
@@ -133,7 +134,8 @@ function addPolygonLayer(map: atlas.Map, featureSet: any) {
             image: ""
         },
         textOptions: {
-            textField: ['get', 'appellation'],
+            //no label if 'label' property is missing
+            textField: ['get', 'label'],
             offset: [0, 0],
             color: 'gray',
             haloColor: 'white',
