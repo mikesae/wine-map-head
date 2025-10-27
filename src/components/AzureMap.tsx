@@ -1,12 +1,12 @@
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
 import { useEffect, useRef } from "react";
-import { addDataSource, addFeatureSet, addSymbolLayer } from "../data-processing/add-functions";
+import { addDataSource, addFeatureSet, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
+import type { AzureMapProps } from "../types/map-stuff";
 import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
-import type { AzureMapProps } from "../types/map-stuff";
 
-const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
+const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -16,6 +16,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
         map.events.add('mouseup', (e: atlas.MapMouseEvent) => {
             const pixel = e.pixel || [0, 0];
             const latLong = map.pixelsToPositions([pixel]);
+            console.log('Clicked at latitude/longitude:', latLong[0]);
 
             // lookup shapes at this position
             const shapes = map.layers.getRenderedShapes(latLong[0]);
@@ -35,6 +36,9 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions }) => {
 
             const myMarkersDataSource = addDataSource(map, markers, "markers");
             addSymbolLayer(map, myMarkersDataSource, "markers-layer", 'pin-red', false);
+
+            const placesDataSource = addDataSource(map, places, "places");
+            addPlacesLabelLayer(map, placesDataSource, "places");
         });
 
         // Subscribe to the recenter event

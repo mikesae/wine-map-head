@@ -40,7 +40,7 @@ export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: strin
             markers.map((m) =>
                 new atlas.data.Feature(
                     new atlas.data.Point([m.longitude, m.latitude]),
-                    { name: m.name, region: m.region }
+                    { name: m.name, region: m.region, label: m.label ?? m.name }
                 )
             )
         );
@@ -106,8 +106,8 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
 
     // Add label layers last so they are on top.
     // Note: none for village level
-    addLabelLayer(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', 11);
-    addLabelLayer(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', 13);
+    addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
+    addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13);
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
@@ -130,9 +130,9 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
     }));
 }
 
-function addLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, labelSize: number) {
+export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number) {
     // Add a layer for labels
-    map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + featureSetName + aocLevel, {
+    map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + name, {
         minZoom: 12,
         iconOptions: {
             image: ""
@@ -147,6 +147,26 @@ function addLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, feat
             font: ['StandardCondensedSegoeUi-Bold'],
             size: labelSize,
             allowOverlap: false,
+        }
+    }));
+}
+
+export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number = 18, allowOverlap: boolean = true) {
+    // Add a layer for labels
+    map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + name, {
+        //minZoom: 12,
+        iconOptions: {
+            image: ""
+        },
+        textOptions: {
+            textField: ['get', 'label'],
+            offset: [0, 0],
+            color: 'black',
+            haloColor: 'white',
+            haloWidth: 1,
+            font: ['StandardCondensedSegoeUi-Bold'],
+            size: labelSize,
+            allowOverlap: allowOverlap,
         }
     }));
 }

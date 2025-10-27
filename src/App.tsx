@@ -8,6 +8,7 @@ import type { Marker } from './types/map-stuff';
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [regions, setRegions] = useState<any>([]);
+  const [places, setPlaces] = useState<Marker[]>([]);
 
   // Dynamically load vineyard data
   useEffect(() => {
@@ -15,6 +16,9 @@ const App: FC = () => {
       try {
         const myWines = await import('./assets/data/my-wines.json'); // Dynamically import JSON
         setMarkers(myWines.default);
+
+        const myPlaces = await import('./assets/data/places.json');
+        setPlaces(myPlaces.default);
 
         const regions = [];
         regions.push(await import('./assets/data/cote-d-or-enriched.json'));
@@ -36,7 +40,7 @@ const App: FC = () => {
   return (
     <>
       <SearchBar />
-      <AzureMap markers={markers} regions={regions} />
+      <AzureMap markers={markers} regions={regions} places={places} />
       <div className="attribution">
         AOC © INAO/IGN,
         <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">data.gouv.fr</a>,

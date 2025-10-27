@@ -1,0 +1,218 @@
+[
+  {
+    "name": "Marsannay-la-Côte",
+    "label": "Marsannay",
+    "latitude": 47.2714,
+    "longitude": 4.9894,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Fixin",
+    "label": "Fixin",
+    "latitude": 47.24543279890588,
+    "longitude": 4.973389562722048,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Gevrey-Chambertin",
+    "label": "Gevrey-Chambertin",
+    "latitude": 47.227857597826585,
+    "longitude": 4.968084051514268,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Brochon",
+    "label": "Brochon",
+    "latitude": 47.239108183285396,
+    "longitude": 4.970676171072313,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Morey-Saint-Denis",
+    "label": "Morey-Saint-Denis",
+    "latitude": 47.1947026,
+    "longitude": 4.961292,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Chambolle-Musigny",
+    "label": "Chambolle-Musigny",
+    "latitude": 47.18575508117729,
+    "longitude": 4.95245011715582,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Vougeot",
+    "label": "Vougeot",
+    "latitude": 47.17703521514616,
+    "longitude": 4.963094432077412,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Flagey-Échézeaux",
+    "label": "Flagey-Échézeaux",
+    "latitude": 47.16499428834365,
+    "longitude": 4.980139362072379,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Vosne-Romanée",
+    "label": "Vosne-Romanée",
+    "latitude": 47.16092913079714,
+    "longitude": 4.954694733659153,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Nuits-Saint-Georges",
+    "label": "Nuits-Saint-Georges",
+    "latitude": 47.138,
+    "longitude": 4.951,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Ladoix-Serrigny",
+    "label": "Ladoix-Serrigny",
+    "latitude": 47.066719781731535,
+    "longitude": 4.887599209295104,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Aloxe-Corton",
+    "label": "Aloxe-Corton",
+    "latitude": 47.0656081289882,
+    "longitude": 4.860052143833343,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Pernand-Vergelesses",
+    "label": "Pernand-Vergelesses",
+    "latitude": 47.080430532773846,
+    "longitude": 4.850500503588222,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Savigny-lès-Beaune",
+    "label": "Savigny-lès-Beaune",
+    "latitude": 47.063373707295455,
+    "longitude": 4.818365236190516
+  },
+  {
+    "name": "Chorey-lès-Beaune",
+    "label": "Chorey-lès-Beaune",
+    "latitude": 47.04899278849558,
+    "longitude": 4.869784594788712,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Pommard",
+    "label": "Pommard",
+    "latitude": 47.00957451625041,
+    "longitude": 4.794839211121342,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Volnay",
+    "label": "Volnay",
+    "latitude": 47.00145089437024,
+    "longitude": 4.781494368957198,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Meursault",
+    "label": "Meursault",
+    "latitude": 46.979429775519435,
+    "longitude": 4.769379165217458,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Puligny-Montrachet",
+    "label": "Puligny-Montrachet",
+    "latitude": 46.945377587406966,
+    "longitude": 4.752622486733884,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Chassagne-Montrachet",
+    "label": "Chassagne-Montrachet",
+    "latitude": 46.93843336071393,
+    "longitude": 4.729766225045495,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Saint-Aubin",
+    "label": "Saint-Aubin",
+    "latitude": 46.95039427869,
+    "longitude": 4.712238332133637,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Saint-Romain",
+    "label": "Saint-Romain",
+    "latitude": 46.99815923240055,
+    "longitude": 4.708617734941555,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Santenay",
+    "label": "Santenay",
+    "latitude": 46.9130567536524,
+    "longitude": 4.696881354734501,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Monthelie",
+    "label": "Monthelie",
+    "latitude": 46.99275572327332,
+    "longitude": 4.766503952047373,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Auxey-Duresses",
+    "label": "Auxey-Duresses",
+    "latitude": 46.9867846755605,
+    "longitude": 4.747881353999986,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Dijon",
+    "label": "Dijon",
+    "latitude": 47.32735434602742,
+    "longitude": 5.043880595013093,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Beaune",
+    "label": "Beaune",
+    "latitude": 47.024013403799756,
+    "longitude": 4.838315876801914,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Couchey",
+    "label": "Couchey",
+    "latitude": 47.25996690466221,
+    "longitude": 4.981368107627475,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Premeaux-Prissey",
+    "label": "Premeaux-Prissey",
+    "latitude": 47.11201119133929,
+    "longitude": 4.934427780567006,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Comblanchien",
+    "label": "Comblanchien",
+    "latitude": 47.10282793088459,
+    "longitude": 4.920599474142591,
+    "region": "Bourgogne"
+  },
+  {
+    "name": "Cheilly-lès-Maranges",
+    "label": "Cheilly-lès-Maranges",
+    "latitude": 46.89594570498724,
+    "longitude": 4.667378066768123,
+    "region": "Bourgogne"
+  }
+]

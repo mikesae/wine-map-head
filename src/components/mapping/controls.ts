@@ -34,6 +34,7 @@ export const createMap = (element: HTMLDivElement) => {
             authType: atlas.AuthenticationType.subscriptionKey,
             subscriptionKey: import.meta.env.VITE_AZURE_MAPS_KEY,
         },
+        showLabels: false, // Disable default labels
         showLogo: false, // Azure Maps logo
         showFeedbackLink: false, // Disable feedback link
         showAttribution: true, // attribution
