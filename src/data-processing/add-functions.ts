@@ -1,37 +1,7 @@
 import atlas from "azure-maps-control";
-import type { Marker } from "../types/map-stuff";
+import { grandCruVarietalColors, premierCruVarietalColors, villageVarietalColors } from "../types/legendColors";
+import type { Marker } from "../types/mapping";
 
-const vinsBlancs = {
-    GrandCru: '#ffff59',
-    PremierCru: '#ffcd54',
-    Village: '#fff171'
-};
-
-const vinsRouges = {
-    GrandCru: '#ef4865',
-    PremierCru: '#c475b0',
-    Village: '#fb766d',
-}
-
-const vinAligote = '#c8cde9';
-
-const grandCruVarietalColors = {
-    Chardonnay: vinsBlancs.GrandCru,
-    PinotNoir: vinsRouges.GrandCru,
-    Aligote: vinAligote
-}
-
-const premierCruVarietalColors = {
-    Chardonnay: vinsBlancs.PremierCru,
-    PinotNoir: vinsRouges.PremierCru,
-    Aligote: vinAligote
-}
-
-const villageVarietalColors = {
-    Chardonnay: vinsBlancs.Village,
-    PinotNoir: vinsRouges.Village,
-    Aligote: vinAligote
-}
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
     const dataSource = new atlas.source.DataSource(sourceId, {

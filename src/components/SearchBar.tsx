@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import events from '../components/events';
-import type { Marker } from '../types/map-stuff';
+import type { Marker } from '../types/mapping';
 
 interface SearchBarProps {
     places: Marker[];
