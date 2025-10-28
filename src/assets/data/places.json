@@ -214,5 +214,47 @@
     "latitude": 46.89594570498724,
     "longitude": 4.667378066768123,
     "region": "Bourgogne"
+  },
+  {
+    "name": "Chablis",
+    "label": "Chablis",
+    "latitude": 47.801634,
+    "longitude": 3.797573
+  },
+  {
+    "name": "Bouzeron",
+    "label": "Bouzeron",
+    "latitude": 46.88967438061505,
+    "longitude": 4.726234207480758
+  },
+  {
+    "name": "Rully",
+    "label": "Rully",
+    "latitude": 46.87509980624222,
+    "longitude": 4.738762537870429
+  },
+  {
+    "name": "Givry",
+    "label": "Givry",
+    "latitude": 46.78208513108979,
+    "longitude": 4.7461869780823065
+  },
+  {
+    "name": "Paris",
+    "label": "Paris",
+    "latitude": 48.8566,
+    "longitude": 2.3522
+  },
+  {
+    "name": "Lyon",
+    "label": "Lyon",
+    "latitude": 45.7640,
+    "longitude": 4.8357
+  },
+  {
+    "name": "Chalone-sur-Saône",
+    "label": "Chalone-sur-Saône",
+    "latitude": 46.784544814789285,
+    "longitude": 4.851904565812703
   }
 ]

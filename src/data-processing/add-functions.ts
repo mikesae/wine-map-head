@@ -151,7 +151,7 @@ export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
     }));
 }
 
-export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number = 18, allowOverlap: boolean = true) {
+export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number = 18) {
     // Add a layer for labels
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + name, {
         //minZoom: 12,
@@ -166,7 +166,7 @@ export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
             haloWidth: 1,
             font: ['StandardCondensedSegoeUi-Bold'],
             size: labelSize,
-            allowOverlap: allowOverlap,
+            allowOverlap: false,
         }
     }));
 }
