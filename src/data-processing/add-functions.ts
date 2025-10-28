@@ -13,19 +13,24 @@ const vinsRouges = {
     Village: '#fb766d',
 }
 
+const vinAligote = '#c8cde9';
+
 const grandCruVarietalColors = {
     Chardonnay: vinsBlancs.GrandCru,
-    PinotNoir: vinsRouges.GrandCru
+    PinotNoir: vinsRouges.GrandCru,
+    Aligote: vinAligote
 }
 
 const premierCruVarietalColors = {
     Chardonnay: vinsBlancs.PremierCru,
-    PinotNoir: vinsRouges.PremierCru
+    PinotNoir: vinsRouges.PremierCru,
+    Aligote: vinAligote
 }
 
 const villageVarietalColors = {
     Chardonnay: vinsBlancs.Village,
-    PinotNoir: vinsRouges.Village
+    PinotNoir: vinsRouges.Village,
+    Aligote: vinAligote
 }
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
@@ -117,6 +122,7 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
             'case',
             ['==', ['get', 'varietal'], 'Chardonnay'], colors.Chardonnay,
             ['==', ['get', 'varietal'], 'Pinot Noir'], colors.PinotNoir,
+            ['==', ['get', 'varietal'], 'Aligoté'], colors.Aligote,
             // Default color
             'aqua'
         ],
