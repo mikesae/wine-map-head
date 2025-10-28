@@ -39,7 +39,7 @@ const App: FC = () => {
 
   return (
     <>
-      <SearchBar />
+      <SearchBar places={places} />
       <AzureMap markers={markers} regions={regions} places={places} />
       <div className="attribution">
         AOC © INAO/IGN,

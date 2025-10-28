@@ -1,18 +1,29 @@
 import { useState } from 'react';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import events from '../components/events';
-import { items } from './items';
+import type { Marker } from '../types/map-stuff';
 
-const SearchBar = () => {
+interface SearchBarProps {
+    places: Marker[];
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ places }) => {
     const [isSearchVisible, setIsSearchVisible] = useState(false);
 
     const toggleSearchBar = () => {
         setIsSearchVisible((prev) => !prev)
     }
 
+    const items = places.map((place, index) => ({
+        id: index,
+        name: place.name,
+        latitude: place.latitude,
+        longitude: place.longitude
+    }))
+
     const onSelect = (item: any) => {
         console.log(item);
-        events.emit('recenter', { lat: item.lat, lng: item.lng });
+        events.emit('recenter', { lat: item.latitude, lng: item.longitude });
         toggleSearchBar();
     }
 
