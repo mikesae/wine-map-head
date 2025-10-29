@@ -22,7 +22,7 @@ for feature in data.get("features", []):
         parts = denom_lower.split("grand cru")
         appellation = parts[0].strip().title() or "Chablis"
         climat_name = parts[1].strip().title() if len(parts) > 1 else ""
-        label = denom
+        label = climat_name
     elif "premier cru" in denom_lower:
         aoc_level = "Premier Cru"
         parts = denom_lower.split("premier cru")
@@ -41,8 +41,8 @@ for feature in data.get("features", []):
     props["varietal"] = "Chardonnay"
     props["label"] = label.title()
 
-    # do not append if aoc_level premier cru and climat is empty
-    if aoc_level == "Premier Cru" and climat_name == "":
+    # do not append if aoc_level premier cru and climat is empty or if aoc_level grand cru and climat is empty  
+    if (aoc_level == "Premier Cru" or aoc_level == "Grand Cru") and climat_name == "":
         continue
 
     enriched_features.append(feature)

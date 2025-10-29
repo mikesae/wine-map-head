@@ -256,5 +256,17 @@
     "label": "Chalone-sur-Saône",
     "latitude": 46.784544814789285,
     "longitude": 4.851904565812703
+  },
+  {
+    "name": "Auxerre",
+    "label": "Auxerre",
+    "latitude": 47.79812726715039,
+    "longitude": 3.576770636104385
+  },
+  {
+    "name": "Reims",
+    "label": "Reims",
+    "latitude": 49.25695289602251,
+    "longitude": 4.040881170725754
   }
 ]

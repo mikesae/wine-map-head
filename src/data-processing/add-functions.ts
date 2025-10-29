@@ -88,17 +88,14 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     map.sources.add(dataSources['Grand Cru']);
 
     // Add polygons to the data source
-    featureSet.features.forEach((feature: any) => {
+    featureSet.features.forEach((feature: any, idx: number) => {
         if (feature.geometry.type === "MultiPolygon") {
             const coordinates = feature.geometry.coordinates;
             const multiPolygon = new atlas.data.MultiPolygon(coordinates);
             const aoc_level = feature.properties.aoc_level;
             const atlasFeature = new atlas.data.Feature(multiPolygon, {
-                aoc_level: aoc_level,
-                appellation: feature.properties.appellation,
-                climat: feature.properties.climat,
-                varietal: feature.properties.varietal,
-                label: feature.properties.label
+                ...feature.properties,
+                idx
             });
             if (['Village', 'Premier Cru', 'Grand Cru'].includes(aoc_level)) {
                 dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
