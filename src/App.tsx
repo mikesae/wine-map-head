@@ -3,7 +3,8 @@ import { useEffect, useState, type FC } from 'react';
 import './App.css';
 import AzureMap from './components/AzureMap';
 import SearchBar from './components/SearchBar';
-import type { Marker } from './types/map-stuff';
+import type { Marker } from './types/mapping';
+import { MapLegend } from './components/MapLegend';
 
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -40,6 +41,7 @@ const App: FC = () => {
   return (
     <>
       <SearchBar places={places} />
+      <MapLegend />
       <AzureMap markers={markers} regions={regions} places={places} />
       <div className="attribution">
         AOC © INAO/IGN,

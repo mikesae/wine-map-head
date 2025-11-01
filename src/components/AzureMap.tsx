@@ -2,7 +2,7 @@ import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
 import { useEffect, useRef } from "react";
 import { addDataSource, addFeatureSet, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
-import type { AzureMapProps } from "../types/map-stuff";
+import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
 
