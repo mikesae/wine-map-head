@@ -74,14 +74,37 @@ def get_varietal(appellation):
     
 # List of Grand Cru keywords in Côte d'Or
 grand_crus = (
-    "bonnes-mares", "chambertin", "chambertin-clos-de-bèze", "clos de la roche", 
-    "clos saint-denis", "clos de tart", "clos des lambrays", "vougeot", 
-    "echezeaux", "grands-echezeaux", "richebourg", "romanée-conti", "la-romanée", 
-    "la tâche", "romanée-saint-vivant", "mazis-chambertin", "griotte-chambertin", 
-    "chapelle-chambertin", "charmes-chambertin", "mazoyères-chambertin", 
-    "latricières-chambertin", "ruchottes-chambertin", "corton", "corton-charlemagne", 
-    "charlemagne", "bâtard-montrachet", "bienvenues-bâtard-montrachet", 
-    "chevalier-montrachet", "montrachet", "criots-bâtard-montrachet"
+"bâtard-montrachet"
+"bienvenues-bâtard-montrachet"
+"bonnes-mares"
+"charlemagne"
+"chambertin"
+"chambertin-clos-de-bèze"
+"charmes-chambertin"
+"chapelle-chambertin"
+"chevalier-montrachet"
+"clos de la roche"
+"clos de tart"
+"clos des lambrays"
+"clos saint-denis"
+"corton"
+"corton-charlemagne"
+"criots-bâtard-montrachet"
+"echezeaux"
+"griotte-chambertin"
+"grands-echezeaux"
+"la tâche"
+"la romanée"
+"latricières-chambertin"
+"mazis-chambertin"
+"mazoyères-chambertin"
+"montrachet"
+"musigny"
+"richebourg"
+"romanée-conti"
+"romanée-saint-vivant"
+"ruchottes-chambertin"
+"vougeot"
 )
 
 # Open JSON output
