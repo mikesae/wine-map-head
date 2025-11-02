@@ -43,10 +43,16 @@ const App: FC = () => {
       <SearchBar places={places} />
       <MapLegend />
       <AzureMap markers={markers} regions={regions} places={places} />
-      <div className="attribution">
-        AOC © INAO/IGN,
-        <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">data.gouv.fr</a>,
-        Etalab v2.0
+      <div className="attribution text-sm">
+        <span className="hidden sm:inline">
+          AOC © INAO/IGN,
+        </span>
+        <a href="https://www.data.gouv.fr/datasets/delimitation-parcellaire-des-aoc-viticoles-de-linao/" target="_blank">
+          data.gouv.fr
+        </a>,
+        <span className="hidden sm:inline">
+          Etalab v2.0
+        </span>
       </div>
     </>
   )

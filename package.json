@@ -12,6 +12,7 @@
   "dependencies": {
     "azure-maps-control": "^3.6.1",
     "eventemitter3": "^5.0.1",
+    "lucide-react": "^0.552.0",
     "maplibre": "^0.0.1-security",
     "maplibre-gl": "^5.7.0",
     "react": "^19.1.1",
