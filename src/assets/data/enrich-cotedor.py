@@ -107,6 +107,40 @@ grand_crus = (
 "vougeot"
 )
 
+
+def is_corton_appellation(appellation):
+    appellation = appellation.lower()
+    return appellation in ["aloxe-corton", "corton", "charlemagne", "corton-charlemagne"]
+
+# Handle Corton and Aloxe-Corton appellations
+# Rules are
+# if appellation is Aloxe Corton and denom is Aloxe-Corton, aoc level is Village and varietal is Pinot Noir
+# If appellationn is Aloxe Corton and denom contains premier cru and a vineyard name, aoc level is Premier Cru, varietal is Pinot Noir, climat is the vineyard name
+# if appellation is Corton and denom is Corton and a vineyard name is given, aoc level is Grand Cru, varietal is Pinot Noir, and climat is the vineyard name
+def process_corton(appellation, denom):
+    appellation = appellation.lower()
+    denom = denom.lower()
+    if appellation == "aloxe-corton":
+        if denom == "aloxe-corton":
+            return "Village", "Pinot Noir", ""
+        elif "premier cru" in denom:
+            parts = denom.split("premier cru")
+            climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+            return "Premier Cru", "Pinot Noir", climat_name
+    elif appellation == "corton":
+        if denom.startswith("corton "):
+            # climat name is everything after "corton "
+            climat_name = denom[len("corton "):].strip().title()
+            return "Grand Cru", "Pinot Noir", climat_name
+        elif "premier cru" in denom:
+            parts = denom.split("premier cru")
+            climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+            return "Premier Cru", "Pinot Noir", climat_name
+    elif appellation in ["charlemagne", "corton-charlemagne"]:
+        climat_name = appellation.title()
+        return "Grand Cru", "Chardonnay", climat_name
+    return "Village", "Pinot Noir", ""
+
 # Open JSON output
 with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
     for feature in data.get("features", []):
@@ -120,24 +154,33 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
         label = ""
 
         denom_lower = denom.lower()
-        if "premier cru" in denom_lower:
+
+        # Special handling for Corton and Aloxe-Corton
+        if is_corton_appellation(appellation):
+            aoc_level, varietal, label = process_corton(appellation, denom)
+            climat_name = label
+        elif "premier cru" in denom_lower:
             aoc_level = "Premier Cru"
             parts = denom_lower.split("premier cru")
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
             label = climat_name
+            varietal = get_varietal(appellation)
         elif denom_lower in grand_crus:
             aoc_level = "Grand Cru"
             label = denom.title()
+            varietal = get_varietal(appellation)
         elif "-villages" in denom_lower:
             aoc_level = "Village"
+            varietal = get_varietal(appellation)
         else:
             aoc_level = "Village"
             climat_name = ""
+            varietal = get_varietal(appellation)
 
         props["aoc_level"] = aoc_level
         props["climat"] = climat_name
         props["appellation"] = appellation
-        props["varietal"] = get_varietal(appellation)   
+        props["varietal"] = varietal
         props["label"] = label
         print(f"App: {appellation}  -> AOC Level: {aoc_level}, Climat: {climat_name}, Varietal: {props['varietal']}")
 
