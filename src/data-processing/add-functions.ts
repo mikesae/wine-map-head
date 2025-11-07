@@ -83,8 +83,8 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     // Add label layers last so they are on top.
     // Note: none for village level
     addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
-    addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13);
-    addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 13);
+    addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13, true);
+    addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
@@ -108,7 +108,7 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
     }));
 }
 
-export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number) {
+export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number, bold: boolean = false) {
     // Add a layer for labels
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + name, {
         minZoom: 12,
@@ -119,10 +119,10 @@ export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
             //no label if 'label' property is missing
             textField: ['get', 'label'],
             offset: [0, 0],
-            color: 'gray',
+            color: bold ? '#404040' : '#808080',
             haloColor: 'white',
             haloWidth: 1,
-            font: ['StandardCondensedSegoeUi-Bold'],
+            font: [bold ? 'StandardCondensedSegoeUi-Bold' : 'StandardCondensedSegoeUi-Regular'],
             size: labelSize,
             allowOverlap: false,
         }
@@ -139,10 +139,10 @@ export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
         textOptions: {
             textField: ['get', 'label'],
             offset: [0, 0],
-            color: 'black',
+            color: 'gray',
             haloColor: 'white',
             haloWidth: 1,
-            font: ['StandardCondensedSegoeUi-Bold'],
+            font: ['StandardCondensedSegoeUi-Regular'],
             size: labelSize,
             allowOverlap: false,
         }
