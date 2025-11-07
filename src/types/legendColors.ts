@@ -1,7 +1,7 @@
 export const vinsBlancs = {
-    GrandCru: '#ffff59',
-    PremierCru: '#ffcd54',
-    Village: '#fff171'
+    GrandCru: '#FFEB00', // hsl(52°, 100%, 50%) — vivid, bright yellow; striking and luminous for top-tier Grand Cru
+    PremierCru: '#FFF27F', // hsl(52°, 90%, 75%) — softer, warm yellow; refined but still clearly golden
+    Village: '#FFF9CC' // hsl(52°, 80%, 90%) — pale, delicate yellow; subtle and gentle for background village areas
 };
 
 export const vinsRouges = {
