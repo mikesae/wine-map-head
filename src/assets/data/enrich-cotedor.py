@@ -114,9 +114,16 @@ def is_corton_appellation(appellation):
 
 # Handle Corton and Aloxe-Corton appellations
 # Rules are
-# if appellation is Aloxe Corton and denom is Aloxe-Corton, aoc level is Village and varietal is Pinot Noir
-# If appellationn is Aloxe Corton and denom contains premier cru and a vineyard name, aoc level is Premier Cru, varietal is Pinot Noir, climat is the vineyard name
-# if appellation is Corton and denom is Corton and a vineyard name is given, aoc level is Grand Cru, varietal is Pinot Noir, and climat is the vineyard name
+# if appellation is Aloxe Corton and denom is Aloxe-Corton, 
+#     aoc level is Village and varietal is Pinot Noir
+# If appellation is Aloxe Corton and denom contains premier cru and a vineyard name, 
+#     aoc level is Premier Cru, varietal is Pinot Noir, climat is the vineyard name
+# if appellation is Corton and denom is Corton and a vineyard name is given, 
+#     aoc level is Grand Cru L2, varietal is Pinot Noir, and climat is the vineyard name
+#
+# We use a special "Grand Cru L2" level to indicate that these are grand crus and should be drawn and labeled with higher priority.
+# We do this so for example Corton Le Corton draws above Corton Charlemagne on the map, since their regions can overlap.
+
 def process_corton(appellation, denom):
     appellation = appellation.lower()
     denom = denom.lower()
@@ -131,7 +138,8 @@ def process_corton(appellation, denom):
         if denom.startswith("corton "):
             # climat name is everything after "corton "
             climat_name = denom[len("corton "):].strip().title()
-            return "Grand Cru", "Pinot Noir", climat_name
+            aoc = "Grand Cru L2" if climat_name != "Corton" else "Grand Cru"
+            return aoc, "Pinot Noir", climat_name
         elif "premier cru" in denom:
             parts = denom.split("premier cru")
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
@@ -186,6 +194,10 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
 
         # do not append if aoc_level premier cru and climat is empty
         if aoc_level == "Premier Cru" and climat_name == "":
+            continue
+        
+        # skip ambiguous grand crus
+        if climat_name in ["Charlemagne"]:
             continue
 
         enriched_features.append(feature)

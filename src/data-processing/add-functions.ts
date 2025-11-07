@@ -52,10 +52,12 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     dataSources['Village'] = new atlas.source.DataSource(featureSet.name + '-Village');
     dataSources['Premier Cru'] = new atlas.source.DataSource(featureSet.name + '-PremierCru');
     dataSources['Grand Cru'] = new atlas.source.DataSource(featureSet.name + '-GrandCru');
+    dataSources['Grand Cru L2'] = new atlas.source.DataSource(featureSet.name + '-GrandCruL2');
 
     map.sources.add(dataSources['Village']);
     map.sources.add(dataSources['Premier Cru']);
     map.sources.add(dataSources['Grand Cru']);
+    map.sources.add(dataSources['Grand Cru L2']);
 
     // Add polygons to the data source
     featureSet.features.forEach((feature: any, idx: number) => {
@@ -67,7 +69,7 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
                 ...feature.properties,
                 idx
             });
-            if (['Village', 'Premier Cru', 'Grand Cru'].includes(aoc_level)) {
+            if (['Village', 'Premier Cru', 'Grand Cru', 'Grand Cru L2'].includes(aoc_level)) {
                 dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
             }
         }
@@ -75,11 +77,14 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     addRegionLayers(map, dataSources['Village'], featureSet.name, 'Village', villageVarietalColors);
     addRegionLayers(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', premierCruVarietalColors);
     addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruVarietalColors);
+    // Add Grand Cru L2 last so it is on top
+    addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors);
 
     // Add label layers last so they are on top.
     // Note: none for village level
     addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
     addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13);
+    addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 13);
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
