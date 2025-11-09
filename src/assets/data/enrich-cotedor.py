@@ -58,8 +58,9 @@ chardonnay_appellations = [
     "bienvenues-bâtard-montrachet",
 ]
 
-mixed_aocs = [
-    "saint-romain"
+mixed_appellations = [
+    "saint-romain",
+    "saint-aubin"
 ]
 
 # Map AOC to dominant color
@@ -112,6 +113,79 @@ def is_corton_appellation(appellation):
     appellation = appellation.lower()
     return appellation in ["aloxe-corton", "corton", "charlemagne", "corton-charlemagne"]
 
+def is_mixed_appellation(appellation):
+    appellation = appellation.lower()
+    return appellation in mixed_appellations
+
+def is_saint_aubin_appellation(appellation):
+    appellation = appellation.lower()
+    return appellation == "saint-aubin"
+
+# Saint-Aubin Premier Crus by dominant grape (in practice)
+
+# predominantly chardonnay (white)
+saint_aubin_whites = [
+    "en remilly",
+    "les murgers des dents de chien",
+    "sur gamay",
+    "la chatenière",
+    "en créot",
+    "le champlots",
+    "les frionnes",
+    "les combes",
+    "derrière chez edouard",
+    "les castets",
+    "les travers de marinot",
+]
+
+# predominantly pinot noir (red)
+saint_aubin_reds = [
+    "les pitangerets",
+    "les perrières",
+    "les côtes de bas",
+    "sur le sentier du clou",
+    "les meix guillaume",
+    "en la râche",
+    "derrière la tour",
+]
+
+def get_saint_aubin_varietal(climat):
+    climat = climat.lower()
+    if climat in saint_aubin_whites:
+        return "Chardonnay"
+    elif climat in saint_aubin_reds:
+        return "Pinot Noir"
+    else:
+        return "Mixed"
+    
+def is_saint_romain_appellation(appellation):
+    appellation = appellation.lower()
+    return appellation == "saint-romain"
+
+def is_chassagne_montrachet_appellation(appellation):
+    appellation = appellation.lower()
+    return appellation == "chassagne-montrachet"
+
+def process_saint_aubin(denom):
+    denom = denom.lower()
+    varietal = "Chardonnay"
+    aoc_level = "Village"
+    climat_name = ""
+    mixed_varietal = False
+
+    if denom == "saint-aubin":
+        aoc_level = "Village"
+        varietal = "Chardonnay"
+        climat_name = ""
+        mixed_varietal = True
+    elif "premier cru" in denom:
+        parts = denom.split("premier cru")
+        climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+        varietal = get_saint_aubin_varietal(climat_name)
+        aoc_level = "Premier Cru"
+        mixed_varietal = False
+    return aoc_level, varietal, climat_name, mixed_varietal
+
 # Handle Corton and Aloxe-Corton appellations
 # Rules are
 # if appellation is Aloxe Corton and denom is Aloxe-Corton, 
@@ -160,13 +234,22 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
         aoc_level = "Village"
         climat_name = ""
         label = ""
+        mixed_varietal = False
+        secondary_varietal = ""
 
         denom_lower = denom.lower()
 
-        # Special handling for Corton and Aloxe-Corton
         if is_corton_appellation(appellation):
             aoc_level, varietal, label = process_corton(appellation, denom)
             climat_name = label
+        elif is_saint_aubin_appellation(appellation):
+            aoc_level, varietal, climat_name, mixed_varietal = process_saint_aubin(denom)
+            label = climat_name
+        elif is_saint_romain_appellation(appellation):
+            aoc_level = "Village"
+            varietal = "Chardonnay"
+            secondary_varietal = "Pinot Noir"
+            mixed_varietal = True
         elif "premier cru" in denom_lower:
             aoc_level = "Premier Cru"
             parts = denom_lower.split("premier cru")
@@ -189,8 +272,9 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
         props["climat"] = climat_name
         props["appellation"] = appellation
         props["varietal"] = varietal
+        props["secondary_varietal"] = secondary_varietal
         props["label"] = label
-        print(f"App: {appellation}  -> AOC Level: {aoc_level}, Climat: {climat_name}, Varietal: {props['varietal']}")
+        props["mixed_varietal"] = mixed_varietal
 
         # do not append if aoc_level premier cru and climat is empty
         if aoc_level == "Premier Cru" and climat_name == "":

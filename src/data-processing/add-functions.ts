@@ -53,8 +53,10 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     dataSources['Premier Cru'] = new atlas.source.DataSource(featureSet.name + '-PremierCru');
     dataSources['Grand Cru'] = new atlas.source.DataSource(featureSet.name + '-GrandCru');
     dataSources['Grand Cru L2'] = new atlas.source.DataSource(featureSet.name + '-GrandCruL2');
+    dataSources['Mixed Varietal'] = new atlas.source.DataSource(featureSet.name + '-MixedVarietal');
 
     map.sources.add(dataSources['Village']);
+    map.sources.add(dataSources['Mixed Varietal']);
     map.sources.add(dataSources['Premier Cru']);
     map.sources.add(dataSources['Grand Cru']);
     map.sources.add(dataSources['Grand Cru L2']);
@@ -65,10 +67,15 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
             const coordinates = feature.geometry.coordinates;
             const multiPolygon = new atlas.data.MultiPolygon(coordinates);
             const aoc_level = feature.properties.aoc_level;
+            const mixedVarietal = feature.properties.mixed_varietal;
             const atlasFeature = new atlas.data.Feature(multiPolygon, {
                 ...feature.properties,
                 idx
             });
+            // Use separate data source for mixed varietal so we put it in a layer with pattern fill.
+            if (mixedVarietal) {
+                dataSources['Mixed Varietal'].add(new atlas.Shape(atlasFeature));
+            }
             if (['Village', 'Premier Cru', 'Grand Cru', 'Grand Cru L2'].includes(aoc_level)) {
                 dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
             }
@@ -85,6 +92,31 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
     addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13, true);
     addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
+
+    // Do this last and then we'll move it to the bottom so it's drawn after village but before premier cru layers.
+    addMixedVarietalRegionLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal', villageVarietalColors.PinotNoir);
+}
+
+function addMixedVarietalRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, firstColor: string, secondColor: string = 'transparent') {
+    // Add a polygon layer for mixed varietals using hatch pattern
+    map.imageSprite.createFromTemplate('hatch', 'diagonal-lines-up', firstColor, secondColor, 1).then(() => {
+        const polygonLayerName = "layer-" + featureSetName + '-' + aocLevel;
+        const polygonLayer = new atlas.layer.PolygonLayer(dataSource, polygonLayerName,
+            {
+                source: dataSource, // your polygon datasource
+                fillPattern: 'hatch',
+            });
+
+        // Add a line layer for polygon borders
+        const lineLayer = new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
+            strokeColor: '#BBBBBB',
+            strokeWidth: 1,
+            minZoom: 12
+        });
+
+        map.layers.add(polygonLayer, "layer-Cote dOr-Premier Cru");
+        map.layers.add(lineLayer, "layer-Cote dOr-Premier Cru");
+    });
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
@@ -96,7 +128,7 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
             ['==', ['get', 'varietal'], 'Pinot Noir'], colors.PinotNoir,
             ['==', ['get', 'varietal'], 'Aligoté'], colors.Aligote,
             // Default color
-            'aqua'
+            'transparent'
         ],
         fillOpacity: 1.0 // TODO: may vary opacity based on AOC level
     }));
