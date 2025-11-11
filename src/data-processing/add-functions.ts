@@ -75,8 +75,7 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
             // Use separate data source for mixed varietal so we put it in a layer with pattern fill.
             if (mixedVarietal) {
                 dataSources['Mixed Varietal'].add(new atlas.Shape(atlasFeature));
-            }
-            if (['Village', 'Premier Cru', 'Grand Cru', 'Grand Cru L2'].includes(aoc_level)) {
+            } else if (['Village', 'Premier Cru', 'Grand Cru', 'Grand Cru L2'].includes(aoc_level)) {
                 dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
             }
         }
@@ -88,8 +87,9 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors);
 
     // Add label layers last so they are on top.
-    // Note: none for village level and none for mixed varietal.
+    // Note: none for village level
     addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
+    addRegionLabelLayer(map, dataSources['Mixed Varietal'], featureSet.name + 'Mixed Varietal', 11);
     addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13, true);
     addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
 }
@@ -125,7 +125,7 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
 export async function addFillTemplates(map: atlas.Map) {
     const scale = 0.333;
     await map.imageSprite.createFromTemplate('Village-Mixed', 'diagonal-lines-up', villageVarietalColors.PinotNoir, villageVarietalColors.Chardonnay, scale);
-    await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.PinotNoir, premierCruVarietalColors.Chardonnay, scale);
+    await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.Mixed, premierCruVarietalColors.Chardonnay, scale);
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
