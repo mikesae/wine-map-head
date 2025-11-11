@@ -94,29 +94,32 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
 
     // Do this last and then we'll move it to the bottom so it's drawn after village but before premier cru layers.
-    addMixedVarietalRegionLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal', villageVarietalColors.PinotNoir);
+    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
 }
 
-function addMixedVarietalRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, firstColor: string, secondColor: string = 'transparent') {
+function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string) {
     // Add a polygon layer for mixed varietals using hatch pattern
-    map.imageSprite.createFromTemplate('hatch', 'diagonal-lines-up', firstColor, secondColor, 1).then(() => {
-        const polygonLayerName = "layer-" + featureSetName + '-' + aocLevel;
-        const polygonLayer = new atlas.layer.PolygonLayer(dataSource, polygonLayerName,
-            {
-                source: dataSource, // your polygon datasource
-                fillPattern: 'hatch',
-            });
 
-        // Add a line layer for polygon borders
-        const lineLayer = new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
-            strokeColor: '#BBBBBB',
-            strokeWidth: 1,
-            minZoom: 12
+    const polygonLayerName = "layer-" + featureSetName + '-' + aocLevel;
+    const polygonLayer = new atlas.layer.PolygonLayer(dataSource, polygonLayerName,
+        {
+            source: dataSource, // your polygon datasource
+            fillPattern: 'mixed-hatch',
         });
 
-        map.layers.add(polygonLayer, "layer-Cote dOr-Premier Cru");
-        map.layers.add(lineLayer, "layer-Cote dOr-Premier Cru");
+    // Add a line layer for polygon borders
+    const lineLayer = new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
+        strokeColor: '#BBBBBB',
+        strokeWidth: 1,
+        minZoom: 12
     });
+
+    map.layers.add(polygonLayer, "layer-Cote dOr-Premier Cru");
+    map.layers.add(lineLayer, "layer-Cote dOr-Premier Cru");
+}
+
+export async function addFillTemplates(map: atlas.Map, firstColor: string, secondColor: string = 'transparent') {
+    await map.imageSprite.createFromTemplate('mixed-hatch', 'diagonal-lines-up', firstColor, secondColor, 0.333);
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {

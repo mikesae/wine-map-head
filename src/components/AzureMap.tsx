@@ -1,10 +1,11 @@
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
 import { useEffect, useRef } from "react";
-import { addDataSource, addFeatureSet, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
+import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
 import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
+import { villageVarietalColors } from "../types/legendColors";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -27,8 +28,10 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             })
         });
 
-        map.events.add("ready", () => {
+        map.events.add("ready", async () => {
+
             addMapControls(map);
+            await addFillTemplates(map, villageVarietalColors.PinotNoir);
 
             regions.forEach((region) => {
                 addFeatureSet(map, region);
