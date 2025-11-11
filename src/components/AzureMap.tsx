@@ -5,7 +5,6 @@ import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, ad
 import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
-import { villageVarietalColors } from "../types/legendColors";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -31,7 +30,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         map.events.add("ready", async () => {
 
             addMapControls(map);
-            await addFillTemplates(map, villageVarietalColors.PinotNoir);
+            await addFillTemplates(map);
 
             regions.forEach((region) => {
                 addFeatureSet(map, region);

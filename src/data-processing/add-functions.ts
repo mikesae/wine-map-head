@@ -90,11 +90,10 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     // Add label layers last so they are on top.
     // Note: none for village level
     addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
+    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
+    addRegionLabelLayer(map, dataSources['Mixed Varietal'], featureSet.name + 'Mixed Varietal', 11);
     addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13, true);
     addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
-
-    // Do this last and then we'll move it to the bottom so it's drawn after village but before premier cru layers.
-    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
 }
 
 function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string) {
@@ -111,6 +110,7 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
                 // Default fill pattern
                 ''
             ],
+            fillOpacity: 1.0
         });
 
     // Add a line layer for polygon borders
@@ -120,8 +120,8 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
         minZoom: 12
     });
 
-    map.layers.add(polygonLayer, "layer-Cote dOr-Grand Cru");
-    map.layers.add(lineLayer, "layer-Cote dOr-Grand Cru");
+    map.layers.add(polygonLayer);
+    map.layers.add(lineLayer);
 }
 
 export async function addFillTemplates(map: atlas.Map) {
