@@ -80,39 +80,39 @@ def get_varietal(appellation):
         return "Mixed"
     
 # List of Grand Cru keywords in Côte d'Or
-grand_crus = (
-"bâtard-montrachet"
-"bienvenues-bâtard-montrachet"
-"bonnes-mares"
-"charlemagne"
-"chambertin"
-"chambertin-clos-de-bèze"
-"charmes-chambertin"
-"chapelle-chambertin"
-"chevalier-montrachet"
-"clos de la roche"
-"clos de tart"
-"clos des lambrays"
-"clos saint-denis"
-"corton"
-"corton-charlemagne"
-"criots-bâtard-montrachet"
-"echezeaux"
-"griotte-chambertin"
-"grands-echezeaux"
-"la tâche"
-"la romanée"
-"latricières-chambertin"
-"mazis-chambertin"
-"mazoyères-chambertin"
-"montrachet"
-"musigny"
-"richebourg"
-"romanée-conti"
-"romanée-saint-vivant"
-"ruchottes-chambertin"
-"vougeot"
-)
+grand_crus = [
+"bâtard-montrachet",
+"bienvenues-bâtard-montrachet",
+"bonnes-mares",
+"charlemagne",
+"chambertin",
+"chambertin-clos-de-bèze",
+"charmes-chambertin",
+"chapelle-chambertin",
+"chevalier-montrachet",
+"clos de la roche",
+"clos de tart",
+"clos des lambrays",
+"clos saint-denis",
+"corton",
+"corton-charlemagne",
+"criots-bâtard-montrachet",
+"echezeaux",
+"griotte-chambertin",
+"grands-echezeaux",
+"la tâche",
+"la romanée",
+"latricières-chambertin",
+"mazis-chambertin",
+"mazoyères-chambertin",
+"montrachet",
+"musigny",
+"richebourg",
+"romanée-conti",
+"romanée-saint-vivant",
+"ruchottes-chambertin",
+"vougeot",
+]
 
 
 def is_corton_appellation(appellation):
@@ -229,20 +229,28 @@ def process_corton(appellation, denom):
         return "Grand Cru", "Chardonnay", climat_name
     return "Village", "Pinot Noir", ""
 
+
+mixed_chassagne_montrachet_premier_crus = [
+    "Morgeot",
+    "Clos Saint-Jean",
+    "Clos Pitois"
+]
+
 def process_chassagne_montrachet(denom):
     denom = denom.lower()
     varietal = "Chardonnay"
     aoc_level = "Village"
     climat_name = ""
-    mixed_varietal = True
 
     if denom == "chassagne-montrachet":
         aoc_level = "Village"
         climat_name = ""
+        mixed_varietal = True
     elif "premier cru" in denom:
         parts = denom.split("premier cru")
         climat_name = parts[1].strip().title() if len(parts) > 1 else ""
         aoc_level = "Premier Cru"
+        mixed_varietal = climat_name in mixed_chassagne_montrachet_premier_crus
     return aoc_level, varietal, climat_name, mixed_varietal
 
 
@@ -273,19 +281,18 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
             varietal = "Chardonnay"
             secondary_varietal = "Pinot Noir"
             mixed_varietal = True
+        elif denom_lower in grand_crus:
+            aoc_level = "Grand Cru"
+            label = denom.title()
+            varietal = get_varietal(appellation)
         elif is_chassagne_montrachet_appellation(appellation):
             aoc_level, varietal, climat_name, mixed_varietal = process_chassagne_montrachet(denom)
-            secondary_varietal = "Pinot Noir"
             label = climat_name
         elif "premier cru" in denom_lower:
             aoc_level = "Premier Cru"
             parts = denom_lower.split("premier cru")
             climat_name = parts[1].strip().title() if len(parts) > 1 else ""
             label = climat_name
-            varietal = get_varietal(appellation)
-        elif denom_lower in grand_crus:
-            aoc_level = "Grand Cru"
-            label = denom.title()
             varietal = get_varietal(appellation)
         elif "-villages" in denom_lower:
             aoc_level = "Village"
