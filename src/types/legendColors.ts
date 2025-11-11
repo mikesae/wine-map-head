@@ -8,6 +8,7 @@ export const vinsRouges = {
     GrandCru: '#ef4865',
     PremierCru: '#c475b0',
     Village: '#fb766d',
+    Mixed: '#6f42c1'
 }
 
 const vinAligote = '#c8cde9';
@@ -21,6 +22,7 @@ export const grandCruVarietalColors = {
 export const premierCruVarietalColors = {
     Chardonnay: vinsBlancs.PremierCru,
     PinotNoir: vinsRouges.PremierCru,
+    Mixed: vinsRouges.Mixed,
     Aligote: vinAligote
 }
 
