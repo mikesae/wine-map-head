@@ -88,10 +88,9 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors);
 
     // Add label layers last so they are on top.
-    // Note: none for village level
-    addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
+    // Note: none for village level and none for mixed varietal.
     addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
-    addRegionLabelLayer(map, dataSources['Mixed Varietal'], featureSet.name + 'Mixed Varietal', 11);
+    addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
     addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13, true);
     addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
 }
