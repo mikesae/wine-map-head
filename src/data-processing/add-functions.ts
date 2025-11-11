@@ -104,7 +104,13 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
     const polygonLayer = new atlas.layer.PolygonLayer(dataSource, polygonLayerName,
         {
             source: dataSource, // your polygon datasource
-            fillPattern: 'mixed-hatch',
+            fillPattern: [
+                'case',
+                ['==', ['get', 'aoc_level'], 'Village'], 'Village-Mixed',
+                ['==', ['get', 'aoc_level'], 'Premier Cru'], 'PremierCru-Mixed',
+                // Default fill pattern
+                ''
+            ],
         });
 
     // Add a line layer for polygon borders
@@ -114,12 +120,14 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
         minZoom: 12
     });
 
-    map.layers.add(polygonLayer, "layer-Cote dOr-Premier Cru");
-    map.layers.add(lineLayer, "layer-Cote dOr-Premier Cru");
+    map.layers.add(polygonLayer, "layer-Cote dOr-Grand Cru");
+    map.layers.add(lineLayer, "layer-Cote dOr-Grand Cru");
 }
 
-export async function addFillTemplates(map: atlas.Map, firstColor: string, secondColor: string = 'transparent') {
-    await map.imageSprite.createFromTemplate('mixed-hatch', 'diagonal-lines-up', firstColor, secondColor, 0.333);
+export async function addFillTemplates(map: atlas.Map) {
+    const scale = 0.333;
+    await map.imageSprite.createFromTemplate('Village-Mixed', 'diagonal-lines-up', villageVarietalColors.PinotNoir, villageVarietalColors.Chardonnay, scale);
+    await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.PinotNoir, premierCruVarietalColors.Chardonnay, scale);
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {

@@ -44,12 +44,17 @@ pinot_noir_appellations = [
     "musigny",
     "côte de nuits-villages ou vins fins de la côte de nuits",
     "echezeaux", 
-    "grands-echezeaux"
+    "grands-echezeaux",
+    "santenay", 
 ]
 
 chardonnay_appellations = [
-    "meursault", "puligny-montrachet", "chassagne-montrachet", "saint-aubin", "santenay", "corton-charlemagne", 
-    "corton", "montrachet",
+    "meursault", 
+    "puligny-montrachet", 
+    "saint-aubin", 
+    "corton-charlemagne", 
+    "corton", 
+    "montrachet",
     "monthélie",
     "bâtard-montrachet",
     "blagny",
@@ -59,8 +64,9 @@ chardonnay_appellations = [
 ]
 
 mixed_appellations = [
+    "chassagne-montrachet", 
+    "saint-aubin",
     "saint-romain",
-    "saint-aubin"
 ]
 
 # Map AOC to dominant color
@@ -223,6 +229,23 @@ def process_corton(appellation, denom):
         return "Grand Cru", "Chardonnay", climat_name
     return "Village", "Pinot Noir", ""
 
+def process_chassagne_montrachet(denom):
+    denom = denom.lower()
+    varietal = "Chardonnay"
+    aoc_level = "Village"
+    climat_name = ""
+    mixed_varietal = True
+
+    if denom == "chassagne-montrachet":
+        aoc_level = "Village"
+        climat_name = ""
+    elif "premier cru" in denom:
+        parts = denom.split("premier cru")
+        climat_name = parts[1].strip().title() if len(parts) > 1 else ""
+        aoc_level = "Premier Cru"
+    return aoc_level, varietal, climat_name, mixed_varietal
+
+
 # Open JSON output
 with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
     for feature in data.get("features", []):
@@ -250,6 +273,10 @@ with open("cote-d-or-enriched.json", "w", encoding="utf-8") as out_f:
             varietal = "Chardonnay"
             secondary_varietal = "Pinot Noir"
             mixed_varietal = True
+        elif is_chassagne_montrachet_appellation(appellation):
+            aoc_level, varietal, climat_name, mixed_varietal = process_chassagne_montrachet(denom)
+            secondary_varietal = "Pinot Noir"
+            label = climat_name
         elif "premier cru" in denom_lower:
             aoc_level = "Premier Cru"
             parts = denom_lower.split("premier cru")
