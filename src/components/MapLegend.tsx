@@ -2,7 +2,7 @@ import { useState } from "react"
 import { vinsBlancs, vinsRouges } from "../types/legendColors"
 import { CircleX, Layers } from "lucide-react"
 
-const LegendRow = ({ label, color }: { label: string; color: string }) => (
+const LegendRow = ({ label, color, hatchColor }: { label: string; color?: string; hatchColor?: string }) => (
     <div className="flex justify-between items-center py-1">
         <span className="text-xs text-gray-700">{label}</span>
         <svg
@@ -13,7 +13,43 @@ const LegendRow = ({ label, color }: { label: string; color: string }) => (
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 27 24"
         >
-            <rect x="2" y="2" width="27" height="20" fill={color} strokeWidth="3" stroke="#BBBBBB" />
+            <defs>
+                {hatchColor && (
+                    <pattern
+                        id={`diagonalHatch-${hatchColor}`}
+                        patternUnits="userSpaceOnUse"
+                        width="6"
+                        height="6"
+                        patternTransform="rotate(45)"
+                    >
+                        <line x1="0" y1="0" x2="0" y2="6" stroke={hatchColor} strokeWidth="2" />
+                    </pattern>
+                )}
+            </defs>
+            {/* Solid rectangle with the base color */}
+            {color && (
+                <rect
+                    x="2"
+                    y="2"
+                    width="27"
+                    height="20"
+                    fill={color}
+                    strokeWidth="3"
+                    stroke="#BBBBBB"
+                />
+            )}
+            {/* Hatch pattern overlay */}
+            {hatchColor && (
+                <rect
+                    x="2"
+                    y="2"
+                    width="27"
+                    height="20"
+                    fill={`url(#diagonalHatch-${hatchColor})`}
+                    strokeWidth="3"
+                    stroke="#BBBBBB"
+                />
+            )}
         </svg>
     </div>
 )
@@ -49,7 +85,7 @@ export const MapLegend: React.FC = () => {
                             <CircleX className="w-5 h-5" />
                         </button>
                     </div>
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-3">
                         {/* Vin Rouge Column */}
                         <div>
                             <div className="py-1 text-sm text-gray-700">Vin Rouge</div>
@@ -64,6 +100,14 @@ export const MapLegend: React.FC = () => {
                             <LegendRow label="Premier Cru" color={vinsBlancs.PremierCru} />
                             <LegendRow label="Village" color={vinsBlancs.Village} />
                         </div>
+                        {/* Mixed Column */}
+                        <div>
+                            <div className="py-1 text-sm text-gray-700">Mixed</div>
+                            <LegendRow label="" />
+                            <LegendRow label="Premier Cru" color={vinsBlancs.PremierCru} hatchColor={vinsRouges.MixedPremierCru} />
+                            <LegendRow label="Village" color={vinsBlancs.Village} hatchColor={vinsRouges.MixedVillage} />
+                        </div>
+
                     </div>
                 </div>
             )}

@@ -81,8 +81,8 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
         }
     });
     addRegionLayers(map, dataSources['Village'], featureSet.name, 'Village', villageVarietalColors);
-    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
     addRegionLayers(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', premierCruVarietalColors);
+    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
     addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruVarietalColors);
     addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors);
 
@@ -124,7 +124,7 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
 
 export async function addFillTemplates(map: atlas.Map) {
     const scale = 0.333;
-    await map.imageSprite.createFromTemplate('Village-Mixed', 'diagonal-lines-up', villageVarietalColors.PinotNoir, villageVarietalColors.Chardonnay, scale);
+    await map.imageSprite.createFromTemplate('Village-Mixed', 'diagonal-lines-up', villageVarietalColors.Mixed, villageVarietalColors.Chardonnay, scale);
     await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.Mixed, premierCruVarietalColors.Chardonnay, scale);
 }
 
