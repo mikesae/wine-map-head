@@ -5,6 +5,8 @@ import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, ad
 import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
 import { addMapControls, createMap } from "./mapping/controls";
+import InfoTool from "./InfoTool";
+import { createRoot } from "react-dom/client";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -48,15 +50,20 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
                 popup.close();
                 return;
             }
-
+            // Inside your component or function
             popup.setOptions({
                 position: latLong[0],
-                content: `<div class="p-4 text-black flex flex-col items-start">
-                            <h3>${appellation}</h3>
-                            <h3>${climat}</h3>
-                            <h3>${aocLevel}</h3>
-                          </div>`
+                content: `<div id="info-tool-container"></div>`,
             });
+
+            // Render the InfoTool component dynamically
+            const container = document.getElementById("info-tool-container");
+            if (container) {
+                const root = createRoot(container); // Use createRoot to create a React root
+                root.render(
+                    <InfoTool appellation={appellation} climat={climat} aocLevel={aocLevel} />
+                );
+            }
             popup.open(map);
         });
 
