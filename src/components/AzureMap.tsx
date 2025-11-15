@@ -1,19 +1,27 @@
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
 import React, { useEffect, useRef } from "react";
-import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
-import type { AzureMapProps } from "../types/mapping";
-import events from "./events";
-import { addMapControls, createMap } from "./mapping/controls";
-import InfoTool from "./InfoTool";
 import { createRoot } from "react-dom/client";
+import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
+import type { AzureMapProps, MapViewState, Vineyard } from "../types/mapping";
+import events from "./events";
+import InfoTool from "./InfoTool";
+import { addMapControls, createMap } from "./mapping/controls";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!mapRef.current) return;
-        const map = createMap(mapRef.current);
+
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const lat = parseFloat(params.get("lat") || "47.14046061394379"); // Default to Nuit-St-Georges if not provided
+        const lng = parseFloat(params.get("lng") || "4.947624206669559"); // Default to Nuit-St-Georges if not provided
+        const zoom = parseFloat(params.get("zoom") || "12"); // Default to zoom level 12 if not provided
+        const bearing = parseFloat(params.get("bearing") || "290"); // Default to bearing 0 if not provided
+
+        const map = createMap(mapRef.current, lat, lng, zoom, bearing);
         const popup = new atlas.Popup({
             position: [0, 0],
             pixelOffset: [0, -18]
@@ -45,6 +53,18 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             const aocLevel = props && props.hasOwnProperty('aoc_level') ? props['aoc_level'] : '';
             const climat = props && props.hasOwnProperty('climat') ? props['climat'] : '';
 
+            const vineyard: Vineyard = {
+                appellation,
+                climat,
+                aocLevel,
+            };
+            const mapState: MapViewState = {
+                latitude: latLong[0][1],
+                longitude: latLong[0][0],
+                zoom: map.getCamera().zoom || 12,
+                bearing: map.getCamera().bearing || 0,
+            };
+
             // if no relevant properties, close popup and exit
             if (!appellation && !aocLevel && !climat) {
                 popup.close();
@@ -56,12 +76,13 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
                 content: `<div id="info-tool-container"></div>`,
             });
 
+
             // Render the InfoTool component dynamically
             const container = document.getElementById("info-tool-container");
             if (container) {
                 const root = createRoot(container); // Use createRoot to create a React root
                 root.render(
-                    <InfoTool appellation={appellation} climat={climat} aocLevel={aocLevel} />
+                    <InfoTool mapState={mapState} vineyard={vineyard} />
                 );
             }
             popup.open(map);

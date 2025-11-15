@@ -18,10 +18,12 @@ export function addMapControls(map: atlas.Map) {
 }
 
 // Function to create the map
-export const createMap = (element: HTMLDivElement) => {
+export const createMap = (element: HTMLDivElement, lat: number, lon: number, zoom: number, bearing: number) => {
     return new atlas.Map(element, {
-        center: [4.947624206669559, 47.14046061394379], // centered over Nuit-Saint-Georges
-        zoom: 10,
+        center: [lon, lat],
+        zoom: zoom,
+        view: "Auto",
+        bearing: bearing,
         style: "road_shaded_relief", // built-in style
         styleOverrides: {
             roadDetails: { visible: false },
