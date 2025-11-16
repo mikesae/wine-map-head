@@ -15,7 +15,7 @@ export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: strin
             markers.map((m) =>
                 new atlas.data.Feature(
                     new atlas.data.Point([m.longitude, m.latitude]),
-                    { name: m.name, region: m.region, label: m.label ?? m.name }
+                    { ...m, label: m.name }
                 )
             )
         );
@@ -108,7 +108,7 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
                 // Default fill pattern
                 ''
             ],
-            fillOpacity: 1.0
+            fillOpacity: 1.0,
         });
 
     // Add a line layer for polygon borders

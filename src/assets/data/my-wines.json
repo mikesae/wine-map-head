@@ -8,308 +8,307 @@
             "Merlot",
             "Petit Verdot"
         ],
-        "region": "Haut-M\u00e9edoc, Bordeaux",
+        "appellation": "Haut-M\u00e9edoc, Bordeaux",
         "country": "France",
         "latitude": 45.1012141,
         "longitude": -0.7605561
     },
     {
-        "name": "Evolution",
+        "name": "Sokol Blosser",
+        "climat": "Evolution",
         "vintage": 2023,
         "drinkYear": 2025,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Willamette Valley, Oregon",
+        "appellation": "Willamette Valley, Oregon",
         "country": "USA",
         "latitude": 45.2517339,
         "longitude": -123.0524044
     },
     {
         "name": "Domaine Georges Glantenay",
-        "fullName": "Maison Dieu",
+        "climat": "Maison Dieu",
         "vintage": 2021,
         "drinkYear": 2025,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Volnay, Bourgogne",
+        "appellation": "Volnay",
+        "aoc_level": "",
         "country": "France",
         "latitude": 47.0033,
         "longitude": 4.7833
     },
     {
         "name": "Trediberry",
-        "fullName": "Trediberry Nebbiolo",
+        "climat": "Trediberry Nebbiolo",
         "vintage": 2021,
         "drinkYear": 2025,
         "varietals": [
             "Nebbiolo"
         ],
-        "region": "Piemonte",
+        "appellation": "Piemonte",
         "country": "Italy",
         "latitude": 44.5711,
         "longitude": 7.9235
     },
     {
-        "name": "Ballot Millot 1er Cru Santenots",
-        "fullName": "Ballot Millot Volnay Santenots 1er Cru",
-        "vintage": 2022,
+        "name": "Ballot Millot",
+        "vintage": 2021,
         "drinkYear": 2025,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Volnay, Bourgogne",
+        "appellation": "Volnay",
+        "aoc_level": "Premier Cru",
         "country": "France",
         "climat": "Santenots",
-        "latitude": 47.00050,
-        "longitude": 4.77830
+        "latitude": 46.9902541043101,
+        "longitude": 4.781353872676561
     },
     {
-        "name": "1er Cru Gravains",
-        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Gravains",
+        "name": "Camus-Bruchon",
+        "climat": "Les Gravains",
         "vintage": 2022,
         "drinkYear": 2028,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Savigny-lès-Beaune, Bourgogne",
+        "appellation": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
-        "climat": "Gravains",
         "latitude": 47.062143159774024,
         "longitude": 4.833567462967977
     },
     {
-        "name": "1er Cru Les Lavières",
-        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Les Lavières",
+        "name": "Camus-Bruchon",
+        "climat": "Les Lavières",
         "vintage": 2022,
         "drinkYear": 2028,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Savigny-lès-Beaune, Bourgogne",
+        "appellation": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
-        "climat": "Lavières",
         "latitude": 47.06057856589328,
         "longitude": 4.841496404187723
     },
     {
-        "name": "1er Cru Les Narbantons",
-        "fullName": "Camus-Bruchon Savigny-lès-Beaune 1er Cru Les Narbantons",
+        "name": "Camus-Bruchon",
         "vintage": 2022,
         "drinkYear": 2028,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Savigny-lès-Beaune, Bourgogne",
+        "appellation": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "climat": "Les Narbantons",
+        "aoc_level": "1er Cru",
         "latitude": 47.05379191479676,
         "longitude": 4.836296138923899
     },
     {
-        "name": "Georges Glantenay Chambolle-Musigny Village",
-        "fullName": "Georges Glantenay Chambolle-Musigny Village",
+        "name": "Georges Glantenay",
+        "climat": "",
         "vintage": 2022,
         "drinkYear": 2027,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Chambolle-Musigny, Bourgogne",
+        "appellation": "Chambolle-Musigny",
+        "aoc_level": "Village",
         "country": "France",
-        "latitude": 47.1936,
-        "longitude": 4.9500
+        "latitude": 47.18970998110137,
+        "longitude": 4.9623366573030125
     },
     {
-        "name": "Les Terres De Phileandre Marsannay",
-        "fullName": "Les Terres De Phileandre Marsannay",
+        "name": "Les Terres De Phileandre",
+        "climat": "Les Terres De Phileandre Marsannay",
         "vintage": 2021,
         "drinkYear": 2026,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Marsannay, Bourgogne",
+        "appellation": "Marsannay, Bourgogne",
         "country": "France",
-        "latitude": 47.2700,
-        "longitude": 4.9710
+        "latitude": 47.27485796986798,
+        "longitude": 4.989408887586649
     },
     {
-        "name": "Rostaing Condrieu",
-        "fullName": "Rostaing Condrieu",
+        "name": "Rostaing",
+        "climat": "Rostaing Condrieu",
         "vintage": 2021,
         "drinkYear": 2025,
         "varietals": [
             "Viognier"
         ],
-        "region": "Condrieu, Côte-Rôtie",
+        "appellation": "Condrieu, Côte-Rôtie",
         "country": "France",
         "latitude": 45.4700,
         "longitude": 4.7830
     },
     {
-        "name": "Rostaing Ampodium",
-        "fullName": "Rostaing Ampodium Côte-Rôtie",
+        "name": "Rostaing",
         "vintage": 2020,
         "drinkYear": 2028,
         "varietals": [
             "Syrah"
         ],
-        "region": "Côte-Rôtie",
+        "appellation": "Côte-Rôtie",
         "country": "France",
         "climat": "Multiple lieux-dits (Côte Blonde, Côte Brune, etc.)",
         "latitude": 45.4700,
         "longitude": 4.7830
     },
     {
-        "name": "Rostaing La Landonne",
-        "fullName": "Rostaing La Landonne Côte-Rôtie",
+        "name": "Rostaing",
         "vintage": 2019,
         "drinkYear": 2030,
         "varietals": [
             "Syrah"
         ],
-        "region": "Côte-Rôtie",
+        "appellation": "Côte-Rôtie",
         "climat": "La Landonne",
         "country": "France",
         "latitude": 45.4708,
         "longitude": 4.7830
     },
     {
-        "name": "Domaine Marc Roy Gevrey-Chambertin La Justice",
-        "fullName": "Domaine Marc Roy 2013 Gevrey-Chambertin La Justice",
+        "name": "Domaine Marc Roy",
         "vintage": 2013,
         "drinkYear": 2023,
         "drankYear": 2023,
         "varietals": [
             "Pinot Noir"
         ],
-        "region": "Gevrey-Chambertin, Bourgogne",
+        "appellation": "Gevrey-Chambertin",
         "climat": "La Justice",
         "country": "France",
-        "latitude": 47.2330,
-        "longitude": 4.9500
+        "latitude": 47.227680415570546,
+        "longitude": 4.97072783995597
     },
     {
-        "name": "Marie Duffau Napoleon",
-        "fullName": "Marie Duffau Napoleon",
+        "name": "Marie Duffau",
+        "climat": "Marie Duffau Napoleon",
         "vintage": 2022,
         "drinkYear": 2025,
-        "region": "Bas Armagnac",
+        "appellation": "Bas Armagnac",
         "country": "France",
         "latitude": 43.858879,
         "longitude": 0.0587778
     },
     {
         "name": "Chateau Haut-Bages",
-        "fullName": "Liberal",
+        "climat": "Liberal",
         "vintage": 2019,
         "drinkYear": 2025,
         "varietals": [
             "Cabernet Sauvignon",
             "Merlot"
         ],
-        "region": "Pauillac, Bordeaux",
+        "appellation": "Pauillac, Bordeaux",
         "country": "France",
         "latitude": 45.1897,
         "longitude": -0.7472
     },
     {
         "name": "Moccagatta",
-        "fullName": "Moccagatta Barbarescco Bric Balin",
+        "climat": "Moccagatta Barbarescco Bric Balin",
         "vintage": 2015,
         "drinkYear": 2025,
         "varietals": [
             "Nebbiolo"
         ],
-        "region": "Barbaresco, Piemonte",
+        "appellation": "Barbaresco, Piemonte",
         "country": "Italy",
         "latitude": 44.7033,
         "longitude": 8.1044
     },
     {
         "name": "Domaine Vincent Paris",
-        "fullName": "Domaine Vincent Paris Saint-Joseph",
+        "climat": "Domaine Vincent Paris Saint-Joseph",
         "vintage": 2020,
         "drinkYear": 2025,
         "varietals": [
             "Syrah"
         ],
-        "region": "Saint-Joseph, Rhône",
+        "appellation": "Saint-Joseph, Rhône",
         "country": "France",
         "latitude": 45.2000,
         "longitude": 4.7500
     },
     {
         "name": "Domaine Jean Dauvissat",
-        "fullName": "Vendages Chablis",
+        "climat": "Vendages Chablis",
         "vintage": 2022,
         "drinkYear": 2025,
         "varietals": [
             "Chardonnay"
         ],
-        "region": "Chablis, Bourgogne",
+        "appellation": "Chablis",
+        "aoc_level": "Premier Cru",
         "country": "France",
         "latitude": 47.7833,
         "longitude": 3.8000
     },
     {
         "name": "Anne Boisson",
-        "fullName": "Anne Boisson Bourgogne Blanc",
         "vintage": 2019,
         "drinkYear": 2025,
         "varietals": [
             "Chardonnay"
         ],
-        "region": "Meursault, Bourgogne",
+        "appellation": "Meursault",
+        "aoc_level": "",
         "country": "France",
-        "latitude": 46.992000,
-        "longitude": 4.780000
+        "latitude": 46.9802061669827,
+        "longitude": 4.767343122262787
     },
     {
         "name": "Chateau Montifaud",
-        "fullName": "Chateau Montifaud VS Cognac",
+        "climat": "Chateau Montifaud VS Cognac",
         "vintage": 1998,
         "drinkYear": 2025,
-        "region": "Cognac",
+        "appellation": "Cognac",
         "country": "France",
         "latitude": 45.5587868,
         "longitude": -0.3867709
     },
     {
         "name": "Cain Cuvee",
-        "fullName": "NV 14",
+        "climat": "NV 14",
         "vintage": 2014,
         "drinkYear": 2025,
         "varietals": [
             "Cabernet Sauvignon"
         ],
-        "region": "Napa Valley, California",
+        "appellation": "Napa Valley, California",
         "country": "USA",
         "latitude": 38.5025,
         "longitude": -122.2654
     },
     {
         "name": "Sonoma-Cutrer",
-        "fullName": "Sonoma-Cutrer Russian River Ranches Chardonnay",
+        "climat": "Sonoma-Cutrer Russian River Ranches Chardonnay",
         "vintage": 2022,
         "drinkYear": 2024,
         "varietals": [
             "Chardonnay"
         ],
-        "region": "Russian River Valley, California",
+        "appellation": "Russian River Valley, California",
         "country": "USA",
         "latitude": 38.4400,
         "longitude": -122.8700
     },
     {
-        "name": "Vosgros Chablis Premier Cru",
-        "fullName": "Vosgros Chablis Premier Cru",
+        "name": "Vosgros",
+        "climat": "Vosgros Chablis Premier Cru",
         "vintage": 2017,
         "drinkYear": 2024,
         "varietals": [
             "Chardonnay"
         ],
-        "region": "Chablis, Bourgogne",
+        "appellation": "Chablis, Bourgogne",
         "country": "France",
         "climat": "Fourchaume",
         "latitude": 47.7833,

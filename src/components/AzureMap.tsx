@@ -3,13 +3,15 @@ import 'azure-maps-control/dist/atlas.min.css';
 import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
-import type { AzureMapProps, MapViewState, Vineyard } from "../types/mapping";
+import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
-import InfoTool from "./InfoTool";
 import { addMapControls, createMap } from "./mapping/controls";
+import InfoTool from "./InfoTool";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
+    // Store the root instance globally or in a closure
+    let infoToolRoot: ReturnType<typeof createRoot> | null = null;
 
     useEffect(() => {
         if (!mapRef.current) return;
@@ -33,7 +35,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             const latLong = map.pixelsToPositions([pixel]);
 
             // lookup shapes at this position
-            const shapes = map.layers.getRenderedShapes(latLong[0]);
+            const shapes = e.shapes || [];
             shapes.forEach((shape) => {
                 if (shape instanceof atlas.Shape) {
                     console.log('Shape properties:', shape.getProperties());
@@ -41,48 +43,26 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             })
 
             const topShape: any = shapes.length > 0 ? shapes[0] : null;
-
-            // check top shape for properties
-            if (typeof topShape.getProperties !== 'function') {
-                popup.close();
+            if (!topShape.dataSource) {
                 return;
             }
 
-            const props = topShape.getProperties();
-            const appellation = props && props.hasOwnProperty('appellation') ? props['appellation'] : '';
-            const aocLevel = props && props.hasOwnProperty('aoc_level') ? props['aoc_level'] : '';
-            const climat = props && props.hasOwnProperty('climat') ? props['climat'] : '';
-
-            const vineyard: Vineyard = {
-                appellation,
-                climat,
-                aocLevel,
-            };
-            const mapState: MapViewState = {
-                latitude: latLong[0][1],
-                longitude: latLong[0][0],
-                zoom: map.getCamera().zoom || 12,
-                bearing: map.getCamera().bearing || 0,
-            };
-
-            // if no relevant properties, close popup and exit
-            if (!appellation && !aocLevel && !climat) {
-                popup.close();
-                return;
-            }
             // Inside your component or function
             popup.setOptions({
                 position: latLong[0],
                 content: `<div id="info-tool-container"></div>`,
             });
 
-
             // Render the InfoTool component dynamically
             const container = document.getElementById("info-tool-container");
             if (container) {
-                const root = createRoot(container); // Use createRoot to create a React root
-                root.render(
-                    <InfoTool mapState={mapState} vineyard={vineyard} />
+                if (!infoToolRoot) {
+                    // Create the root only once
+                    infoToolRoot = createRoot(container);
+                }
+                // Use the existing root to render or update the component
+                infoToolRoot.render(
+                    <InfoTool shape={topShape} event={e} />
                 );
             }
             popup.open(map);

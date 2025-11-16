@@ -1,3 +1,5 @@
+import type { MapMouseEvent } from "azure-maps-control";
+
 export interface Marker {
     name: string;
     latitude: number;
@@ -12,15 +14,7 @@ export interface AzureMapProps {
     places: Marker[];
 }
 
-export interface Vineyard {
-    appellation: string;
-    climat: string;
-    aocLevel: string;
-}
-
-export interface MapViewState {
-    latitude: number;
-    longitude: number;
-    zoom: number;
-    bearing: number;
+export interface InfoToolProps {
+    shape: any;
+    event: MapMouseEvent;
 }
