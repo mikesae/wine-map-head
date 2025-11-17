@@ -41,10 +41,14 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
     const name = props && props.hasOwnProperty('name') ? props['name'] : null;
     const vintage = props && props.hasOwnProperty('vintage') ? props['vintage'] : null;
 
+    let title = null;
+    if (name && vintage) {
+        title = `${vintage} ${name}`;
+    }
+
     return (
         <div className="p-4 text-black flex flex-col items-start">
-            {name && <h3>{name}</h3>}
-            {vintage && <h3>{vintage}</h3>}
+            {title && <h3>{title}</h3>}
             {appellation && <h3>{appellation}</h3>}
             {climat && <h3>{climat}</h3>}
             {aocLevel && <h3>{aocLevel}</h3>}
