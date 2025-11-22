@@ -24,11 +24,11 @@ export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: strin
     return dataSource;
 }
 
-export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconImage: string, showLabels: boolean) {
+export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconName: string, showLabels: boolean) {
     const individualOnly = false;
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, layerId, {
         iconOptions: {
-            image: iconImage,
+            image: iconName,
             anchor: 'center',
             allowOverlap: true,
             size: 1.0
@@ -126,6 +126,7 @@ export async function addFillTemplates(map: atlas.Map) {
     const scale = 0.333;
     await map.imageSprite.createFromTemplate('Village-Mixed', 'diagonal-lines-up', villageVarietalColors.Mixed, villageVarietalColors.Chardonnay, scale);
     await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.Mixed, premierCruVarietalColors.Chardonnay, scale);
+    await map.imageSprite.add('RedWineBottle', '/icons/red-wine-bottle.svg');
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
