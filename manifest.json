@@ -1,11 +1,11 @@
 {
-    "name": "WineMapHead",
-    "short_name": "WineMap",
+    "name": "VinMapInfo",
+    "short_name": "VineMapInfo",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
-    "description": "WineMapHead",
+    "description": "Detailed wine maps",
     "icons": [
         {
             "src": "/icons/192.png",

@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icons/icon-192x192.png', 'icons/icon-512x512.png'], // Include icons
       manifest: {
-        name: 'WineMapHead',
-        short_name: 'WineMap',
-        description: 'A Progressive Web App for WineMapHead',
+        name: 'VinMapInfo',
+        short_name: 'VinMapInfo',
+        description: 'Explore vineyards and wine regions with VinMapInfo.',
         theme_color: '#000000',
         background_color: '#ffffff',
         display: 'standalone',
