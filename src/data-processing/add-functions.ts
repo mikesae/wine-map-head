@@ -24,14 +24,20 @@ export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: strin
     return dataSource;
 }
 
-export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, iconName: string, showLabels: boolean) {
+export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSource, layerId: string, showLabels: boolean) {
     const individualOnly = false;
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, layerId, {
         iconOptions: {
-            image: iconName,
+            image: [
+                'match',
+                ['get', 'main_varietal'], // Get the 'varietal' property from the data
+                'Pinot Noir', 'pinot-noir-varietal', // If 'varietal' is 'pinot noir', use 'pinot-noir-icon'
+                'Chardonnay', 'chardonnay-varietal', // If 'varietal' is 'chardonnay', use 'chardonnay-icon'
+                'default-icon' // Default icon if no match
+            ],
             anchor: 'center',
             allowOverlap: true,
-            size: 1.0
+            size: 1.5
         },
         textOptions: showLabels ? {
             textField: ['get', 'name'],
@@ -126,7 +132,8 @@ export async function addFillTemplates(map: atlas.Map) {
     const scale = 0.333;
     await map.imageSprite.createFromTemplate('Village-Mixed', 'diagonal-lines-up', villageVarietalColors.Mixed, villageVarietalColors.Chardonnay, scale);
     await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.Mixed, premierCruVarietalColors.Chardonnay, scale);
-    await map.imageSprite.add('RedWineBottle', '/icons/red-wine-bottle.svg');
+    await map.imageSprite.add('pinot-noir-varietal', '/icons/pinot-noir-varietal.svg');
+    await map.imageSprite.add('chardonnay-varietal', '/icons/chardonnay-varietal.svg');
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {

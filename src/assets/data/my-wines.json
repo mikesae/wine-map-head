@@ -8,6 +8,7 @@
             "Merlot",
             "Petit Verdot"
         ],
+        "main_varietal": "Cabernet Sauvignon",
         "appellation": "Haut-M\u00e9edoc, Bordeaux",
         "country": "France",
         "latitude": 45.1012141,
@@ -21,6 +22,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Willamette Valley, Oregon",
         "country": "USA",
         "latitude": 45.2517339,
@@ -34,6 +36,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Volnay",
         "aoc_level": "",
         "country": "France",
@@ -48,6 +51,7 @@
         "varietals": [
             "Nebbiolo"
         ],
+        "main_varietal": "Nebbiolo",
         "appellation": "Piemonte",
         "country": "Italy",
         "latitude": 44.5711,
@@ -60,6 +64,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Volnay",
         "aoc_level": "Premier Cru",
         "country": "France",
@@ -75,6 +80,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "latitude": 47.062143159774024,
@@ -88,6 +94,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "latitude": 47.06057856589328,
@@ -100,6 +107,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Savigny-lès-Beaune, Bourgogne",
         "country": "France",
         "climat": "Les Narbantons",
@@ -115,6 +123,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Chambolle-Musigny",
         "aoc_level": "Village",
         "country": "France",
@@ -129,6 +138,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Marsannay, Bourgogne",
         "country": "France",
         "latitude": 47.27485796986798,
@@ -142,6 +152,7 @@
         "varietals": [
             "Viognier"
         ],
+        "main_varietal": "Viognier",
         "appellation": "Condrieu, Côte-Rôtie",
         "country": "France",
         "latitude": 45.4700,
@@ -154,6 +165,7 @@
         "varietals": [
             "Syrah"
         ],
+        "main_varietal": "Syrah",
         "appellation": "Côte-Rôtie",
         "country": "France",
         "climat": "Multiple lieux-dits (Côte Blonde, Côte Brune, etc.)",
@@ -167,6 +179,7 @@
         "varietals": [
             "Syrah"
         ],
+        "main_varietal": "Syrah",
         "appellation": "Côte-Rôtie",
         "climat": "La Landonne",
         "country": "France",
@@ -181,6 +194,7 @@
         "varietals": [
             "Pinot Noir"
         ],
+        "main_varietal": "Pinot Noir",
         "appellation": "Gevrey-Chambertin",
         "climat": "La Justice",
         "country": "France",
@@ -206,6 +220,7 @@
             "Cabernet Sauvignon",
             "Merlot"
         ],
+        "main_varietal": "Cabernet Sauvignon",
         "appellation": "Pauillac, Bordeaux",
         "country": "France",
         "latitude": 45.1897,
@@ -219,6 +234,7 @@
         "varietals": [
             "Nebbiolo"
         ],
+        "main_varietal": "Nebbiolo",
         "appellation": "Barbaresco, Piemonte",
         "country": "Italy",
         "latitude": 44.7033,
@@ -232,6 +248,7 @@
         "varietals": [
             "Syrah"
         ],
+        "main_varietal": "Syrah",
         "appellation": "Saint-Joseph, Rhône",
         "country": "France",
         "latitude": 45.2000,
@@ -245,6 +262,7 @@
         "varietals": [
             "Chardonnay"
         ],
+        "main_varietal": "Chardonnay",
         "appellation": "Chablis",
         "aoc_level": "Premier Cru",
         "country": "France",
@@ -258,6 +276,7 @@
         "varietals": [
             "Chardonnay"
         ],
+        "main_varietal": "Chardonnay",
         "appellation": "Meursault",
         "aoc_level": "",
         "country": "France",
@@ -282,6 +301,7 @@
         "varietals": [
             "Cabernet Sauvignon"
         ],
+        "main_varietal": "Cabernet Sauvignon",
         "appellation": "Napa Valley, California",
         "country": "USA",
         "latitude": 38.5025,
@@ -295,6 +315,7 @@
         "varietals": [
             "Chardonnay"
         ],
+        "main_varietal": "Chardonnay",
         "appellation": "Russian River Valley, California",
         "country": "USA",
         "latitude": 38.4400,
@@ -308,6 +329,7 @@
         "varietals": [
             "Chardonnay"
         ],
+        "main_varietal": "Chardonnay",
         "appellation": "Chablis, Bourgogne",
         "country": "France",
         "climat": "Fourchaume",

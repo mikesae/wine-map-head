@@ -79,7 +79,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             });
 
             const myMarkersDataSource = addDataSource(map, markers, "markers");
-            addSymbolLayer(map, myMarkersDataSource, "markers-layer", 'RedWineBottle', false);
+            addSymbolLayer(map, myMarkersDataSource, "markers-layer", false);
 
             const placesDataSource = addDataSource(map, places, "places");
             addPlacesLabelLayer(map, placesDataSource, "places");
