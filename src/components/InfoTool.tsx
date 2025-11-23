@@ -34,7 +34,6 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
     const url = createMapUrl(event);
 
     const props = shape.getProperties();
-    //const layerId = shape.dataSource.id;
     const appellation = props && props.hasOwnProperty('appellation') ? props['appellation'] : null;
     const aocLevel = props && props.hasOwnProperty('aoc_level') ? props['aoc_level'] : null;
     const climat = props && props.hasOwnProperty('climat') ? props['climat'] : null;
@@ -44,6 +43,8 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
     let title = null;
     if (name && vintage) {
         title = `${vintage} ${name}`;
+    } else if (name) {
+        title = name;
     }
 
     return (

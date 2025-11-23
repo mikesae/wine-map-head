@@ -37,8 +37,8 @@
   {
     "name": "Chambolle-Musigny",
     "label": "Chambolle-Musigny",
-    "latitude": 47.18575508117729,
-    "longitude": 4.95245011715582,
+    "latitude": 47.18534964812605,
+    "longitude": 4.953106194014765,
     "region": "Bourgogne"
   },
   {
@@ -120,8 +120,8 @@
   {
     "name": "Meursault",
     "label": "Meursault",
-    "latitude": 46.979429775519435,
-    "longitude": 4.769379165217458,
+    "latitude": 46.978039769810664,
+    "longitude": 4.773170033093464,
     "region": "Bourgogne"
   },
   {
@@ -268,5 +268,11 @@
     "label": "Reims",
     "latitude": 49.25695289602251,
     "longitude": 4.040881170725754
+  },
+  {
+    "name": "Mercurey",
+    "label": "Mercurey",
+    "latitude": 46.839682542394144,
+    "longitude": 4.720084666746629
   }
 ]

@@ -2,6 +2,7 @@ import atlas from "azure-maps-control";
 import { grandCruVarietalColors, premierCruVarietalColors, villageVarietalColors } from "../types/legendColors";
 import type { Marker } from "../types/mapping";
 
+const regionFillOpacity: number = 1.0;
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
     const dataSource = new atlas.source.DataSource(sourceId, {
@@ -114,7 +115,7 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
                 // Default fill pattern
                 ''
             ],
-            fillOpacity: 1.0,
+            fillOpacity: regionFillOpacity,
         });
 
     // Add a line layer for polygon borders
@@ -147,7 +148,7 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
             // Default color
             'transparent'
         ],
-        fillOpacity: 1.0 // TODO: may vary opacity based on AOC level
+        fillOpacity: regionFillOpacity
     }));
     // Add a line layer for polygon borders
     map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {

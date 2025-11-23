@@ -33,7 +33,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         map.events.add('mouseup', (e: atlas.MapMouseEvent) => {
             const pixel = e.pixel || [0, 0];
             const latLong = map.pixelsToPositions([pixel]);
-            console.log('Map clicked at latitude/longitude:', latLong[0]);
+            console.log(`"latitude": ${latLong[0][1]}`);
+            console.log(`"longitude": ${latLong[0][0]}`);
 
             // lookup shapes at this position
             const shapes = e.shapes || [];
