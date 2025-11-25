@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { vinsBlancs, vinsRouges } from "../types/legendColors"
+import { villageVarietalColors, vinsBlancs, vinsRouges } from "../types/legendColors"
 import { CircleX, Layers } from "lucide-react"
 
 const LegendRow = ({ label, color, hatchColor }: { label: string; color?: string; hatchColor?: string }) => (
@@ -102,10 +102,10 @@ export const MapLegend: React.FC = () => {
                         </div>
                         {/* Mixed Column */}
                         <div>
-                            <div className="py-1 text-sm text-gray-700">Mixed</div>
-                            <LegendRow label="" />
+                            <div className="py-1 text-sm text-gray-700">Mixed/Other</div>
                             <LegendRow label="Premier Cru" color={vinsBlancs.PremierCru} hatchColor={vinsRouges.MixedPremierCru} />
                             <LegendRow label="Village" color={vinsBlancs.Village} hatchColor={vinsRouges.MixedVillage} />
+                            <LegendRow label="Village Aligote" color={villageVarietalColors.Aligote} />
                         </div>
 
                     </div>
