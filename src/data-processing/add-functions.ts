@@ -182,7 +182,8 @@ export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
 export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number = 18) {
     // Add a layer for labels
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + name, {
-        //minZoom: 12,
+        minZoom: 0,
+        maxZoom: 24,
         iconOptions: {
             image: ""
         },
@@ -195,6 +196,8 @@ export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
             font: ['StandardCondensedSegoeUi-Regular'],
             size: labelSize,
             allowOverlap: false,
-        }
+        },
+        // set sortkey so higher population places are on top
+        sortKey: ['get', 'sortKey']
     }));
 }

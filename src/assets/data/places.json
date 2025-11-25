@@ -4,275 +4,463 @@
     "label": "Marsannay",
     "latitude": 47.2714,
     "longitude": 4.9894,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Fixin",
     "label": "Fixin",
     "latitude": 47.24543279890588,
     "longitude": 4.973389562722048,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Gevrey-Chambertin",
     "label": "Gevrey-Chambertin",
     "latitude": 47.227857597826585,
     "longitude": 4.968084051514268,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Brochon",
     "label": "Brochon",
     "latitude": 47.239108183285396,
     "longitude": 4.970676171072313,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Morey-Saint-Denis",
     "label": "Morey-Saint-Denis",
     "latitude": 47.1947026,
     "longitude": 4.961292,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Chambolle-Musigny",
     "label": "Chambolle-Musigny",
     "latitude": 47.18534964812605,
     "longitude": 4.953106194014765,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Vougeot",
     "label": "Vougeot",
     "latitude": 47.17703521514616,
     "longitude": 4.963094432077412,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Flagey-Échézeaux",
     "label": "Flagey-Échézeaux",
     "latitude": 47.16499428834365,
     "longitude": 4.980139362072379,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Vosne-Romanée",
     "label": "Vosne-Romanée",
     "latitude": 47.16092913079714,
     "longitude": 4.954694733659153,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Nuits-Saint-Georges",
     "label": "Nuits-Saint-Georges",
     "latitude": 47.138,
     "longitude": 4.951,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Ladoix-Serrigny",
     "label": "Ladoix-Serrigny",
     "latitude": 47.066719781731535,
     "longitude": 4.887599209295104,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Aloxe-Corton",
     "label": "Aloxe-Corton",
     "latitude": 47.0656081289882,
     "longitude": 4.860052143833343,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Pernand-Vergelesses",
     "label": "Pernand-Vergelesses",
     "latitude": 47.080430532773846,
     "longitude": 4.850500503588222,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Savigny-lès-Beaune",
     "label": "Savigny-lès-Beaune",
     "latitude": 47.063373707295455,
-    "longitude": 4.818365236190516
+    "longitude": 4.818365236190516,
+    "sortKey": 1
   },
   {
     "name": "Chorey-lès-Beaune",
     "label": "Chorey-lès-Beaune",
     "latitude": 47.04899278849558,
     "longitude": 4.869784594788712,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Pommard",
     "label": "Pommard",
     "latitude": 47.00957451625041,
     "longitude": 4.794839211121342,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Volnay",
     "label": "Volnay",
     "latitude": 47.00145089437024,
     "longitude": 4.781494368957198,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Meursault",
     "label": "Meursault",
     "latitude": 46.978039769810664,
     "longitude": 4.773170033093464,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Puligny-Montrachet",
     "label": "Puligny-Montrachet",
     "latitude": 46.945377587406966,
     "longitude": 4.752622486733884,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Chassagne-Montrachet",
     "label": "Chassagne-Montrachet",
     "latitude": 46.93843336071393,
     "longitude": 4.729766225045495,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Saint-Aubin",
     "label": "Saint-Aubin",
     "latitude": 46.95039427869,
     "longitude": 4.712238332133637,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Saint-Romain",
     "label": "Saint-Romain",
     "latitude": 46.99815923240055,
     "longitude": 4.708617734941555,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Santenay",
     "label": "Santenay",
     "latitude": 46.9130567536524,
     "longitude": 4.696881354734501,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Monthelie",
     "label": "Monthelie",
     "latitude": 46.99275572327332,
     "longitude": 4.766503952047373,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Auxey-Duresses",
     "label": "Auxey-Duresses",
     "latitude": 46.9867846755605,
     "longitude": 4.747881353999986,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Dijon",
     "label": "Dijon",
     "latitude": 47.32735434602742,
     "longitude": 5.043880595013093,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Beaune",
     "label": "Beaune",
     "latitude": 47.024013403799756,
     "longitude": 4.838315876801914,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Couchey",
     "label": "Couchey",
     "latitude": 47.25996690466221,
     "longitude": 4.981368107627475,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Premeaux-Prissey",
     "label": "Premeaux-Prissey",
     "latitude": 47.11201119133929,
     "longitude": 4.934427780567006,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Comblanchien",
     "label": "Comblanchien",
     "latitude": 47.10282793088459,
     "longitude": 4.920599474142591,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Cheilly-lès-Maranges",
     "label": "Cheilly-lès-Maranges",
     "latitude": 46.89594570498724,
     "longitude": 4.667378066768123,
-    "region": "Bourgogne"
+    "region": "Bourgogne",
+    "sortKey": 1
   },
   {
     "name": "Chablis",
     "label": "Chablis",
     "latitude": 47.801634,
-    "longitude": 3.797573
+    "longitude": 3.797573,
+    "sortKey": 2
   },
   {
     "name": "Bouzeron",
     "label": "Bouzeron",
     "latitude": 46.88967438061505,
-    "longitude": 4.726234207480758
+    "longitude": 4.726234207480758,
+    "sortKey": 1
   },
   {
     "name": "Rully",
     "label": "Rully",
     "latitude": 46.87509980624222,
-    "longitude": 4.738762537870429
+    "longitude": 4.738762537870429,
+    "sortKey": 1
   },
   {
     "name": "Givry",
     "label": "Givry",
     "latitude": 46.78208513108979,
-    "longitude": 4.7461869780823065
+    "longitude": 4.7461869780823065,
+    "sortKey": 1
   },
   {
     "name": "Paris",
     "label": "Paris",
     "latitude": 48.8566,
-    "longitude": 2.3522
+    "longitude": 2.3522,
+    "sortKey": 1
   },
   {
     "name": "Lyon",
     "label": "Lyon",
-    "latitude": 45.7640,
-    "longitude": 4.8357
+    "latitude": 45.764,
+    "longitude": 4.8357,
+    "sortKey": 1
   },
   {
     "name": "Chalone-sur-Saône",
     "label": "Chalone-sur-Saône",
     "latitude": 46.784544814789285,
-    "longitude": 4.851904565812703
+    "longitude": 4.851904565812703,
+    "sortKey": 1
   },
   {
     "name": "Auxerre",
     "label": "Auxerre",
     "latitude": 47.79812726715039,
-    "longitude": 3.576770636104385
+    "longitude": 3.576770636104385,
+    "sortKey": 1
   },
   {
     "name": "Reims",
     "label": "Reims",
     "latitude": 49.25695289602251,
-    "longitude": 4.040881170725754
+    "longitude": 4.040881170725754,
+    "sortKey": 1
   },
   {
     "name": "Mercurey",
     "label": "Mercurey",
     "latitude": 46.839682542394144,
-    "longitude": 4.720084666746629
+    "longitude": 4.720084666746629,
+    "sortKey": 1
+  },
+  {
+    "name": "Marseille",
+    "label": "Marseille",
+    "latitude": 43.296482,
+    "longitude": 5.36978,
+    "sortKey": 1
+  },
+  {
+    "name": "Toulouse",
+    "label": "Toulouse",
+    "latitude": 43.604652,
+    "longitude": 1.444209,
+    "sortKey": 1
+  },
+  {
+    "name": "Nice",
+    "label": "Nice",
+    "latitude": 43.710172,
+    "longitude": 7.261953,
+    "sortKey": 1
+  },
+  {
+    "name": "Nantes",
+    "label": "Nantes",
+    "latitude": 47.218371,
+    "longitude": -1.553621,
+    "sortKey": 1
+  },
+  {
+    "name": "Strasbourg",
+    "label": "Strasbourg",
+    "latitude": 48.573405,
+    "longitude": 7.752111,
+    "sortKey": 1
+  },
+  {
+    "name": "Montpellier",
+    "label": "Montpellier",
+    "latitude": 43.6119,
+    "longitude": 3.8772,
+    "sortKey": 1
+  },
+  {
+    "name": "Bordeaux",
+    "label": "Bordeaux",
+    "latitude": 44.837789,
+    "longitude": -0.57918,
+    "sortKey": 1
+  },
+  {
+    "name": "Lille",
+    "label": "Lille",
+    "latitude": 50.62925,
+    "longitude": 3.057256,
+    "sortKey": 1
+  },
+  {
+    "name": "Rennes",
+    "label": "Rennes",
+    "latitude": 48.117266,
+    "longitude": -1.677792,
+    "sortKey": 1
+  },
+  {
+    "name": "Reims",
+    "label": "Reims",
+    "latitude": 49.258329,
+    "longitude": 4.031696,
+    "sortKey": 1
+  },
+  {
+    "name": "Le Havre",
+    "label": "Le Havre",
+    "latitude": 49.49437,
+    "longitude": 0.107929,
+    "sortKey": 1
+  },
+  {
+    "name": "Saint-Étienne",
+    "label": "Saint-Étienne",
+    "latitude": 45.439695,
+    "longitude": 4.387178,
+    "sortKey": 1
+  },
+  {
+    "name": "Toulon",
+    "label": "Toulon",
+    "latitude": 43.124228,
+    "longitude": 5.928,
+    "sortKey": 1
+  },
+  {
+    "name": "Grenoble",
+    "label": "Grenoble",
+    "latitude": 45.188529,
+    "longitude": 5.724524,
+    "sortKey": 1
+  },
+  {
+    "name": "Nîmes",
+    "label": "Nîmes",
+    "latitude": 43.836699,
+    "longitude": 4.360054,
+    "sortKey": 1
+  },
+  {
+    "name": "Aix-en-Provence",
+    "label": "Aix-en-Provence",
+    "latitude": 43.529742,
+    "longitude": 5.454444,
+    "sortKey": 1
+  },
+  {
+    "name": "Clermont-Ferrand",
+    "label": "Clermont-Ferrand",
+    "latitude": 45.777222,
+    "longitude": 3.087025,
+    "sortKey": 1
+  },
+  {
+    "name": "La Rochelle",
+    "label": "La Rochelle",
+    "latitude": 46.1591,
+    "longitude": -1.1511,
+    "sortKey": 1
+  },
+  {
+    "name": "Antibes",
+    "label": "Antibes",
+    "latitude": 43.5804,
+    "longitude": 7.1251,
+    "sortKey": 1
+  },
+  {
+    "name": "Béziers",
+    "label": "Béziers",
+    "latitude": 43.3441,
+    "longitude": 3.2158,
+    "sortKey": 1
+  },
+  {
+    "name": "Cannes",
+    "label": "Cannes",
+    "latitude": 43.5511,
+    "longitude": 7.0128,
+    "sortKey": 1
   }
 ]
