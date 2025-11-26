@@ -3,32 +3,64 @@ import 'azure-maps-control/dist/atlas.min.css';
 import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
+import { useMapStore } from "../hooks/useMapStore";
 import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
-import { addMapControls, createMap } from "./mapping/controls";
 import InfoTool from "./InfoTool";
+import { addMapControls, createMap } from "./mapping/controls";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     // Store the root instance globally or in a closure
     let infoToolRoot: ReturnType<typeof createRoot> | null = null;
+    const { center, zoom, bearing } = useMapStore();
 
     useEffect(() => {
         if (!mapRef.current) return;
 
         // Parse URL parameters
-        const params = new URLSearchParams(window.location.search);
-        const lat = parseFloat(params.get("lat") || "47.14046061394379"); // Default to Nuit-St-Georges if not provided
-        const lng = parseFloat(params.get("lng") || "4.947624206669559"); // Default to Nuit-St-Georges if not provided
-        const zoom = parseFloat(params.get("zoom") || "12"); // Default to zoom level 12 if not provided
-        const bearing = parseFloat(params.get("bearing") || "290"); // Default to bearing 0 if not provided
+        //const params = new URLSearchParams(window.location.search);
+        // const lat = parseFloat(params.get("lat") || "47.14046061394379"); // Default to Nuit-St-Georges if not provided
+        // const lng = parseFloat(params.get("lng") || "4.947624206669559"); // Default to Nuit-St-Georges if not provided
+        // const zoom = parseFloat(params.get("zoom") || "12"); // Default to zoom level 12 if not provided
+        // const bearing = parseFloat(params.get("bearing") || "290"); // Default to bearing 0 if not provided
 
-        const map = createMap(mapRef.current, lat, lng, zoom, bearing);
+        const [lon, lat] = center;
+
+        const map = createMap(mapRef.current, lat, lon, zoom, bearing);
         const popup = new atlas.Popup({
             position: [0, 0],
             pixelOffset: [0, -18]
         });
         map.popups.add(popup);
+
+        // function to update map settings in the store
+        function updateMapSettings() {
+            const camera = map.getCamera();
+            useMapStore.getState().setMapSettings({
+                center: camera.center as [number, number],
+                zoom: camera.zoom as number,
+                bearing: camera.bearing as number,
+            });
+            console.log('Map settings updated:', useMapStore.getState());
+        }
+
+        // trap map zoom, pan, and bearing changes to update the store
+        map.events.add('moveend', () => {
+            updateMapSettings();
+        });
+        map.events.add('zoomend', () => {
+            updateMapSettings();
+        });
+        map.events.add('pitchend', () => {
+            updateMapSettings();
+        });
+        map.events.add('rotateend', () => {
+            updateMapSettings();
+        });
+        map.events.add('wheel', () => {
+            updateMapSettings();
+        });
 
         map.events.add('mouseup', (e: atlas.MapMouseEvent) => {
             const pixel = e.pixel || [0, 0];
