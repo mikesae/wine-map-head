@@ -13,21 +13,31 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     // Store the root instance globally or in a closure
     let infoToolRoot: ReturnType<typeof createRoot> | null = null;
-    const { center, zoom, bearing } = useMapStore();
+    const { center, zoom, bearing, pitch } = useMapStore();
 
     useEffect(() => {
         if (!mapRef.current) return;
 
-        // Parse URL parameters
-        //const params = new URLSearchParams(window.location.search);
-        // const lat = parseFloat(params.get("lat") || "47.14046061394379"); // Default to Nuit-St-Georges if not provided
-        // const lng = parseFloat(params.get("lng") || "4.947624206669559"); // Default to Nuit-St-Georges if not provided
-        // const zoom = parseFloat(params.get("zoom") || "12"); // Default to zoom level 12 if not provided
-        // const bearing = parseFloat(params.get("bearing") || "290"); // Default to bearing 0 if not provided
+        let map: atlas.Map;
+        const params = new URLSearchParams(window.location.search);
 
-        const [lon, lat] = center;
+        if (params.has("lat") && params.has("lng")) {
+            const lat = parseFloat(params.get("lat") || "47.14046061394379"); // Default to Nuit-St-Georges if not provided
+            const lng = parseFloat(params.get("lng") || "4.947624206669559"); // Default to Nuit-St-Georges if not provided
+            const zoom = parseFloat(params.get("zoom") || "12"); // Default to zoom level 12 if not provided
+            const bearing = parseFloat(params.get("bearing") || "290"); // Default to bearing 0 if not provided
+            const pitch = parseFloat(params.get("pitch") || "0"); // Default to pitch 0 if not provided
 
-        const map = createMap(mapRef.current, lat, lon, zoom, bearing);
+            map = createMap(mapRef.current, lat, lng, zoom, bearing);
+            map.setCamera({ pitch: pitch });
+
+        } else {
+            const [lng, lat] = center;
+
+            map = createMap(mapRef.current, lat, lng, zoom, bearing);
+            map.setCamera({ pitch: pitch });
+        }
+
         const popup = new atlas.Popup({
             position: [0, 0],
             pixelOffset: [0, -18]
@@ -41,6 +51,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
                 center: camera.center as [number, number],
                 zoom: camera.zoom as number,
                 bearing: camera.bearing as number,
+                pitch: camera.pitch as number,
             });
             console.log('Map settings updated:', useMapStore.getState());
         }

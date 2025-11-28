@@ -11,12 +11,14 @@ const createMapUrl = (event: MapMouseEvent): string => {
     const latLong = map.pixelsToPositions([pixel]);
     const zoom = map.getCamera().zoom ?? 0
     const bearing = map.getCamera().bearing ?? 0;
+    const pitch = map.getCamera().pitch ?? 0;
 
     const params = new URLSearchParams({
         lat: latLong[0][1].toString(),
         lng: latLong[0][0].toString(),
         zoom: zoom.toString(),
         bearing: bearing.toString(),
+        pitch: pitch.toString(),
     });
 
     return `${baseUrl}?${params.toString()}`;
