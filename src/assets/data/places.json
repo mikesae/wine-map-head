@@ -462,5 +462,19 @@
     "latitude": 43.5511,
     "longitude": 7.0128,
     "sortKey": 1
+  },
+  {
+    "name": "Montenay-lès-Buxy",
+    "label": "Montenay-lès-Buxy",
+    "latitude": 46.707222444528924,
+    "longitude": 4.670293029912045,
+    "sortKey": 1
+  },
+  {
+    "name": "Buxy",
+    "label": "Buxy",
+    "latitude": 46.713126490355734,
+    "longitude": 4.695356914822042,
+    "sortKey": 1
   }
 ]
