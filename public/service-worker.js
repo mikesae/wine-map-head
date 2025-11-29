@@ -1,14 +1,21 @@
 self.addEventListener('install', (event) => {
+    // Skip waiting to activate the new service worker immediately
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.open('wine-map-cache').then((cache) => {
-            return cache.addAll([
-                '/',
-                '/index.html',
-                '/site.svg',
-                '/src/main.tsx'
-            ]);
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cache) => {
+                    if (cache !== 'vinmapinfo-cache') {
+                        return caches.delete(cache); // Clear old caches
+                    }
+                })
+            );
         })
     );
+    self.clients.claim(); // Take control of all pages immediately
 });
 
 self.addEventListener('fetch', (event) => {
