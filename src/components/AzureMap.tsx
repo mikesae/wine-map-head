@@ -53,7 +53,6 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
                 bearing: camera.bearing as number,
                 pitch: camera.pitch as number,
             });
-            console.log('Map settings updated:', useMapStore.getState());
         }
 
         // trap map zoom, pan, and bearing changes to update the store
@@ -73,44 +72,62 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             updateMapSettings();
         });
 
+        let mouseDownPosition: [number, number] | null = null;
+        const CLICK_THRESHOLD = 5; // Maximum distance in pixels to consider it a click
+
+        // Track the mouse down position
+        map.events.add('mousedown', (e: atlas.MapMouseEvent) => {
+            mouseDownPosition = e.pixel ? [e.pixel[0], e.pixel[1]] : null;
+        });
+
         map.events.add('mouseup', (e: atlas.MapMouseEvent) => {
-            const pixel = e.pixel || [0, 0];
-            const latLong = map.pixelsToPositions([pixel]);
-            console.log(`"latitude": ${latLong[0][1]}`);
-            console.log(`"longitude": ${latLong[0][0]}`);
+            const mouseUpPosition = e.pixel || null;
 
-            // lookup shapes at this position
-            const shapes = e.shapes || [];
-            shapes.forEach((shape) => {
-                if (shape instanceof atlas.Shape) {
-                    console.log('Shape properties:', shape.getProperties());
+            if (mouseDownPosition && mouseUpPosition) {
+                const dx = mouseUpPosition[0] - mouseDownPosition[0];
+                const dy = mouseUpPosition[1] - mouseDownPosition[1];
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance <= CLICK_THRESHOLD) {
+                    const pixel = e.pixel || [0, 0];
+                    const latLong = map.pixelsToPositions([pixel]);
+                    console.log(`"latitude": ${latLong[0][1]}`);
+                    console.log(`"longitude": ${latLong[0][0]}`);
+
+                    // lookup shapes at this position
+                    const shapes = e.shapes || [];
+                    shapes.forEach((shape) => {
+                        if (shape instanceof atlas.Shape) {
+                            console.log('Shape properties:', shape.getProperties());
+                        }
+                    })
+
+                    const topShape: any = shapes.length > 0 ? shapes[0] : null;
+                    if (!topShape.dataSource) {
+                        return;
+                    }
+
+                    // Inside your component or function
+                    popup.setOptions({
+                        position: latLong[0],
+                        content: `<div id="info-tool-container"></div>`,
+                    });
+
+                    // Render the InfoTool component dynamically
+                    const container = document.getElementById("info-tool-container");
+                    if (container) {
+                        if (!infoToolRoot) {
+                            // Create the root only once
+                            infoToolRoot = createRoot(container);
+                        }
+                        // Use the existing root to render or update the component
+                        infoToolRoot.render(
+                            <InfoTool shape={topShape} event={e} />
+                        );
+                    }
+                    popup.open(map);
                 }
-            })
-
-            const topShape: any = shapes.length > 0 ? shapes[0] : null;
-            if (!topShape.dataSource) {
-                return;
             }
-
-            // Inside your component or function
-            popup.setOptions({
-                position: latLong[0],
-                content: `<div id="info-tool-container"></div>`,
-            });
-
-            // Render the InfoTool component dynamically
-            const container = document.getElementById("info-tool-container");
-            if (container) {
-                if (!infoToolRoot) {
-                    // Create the root only once
-                    infoToolRoot = createRoot(container);
-                }
-                // Use the existing root to render or update the component
-                infoToolRoot.render(
-                    <InfoTool shape={topShape} event={e} />
-                );
-            }
-            popup.open(map);
         });
 
         map.events.add("ready", async () => {
