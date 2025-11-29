@@ -5,7 +5,6 @@ import AzureMap from './components/AzureMap';
 import SearchBar from './components/SearchBar';
 import type { Marker } from './types/mapping';
 import { MapLegend } from './components/MapLegend';
-import { Version } from './components/Version';
 import { MapSettings } from './components/MapSettings';
 
 const App: FC = () => {
