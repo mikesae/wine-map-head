@@ -127,8 +127,8 @@
         "appellation": "Chambolle-Musigny",
         "aoc_level": "Village",
         "country": "France",
-        "latitude": 47.18970998110137,
-        "longitude": 4.9623366573030125
+        "latitude": 47.181248282126774,
+        "longitude": 4.961795406908692
     },
     {
         "name": "Les Terres De Phileandre",
@@ -332,8 +332,67 @@
         "main_varietal": "Chardonnay",
         "appellation": "Chablis, Bourgogne",
         "country": "France",
-        "climat": "Fourchaume",
         "latitude": 47.7833,
         "longitude": 3.8000
+    },
+    {
+        "name": "Domaine Anne et Hervé Sigaut",
+        "climat": "Les Fuées",
+        "vintage": 2023,
+        "drinkYear": 2030,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Chambolle-Musigny, Bourgogne",
+        "aoc_level": "1er Cru",
+        "country": "France",
+        "latitude": 47.189132242278674,
+        "longitude": 4.955534325247726
+    },
+    {
+        "name": "Domaine Anne et Hervé Sigaut",
+        "climat": "Les Bussieres Vieilles Vignes",
+        "vintage": 2023,
+        "drinkYear": 2030,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Chambolle-Musigny, Bourgogne",
+        "aoc_level": "Village",
+        "country": "France",
+        "latitude": 47.1919027029511,
+        "longitude": 4.964086113852346
+    },
+    {
+        "name": "Domaine Joblot",
+        "vintage": 2022,
+        "drinkYear": 2027,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Givry",
+        "aoc_level": "1er Cru",
+        "climat": "Clos de la Servoisine",
+        "country": "France",
+        "latitude": 46.78803466340412,
+        "longitude": 4.74068370388639
+    },
+    {
+        "name": "Michel Sarrazin et Fils",
+        "vintage": 2022,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Givry",
+        "aoc_level": "Village",
+        "climat": "Sous la Roche",
+        "country": "France",
+        "latitude": 46.78195844726804,
+        "longitude": 4.707507658453295
     }
 ]
