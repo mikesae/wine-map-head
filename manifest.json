@@ -1,6 +1,6 @@
 {
     "name": "VinMapInfo",
-    "short_name": "VineMapInfo",
+    "short_name": "VinMapInfo",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
