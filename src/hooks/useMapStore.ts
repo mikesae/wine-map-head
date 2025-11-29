@@ -6,6 +6,7 @@ interface MapSettings {
     zoom: number;
     pitch: number;
     bearing: number;
+    layerOpacity: number;
     setMapSettings: (settings: Partial<MapSettings>) => void;
 }
 
@@ -16,6 +17,7 @@ export const useMapStore = create<MapSettings>()(
             zoom: 12, // Default zoom
             pitch: 0,
             bearing: 290,
+            layerOpacity: 100, // Default layer opacity
             setMapSettings: (settings) =>
                 set((state) => ({
                     ...state,

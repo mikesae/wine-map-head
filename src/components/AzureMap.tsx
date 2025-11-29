@@ -13,7 +13,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     // Store the root instance globally or in a closure
     let infoToolRoot: ReturnType<typeof createRoot> | null = null;
-    const { center, zoom, bearing, pitch } = useMapStore();
+    const { center, zoom, bearing, pitch, layerOpacity } = useMapStore();
 
     useEffect(() => {
         if (!mapRef.current) return;
@@ -52,6 +52,12 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
                 zoom: camera.zoom as number,
                 bearing: camera.bearing as number,
                 pitch: camera.pitch as number,
+            });
+        }
+
+        function updateLayerOpacityInStore(opacity: number) {
+            useMapStore.getState().setMapSettings({
+                layerOpacity: opacity,
             });
         }
 
@@ -136,7 +142,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             await addFillTemplates(map);
 
             regions.forEach((region) => {
-                addFeatureSet(map, region);
+                addFeatureSet(map, region, layerOpacity);
             });
 
             const myMarkersDataSource = addDataSource(map, markers, "markers");
@@ -158,6 +164,23 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         };
 
         events.on('recenter', handleRecenter);
+        events.on('setLayerOpacity', (opacity: number) => {
+            const layers = map.layers.getLayers();
+            // walk layers and set opacity for relevant layers
+            layers.forEach((layer) => {
+                const id = layer.getId();
+                if (id.includes('region-layer-')) {
+                    layer.setOptions({
+                        fillOpacity: opacity / 100
+                    });
+                } else if (id.includes('line-layer-')) {
+                    layer.setOptions({
+                        strokeOpacity: opacity / 100
+                    });
+                }
+            });
+            updateLayerOpacityInStore(opacity);
+        });
 
         return () => {
             events.off('recenter', handleRecenter);

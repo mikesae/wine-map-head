@@ -62,14 +62,14 @@ export const MapLegend: React.FC = () => {
     }
 
     return (
-        <div className="absolute bottom-0 left-0 z-50">
+        <div className="absolute bottom-2 left-2 z-50">
             {/* Toggle Button */}
             {!isLegendVisible &&
                 <button
                     onClick={toggleLegend}
-                    className="bg-white text-black px-4 py-2 rounded-lg shadow-md focus:outline-none"
+                    className="bg-white p-2 rounded-lg shadow-md focus:outline-none"
                 >
-                    <Layers className="w-5 h-5 text-gray-800" />
+                    <Layers className="w-5 h-5 text-gray-500" />
                 </button>
             }
 
@@ -82,7 +82,7 @@ export const MapLegend: React.FC = () => {
                             onClick={toggleLegend}
                             className="text-gray-600 hover:text-gray-800 focus:outline-none"
                         >
-                            <CircleX className="w-5 h-5" />
+                            <CircleX className="w-5 h-5 text-gray-500" />
                         </button>
                     </div>
                     <div className="flex space-x-3">

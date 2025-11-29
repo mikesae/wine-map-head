@@ -2,8 +2,6 @@ import atlas from "azure-maps-control";
 import { grandCruVarietalColors, premierCruVarietalColors, villageVarietalColors } from "../types/legendColors";
 import type { Marker } from "../types/mapping";
 
-const regionFillOpacity: number = 1.0;
-
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
     const dataSource = new atlas.source.DataSource(sourceId, {
         cluster: true,
@@ -51,7 +49,7 @@ export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSour
     }));
 }
 
-export function addFeatureSet(map: atlas.Map, featureSet: any) {
+export function addFeatureSet(map: atlas.Map, featureSet: any, layerOpacity: number) {
 
     // Create a data source for three levels of appellations
     const dataSources: { [key: string]: atlas.source.DataSource } = {};
@@ -87,11 +85,11 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
             }
         }
     });
-    addRegionLayers(map, dataSources['Village'], featureSet.name, 'Village', villageVarietalColors);
-    addRegionLayers(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', premierCruVarietalColors);
-    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal');
-    addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruVarietalColors);
-    addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors);
+    addRegionLayers(map, dataSources['Village'], featureSet.name, 'Village', villageVarietalColors, layerOpacity);
+    addRegionLayers(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', premierCruVarietalColors, layerOpacity);
+    addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal', layerOpacity);
+    addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruVarietalColors, layerOpacity);
+    addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors, layerOpacity);
 
     // Add label layers last so they are on top.
     // Note: none for village level
@@ -101,7 +99,7 @@ export function addFeatureSet(map: atlas.Map, featureSet: any) {
     addRegionLabelLayer(map, dataSources['Grand Cru L2'], featureSet.name + 'Grand Cru L2', 14, true);
 }
 
-function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string) {
+function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, layerOpacity: number) {
     // Add a polygon layer for mixed varietals using hatch pattern
 
     const polygonLayerName = "layer-" + featureSetName + '-' + aocLevel;
@@ -115,13 +113,14 @@ function addMixedLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fea
                 // Default fill pattern
                 ''
             ],
-            fillOpacity: regionFillOpacity,
+            fillOpacity: layerOpacity / 100,
         });
 
     // Add a line layer for polygon borders
     const lineLayer = new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
         strokeColor: '#BBBBBB',
         strokeWidth: 1,
+        strokeOpacity: layerOpacity / 100,
         minZoom: 12
     });
 
@@ -137,9 +136,9 @@ export async function addFillTemplates(map: atlas.Map) {
     await map.imageSprite.add('chardonnay-varietal', '/icons/chardonnay-varietal.svg');
 }
 
-function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any) {
+function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any, layerOpacity: number) {
     // Add a polygon layer
-    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "layer-" + featureSetName + '-' + aocLevel, {
+    map.layers.add(new atlas.layer.PolygonLayer(dataSource, "region-layer-" + featureSetName + '-' + aocLevel, {
         fillColor: [
             'case',
             ['==', ['get', 'varietal'], 'Chardonnay'], colors.Chardonnay,
@@ -148,12 +147,12 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
             // Default color
             'transparent'
         ],
-        fillOpacity: regionFillOpacity
+        fillOpacity: layerOpacity / 100
     }));
     // Add a line layer for polygon borders
     map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
         strokeColor: '#BBBBBB',
-        strokeWidth: 1,
+        strokeWidth: layerOpacity / 100,
         minZoom: 12
     }));
 }

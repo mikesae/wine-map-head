@@ -34,8 +34,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ places }) => {
                     onClick={toggleSearchBar}
                     style={{
                         position: 'absolute',
-                        left: '20px',
-                        top: '20px',
+                        left: '8px',
+                        top: '8px',
                         background: 'white',
                         boxShadow: 'rgba(0, 0, 0, .16) 0 0 4px',
                         cursor: 'pointer',
