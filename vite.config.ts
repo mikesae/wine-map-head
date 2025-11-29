@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { version } from './package.json'; // Import the version from package.json
 
 export default defineConfig({
   plugins: [
@@ -34,4 +35,8 @@ export default defineConfig({
       },
     }),
   ],
+  define: {
+    __APP_VERSION__: JSON.stringify(version), // Inject the app version
+    __BUILD_DATE__: JSON.stringify(new Date().toLocaleString()), // Inject the build timestamp in local time
+  },
 })

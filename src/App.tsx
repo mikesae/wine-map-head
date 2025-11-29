@@ -5,6 +5,7 @@ import AzureMap from './components/AzureMap';
 import SearchBar from './components/SearchBar';
 import type { Marker } from './types/mapping';
 import { MapLegend } from './components/MapLegend';
+import { Version } from './components/Version';
 
 const App: FC = () => {
   const [markers, setMarkers] = useState<Marker[]>([]);
@@ -40,6 +41,7 @@ const App: FC = () => {
 
   return (
     <>
+      <Version />
       <SearchBar places={places} />
       <MapLegend />
       <AzureMap markers={markers} regions={regions} places={places} />
