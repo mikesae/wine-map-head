@@ -17,6 +17,16 @@ export function addMapControls(map: atlas.Map) {
     });
 }
 
+export function adjustLayerOrder(map: atlas.Map) {
+    // move the basemap "labels" layer to be before the current topmost layer
+    const layers = map.layers.getLayers();
+    const topLayer = layers[layers.length - 1]; // getLayers() returns the current map layers (topmost first)
+
+    if (topLayer) {
+        map.layers.move("labels", topLayer); // inserts "labels" before the top layer (i.e. makes labels topmost)
+    }
+}
+
 // Function to create the map
 export const createMap = (element: HTMLDivElement, lat: number, lon: number, zoom: number, bearing: number) => {
     return new atlas.Map(element, {

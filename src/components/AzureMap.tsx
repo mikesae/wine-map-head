@@ -7,7 +7,7 @@ import { useMapStore } from "../hooks/useMapStore";
 import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
 import InfoTool from "./InfoTool";
-import { addMapControls, createMap } from "./mapping/controls";
+import { addMapControls, adjustLayerOrder, createMap } from "./mapping/controls";
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
@@ -150,6 +150,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
 
             const placesDataSource = addDataSource(map, places, "places");
             addPlacesLabelLayer(map, placesDataSource, "places");
+
+            adjustLayerOrder(map);
         });
 
         // Subscribe to the recenter event
@@ -165,20 +167,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
 
         events.on('recenter', handleRecenter);
         events.on('setLayerOpacity', (opacity: number) => {
-            const layers = map.layers.getLayers();
-            // walk layers and set opacity for relevant layers
-            layers.forEach((layer) => {
-                const id = layer.getId();
-                if (id.includes('region-layer-')) {
-                    layer.setOptions({
-                        fillOpacity: opacity / 100
-                    });
-                } else if (id.includes('line-layer-')) {
-                    layer.setOptions({
-                        strokeOpacity: opacity / 100
-                    });
-                }
-            });
+            updateLayerOpacity(map, opacity);
             updateLayerOpacityInStore(opacity);
         });
 
@@ -190,5 +179,24 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
 
     return <div ref={mapRef} id="map" />;
 };
+
+function updateLayerOpacity(map: atlas.Map, opacity: number) {
+    const layers = map.layers.getLayers();
+    // walk layers and set opacity for relevant layers
+    layers.forEach((layer) => {
+        const id = layer.getId();
+        if (id.includes('region-layer-')) {
+            layer.setOptions({
+                fillOpacity: opacity / 100
+            });
+        } else if (id.includes('line-layer-')) {
+            layer.setOptions({
+                strokeOpacity: opacity / 100
+            });
+        } else if (id === 'labels') {
+            console.log(`Layer ${id} found`);
+        }
+    });
+}
 
 export default AzureMap;
