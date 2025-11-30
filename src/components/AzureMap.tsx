@@ -13,7 +13,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     // Store the root instance globally or in a closure
     let infoToolRoot: ReturnType<typeof createRoot> | null = null;
-    const { center, zoom, bearing, pitch, layerOpacity } = useMapStore();
+    const { center, zoom, bearing, pitch, layerOpacity, showPlaceNames } = useMapStore();
 
     useEffect(() => {
         if (!mapRef.current) return;
@@ -149,7 +149,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             addSymbolLayer(map, myMarkersDataSource, "markers-layer", false);
 
             const placesDataSource = addDataSource(map, places, "places");
-            addPlacesLabelLayer(map, placesDataSource, "places");
+            addPlacesLabelLayer(map, placesDataSource, "places", 18, showPlaceNames);
 
             adjustLayerOrder(map);
         });
@@ -169,6 +169,26 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         events.on('setLayerOpacity', (opacity: number) => {
             updateLayerOpacity(map, opacity);
             updateLayerOpacityInStore(opacity);
+        });
+        events.on('togglePlaceNames', (showPlaceNames: boolean) => {
+            let labelsLayer: any | null = null;
+            const allLayers = map.layers.getLayers();
+            allLayers.forEach((layer) => {
+                const id = layer.getId();
+                if (id === 'label-layer-places') {
+                    labelsLayer = layer;
+                }
+            });
+
+            if (labelsLayer) {
+                labelsLayer.setOptions({
+                    visible: showPlaceNames
+                });
+            }
+
+            useMapStore.getState().setMapSettings({
+                showPlaceNames: showPlaceNames,
+            });
         });
 
         return () => {

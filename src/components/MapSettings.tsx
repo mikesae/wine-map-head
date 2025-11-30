@@ -6,12 +6,12 @@ import { useMapStore } from "../hooks/useMapStore"
 
 export const MapSettings: React.FC = () => {
     const [isMapSettingsVisible, setIsMapSettingsVisible] = useState(false)
+    const [layerOpacity, setLayerOpacity] = useState(useMapStore.getState().layerOpacity)
+    const [showPlaceNames, setShowPlaceNames] = useState(useMapStore.getState().showPlaceNames);
 
     const toggleMapSettings = () => {
         setIsMapSettingsVisible(!isMapSettingsVisible)
     }
-
-    const [layerOpacity, setLayerOpacity] = useState(useMapStore.getState().layerOpacity);
 
     return (
         <div className="absolute top-40 right-3 z-50">
@@ -37,7 +37,7 @@ export const MapSettings: React.FC = () => {
                             <CircleX className="w-5 h-5" />
                         </button>
                     </div>
-                    <div className="mb-2 text-xs">
+                    <div className="mb-2 mt-2 text-xs">
                         <input
                             type="range"
                             min="0"
@@ -52,6 +52,21 @@ export const MapSettings: React.FC = () => {
                         />
                         Opacity:&nbsp;
                         <span id="opacity-value" className="text-gray-600">{layerOpacity}</span>
+                        <div className="flex items-center mt-2">
+                            <input
+                                type="checkbox"
+                                id="show-place-names"
+                                checked={showPlaceNames}
+                                className="mr-2 appearance-none h-4 w-4 border border-gray-400 rounded-sm checked:border-gray-600 checked:bg-white checked:before:content-['✔'] checked:before:block checked:before:text-center focus:outline-none"
+                                onChange={(e) => {
+                                    const showPlaceNames = e.target.checked;
+                                    setShowPlaceNames(showPlaceNames);
+                                    events.emit('togglePlaceNames', showPlaceNames);
+                                }}
+                            />
+                            <label htmlFor="show-place-names">Show Place Names</label>
+                        </div>
+
                     </div>
                     <div className="flex space-x-3">
                         <Version />

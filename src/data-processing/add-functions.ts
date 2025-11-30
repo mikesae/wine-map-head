@@ -179,7 +179,7 @@ export function addRegionLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
     }));
 }
 
-export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number = 18) {
+export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.DataSource, name: string, labelSize: number = 18, visible: boolean = true) {
     // Add a layer for labels
     map.layers.add(new atlas.layer.SymbolLayer(dataSource, "label-layer-" + name, {
         minZoom: 0,
@@ -198,6 +198,7 @@ export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
             allowOverlap: false,
         },
         // set sortkey so higher population places are on top
-        sortKey: ['get', 'sortKey']
+        sortKey: ['get', 'sortKey'],
+        visible: visible,
     }));
 }

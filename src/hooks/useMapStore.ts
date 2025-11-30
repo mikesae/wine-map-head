@@ -7,6 +7,7 @@ interface MapSettings {
     pitch: number;
     bearing: number;
     layerOpacity: number;
+    showPlaceNames: boolean;
     setMapSettings: (settings: Partial<MapSettings>) => void;
 }
 
@@ -18,6 +19,7 @@ export const useMapStore = create<MapSettings>()(
             pitch: 0,
             bearing: 290,
             layerOpacity: 100, // Default layer opacity
+            showPlaceNames: false,
             setMapSettings: (settings) =>
                 set((state) => ({
                     ...state,
