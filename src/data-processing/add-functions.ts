@@ -152,7 +152,8 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
     // Add a line layer for polygon borders
     map.layers.add(new atlas.layer.LineLayer(dataSource, "line-layer-" + featureSetName + '-' + aocLevel, {
         strokeColor: '#BBBBBB',
-        strokeWidth: layerOpacity / 100,
+        strokeWidth: 1,
+        strokeOpacity: layerOpacity / 100,
         minZoom: 12
     }));
 }
