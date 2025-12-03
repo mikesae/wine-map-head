@@ -476,5 +476,12 @@
     "latitude": 46.713126490355734,
     "longitude": 4.695356914822042,
     "sortKey": 1
+  },
+  {
+    "name": "Pouilly-Fuissé",
+    "label": "Pouilly-Fuissé",
+    "latitude": 46.28938,
+    "longitude": 4.74284,
+    "sortKey": 1
   }
 ]

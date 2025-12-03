@@ -1,7 +1,7 @@
 import json
 
 # Load GeoJSON
-with open("chalonnaise.json", "r", encoding="utf-8") as f:
+with open("chalonnaise.geojson", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # Enrich features
@@ -12,7 +12,7 @@ def get_varietal(aoc_name):
     aoc = aoc_name.lower()
     if "mercurey" in aoc or "givry" in aoc:
         return "Pinot Noir"
-    elif "rully" in aoc or "montagny" in aoc:
+    elif "rully" in aoc or "montagny" in aoc or "pouilly-fuissé" in aoc:
         return "Chardonnay"
     elif "bouzeron" in aoc:
         return "Aligoté"
