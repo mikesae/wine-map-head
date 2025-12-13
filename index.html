@@ -24,31 +24,6 @@
                   if (navigator.serviceWorker.controller) {
                     // New content is available; notify the user
                     console.log('New version available. Please refresh.');
-                    // show a notification or dialog to the user
-                    const notification = document.createElement('div');
-                    notification.style.position = 'fixed';
-                    notification.style.bottom = '20px';
-                    notification.style.right = '20px';
-                    notification.style.backgroundColor = '#f8d7da';
-                    notification.style.color = '#721c24';
-                    notification.style.padding = '15px';
-                    notification.style.border = '1px solid #f5c6cb';
-                    notification.style.borderRadius = '5px';
-                    notification.innerText = 'New version available';
-
-                    const refreshButton = document.createElement('button');
-                    refreshButton.innerText = 'Refresh';
-                    refreshButton.style.marginLeft = '10px';
-                    refreshButton.style.background = 'white';
-                    refreshButton.onclick = () => {
-                      window.location.reload();
-                      notification.remove();
-                    };
-
-                    notification.appendChild(refreshButton);
-                    document.body.appendChild(notification);
-
-
                   } else {
                     console.log('Content is cached for offline use.');
                   }
