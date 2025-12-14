@@ -7,6 +7,12 @@
             }
         },
         {
+            "route": "/service-worker.js",
+            "headers": {
+                "Cache-Control": "no-cache, no-store, must-revalidate"
+            }
+        },
+        {
             "route": "/*.js",
             "headers": {
                 "Cache-Control": "public, max-age=31536000, immutable"
