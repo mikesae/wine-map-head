@@ -12,9 +12,12 @@ export function addMapControls(map: atlas.Map) {
     map.controls.add(new atlas.control.ScaleControl({ unit: "imperial" }), {
         position: ControlPosition.BottomRight,
     });
-    map.controls.add(new atlas.control.StyleControl(), {
-        position: ControlPosition.TopRight,
-    });
+    map.controls.add(
+        new atlas.control.StyleControl({
+            mapStyles: ["road_shaded_relief", "satellite", "satellite_road_labels"]
+        }),
+        { position: atlas.ControlPosition.TopRight }
+    );
 }
 
 export function adjustLayerOrder(map: atlas.Map) {
