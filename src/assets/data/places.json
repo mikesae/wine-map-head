@@ -483,5 +483,19 @@
     "latitude": 46.28938,
     "longitude": 4.74284,
     "sortKey": 1
+  },
+  {
+    "name": "Anderson Valley, CA",
+    "label": "Anderson Valley",
+    "latitude": 39.105895,
+    "longitude": -123.5009177,
+    "sortKey": 1
+  },
+  {
+    "name": "Fort Ross-Seaview, CA",
+    "label": "Fort Ross-Seaview",
+    "latitude": 38.566485072810536,
+    "longitude": -123.24292602195536,
+    "sortKey": 1
   }
 ]

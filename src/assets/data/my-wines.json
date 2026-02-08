@@ -394,5 +394,105 @@
         "country": "France",
         "latitude": 46.78195844726804,
         "longitude": 4.707507658453295
+    },
+    {
+        "name": "Anthill Farms Campbell Ranch Vineyard",
+        "climat": "Sonoma Coast",
+        "vintage": 2019,
+        "drinkYear": 2024,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "Sonoma Coast, Sonoma County, California",
+        "country": "USA",
+        "vineyard": "Campbell Ranch Vineyard",
+        "latitude": 38.677747,
+        "longitude": -123.317116
+    },
+    {
+        "name": "Anthill Farms Pinot Noir",
+        "climat": "Anderson Valley",
+        "vintage": 2023,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Anderson Valley, Mendocino County, California",
+        "country": "USA",
+        "latitude": 39.0140,
+        "longitude": -123.4330
+    },
+    {
+        "name": "Arnot-Roberts",
+        "climat": "Sonoma Coast",
+        "vintage": 2023,
+        "drinkYear": 2026,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "Sonoma Coast, Sonoma County, California",
+        "country": "USA",
+        "latitude": 38.4300,
+        "longitude": -123.0500
+    },
+    {
+        "name": "Bedrock Wine Co.",
+        "climat": "California",
+        "vintage": 2023,
+        "drinkYear": 2025,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "California, USA",
+        "country": "USA",
+        "latitude": 38.2919,
+        "longitude": -122.4580
+    },
+    {
+        "name": "Calera",
+        "climat": "Central Coast",
+        "vintage": 2023,
+        "drinkYear": 2025,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Central Coast, California",
+        "country": "USA",
+        "latitude": 35.3000,
+        "longitude": -120.6500
+    },
+    {
+        "name": "Failla",
+        "climat": "Anderson Valley",
+        "vintage": 2022,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Anderson Valley, Mendocino County, California",
+        "country": "USA",
+        "vineyard": "Ferrington Vineyard",
+        "latitude": 39.0116,
+        "longitude": -123.3569
+    },
+    {
+        "name": "Hirsch Winery",
+        "climat": "Sonoma Coast",
+        "vintage": 2024,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Sonoma Coast, California",
+        "country": "USA",
+        "latitude": 38.5706553,
+        "longitude": -123.2500549
     }
 ]

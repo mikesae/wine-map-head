@@ -31,6 +31,7 @@ export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSour
                 'match',
                 ['get', 'main_varietal'], // Get the 'varietal' property from the data
                 'Pinot Noir', 'pinot-noir-varietal', // If 'varietal' is 'pinot noir', use 'pinot-noir-icon'
+                'Syrah', 'pinot-noir-varietal', // If 'varietal' is 'syrah', use 'pinot-noir-icon'
                 'Chardonnay', 'chardonnay-varietal', // If 'varietal' is 'chardonnay', use 'chardonnay-icon'
                 'default-icon' // Default icon if no match
             ],
