@@ -425,20 +425,6 @@
         "longitude": -123.4330
     },
     {
-        "name": "Arnot-Roberts",
-        "climat": "Sonoma Coast",
-        "vintage": 2023,
-        "drinkYear": 2026,
-        "varietals": [
-            "Syrah"
-        ],
-        "main_varietal": "Syrah",
-        "appellation": "Sonoma Coast, Sonoma County, California",
-        "country": "USA",
-        "latitude": 38.4300,
-        "longitude": -123.0500
-    },
-    {
         "name": "Bedrock Wine Co.",
         "climat": "California",
         "vintage": 2023,
@@ -467,21 +453,6 @@
         "longitude": -120.6500
     },
     {
-        "name": "Failla",
-        "climat": "Anderson Valley",
-        "vintage": 2022,
-        "drinkYear": 2026,
-        "varietals": [
-            "Pinot Noir"
-        ],
-        "main_varietal": "Pinot Noir",
-        "appellation": "Anderson Valley, Mendocino County, California",
-        "country": "USA",
-        "vineyard": "Ferrington Vineyard",
-        "latitude": 39.0116,
-        "longitude": -123.3569
-    },
-    {
         "name": "Hirsch Winery",
         "climat": "Sonoma Coast",
         "vintage": 2024,
@@ -494,5 +465,274 @@
         "country": "USA",
         "latitude": 38.5706553,
         "longitude": -123.2500549
+    },
+    {
+        "name": "Forey Père et Fils",
+        "vintage": 2023,
+        "drinkYear": 2029,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Nuits-Saint-Georges",
+        "aoc_level": "Premier Cru",
+        "climat": "Les Perrières",
+        "country": "France",
+        "latitude": 47.126909263939744,
+        "longitude": 4.938859601818248
+    },
+    {
+        "name": "Domaine de Montille",
+        "vintage": 2023,
+        "drinkYear": 2031,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Beaune",
+        "aoc_level": "Premier Cru",
+        "climat": "Grèves",
+        "country": "France",
+        "latitude": 47.03500048676579,
+        "longitude": 4.823613900588504
+    },
+    {
+        "name": "Domaine de Montille",
+        "vintage": 2023,
+        "drinkYear": 2035,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Pommard",
+        "aoc_level": "Premier Cru",
+        "climat": "Rugiens-Bas",
+        "country": "France",
+        "latitude": 47.007732304746256,
+        "longitude": 4.789420987847586
+    },
+    {
+        "name": "Domaine de Montille",
+        "vintage": 2023,
+        "drinkYear": 2028,
+        "varietals": [
+            "Chardonnay"
+        ],
+        "main_varietal": "Chardonnay",
+        "appellation": "Saint-Aubin",
+        "aoc_level": "Premier Cru",
+        "climat": "En Remilly",
+        "country": "France",
+        "latitude": 46.94818546727854,
+        "longitude": 4.730574370921115
+    },
+    {
+        "name": "Domaine de Montille",
+        "vintage": 2023,
+        "drinkYear": 2033,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Volnay",
+        "aoc_level": "Premier Cru",
+        "climat": "Taillepieds",
+        "country": "France",
+        "latitude": 46.99779465862912,
+        "longitude": 4.780464563463044
+    },
+    {
+        "name": "Domaine Anne et Hervé Sigaut",
+        "vintage": 2023,
+        "drinkYear": 2033,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Chambolle-Musigny",
+        "aoc_level": "Premier Cru",
+        "climat": "Les Fuées",
+        "country": "France",
+        "latitude": 47.18894906163797,
+        "longitude": 4.955154481211264
+    },
+    {
+        "name": "Failla Chardonnay Sonoma Coast",
+        "vintage": 2022,
+        "drinkYear": 2024,
+        "varietals": [
+            "Chardonnay"
+        ],
+        "main_varietal": "Chardonnay",
+        "appellation": "Sonoma Coast",
+        "aoc_level": "AVA",
+        "climat": "Sonoma Coast",
+        "country": "USA",
+        "latitude": 38.43,
+        "longitude": -123.05
+    },
+    {
+        "name": "Failla Pinot Noir Ferrington Vineyard",
+        "vintage": 2022,
+        "drinkYear": 2024,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Anderson Valley",
+        "aoc_level": "Vineyard",
+        "climat": "Ferrington Vineyard",
+        "country": "USA",
+        "latitude": 39.085,
+        "longitude": -123.495
+    },
+    {
+        "name": "Failla Pinot Noir Sonoma Coast",
+        "vintage": 2023,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Sonoma Coast",
+        "aoc_level": "AVA",
+        "climat": "Sonoma Coast",
+        "country": "USA",
+        "latitude": 38.43,
+        "longitude": -123.05
+    },
+    {
+        "name": "Failla Pinot Noir Willamette Valley",
+        "vintage": 2022,
+        "drinkYear": 2024,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Willamette Valley",
+        "aoc_level": "AVA",
+        "climat": "Willamette Valley",
+        "country": "USA",
+        "latitude": 45.27,
+        "longitude": -123.1
+    },
+    {
+        "name": "Failla Syrah Estate Vineyard",
+        "vintage": 2022,
+        "drinkYear": 2026,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "Fort Ross-Seaview",
+        "aoc_level": "Vineyard",
+        "climat": "Estate Vineyard",
+        "country": "USA",
+        "latitude": 38.56,
+        "longitude": -123.2
+    },
+    {
+        "name": "Arnot-Roberts",
+        "vintage": 2023,
+        "drinkYear": 2028,
+        "varietals": [
+            "Cabernet Sauvignon"
+        ],
+        "main_varietal": "Cabernet Sauvignon",
+        "appellation": "Santa Cruz Mountains",
+        "aoc_level": "Vineyard",
+        "climat": "Fellom Ranch",
+        "latitude": 37.295263,
+        "longitude": -122.118585
+    },
+    {
+        "name": "Arnot-Roberts",
+        "vintage": 2023,
+        "drinkYear": 2028,
+        "varietals": [
+            "Cabernet Sauvignon"
+        ],
+        "main_varietal": "Cabernet Sauvignon",
+        "appellation": "Moon Mountain",
+        "aoc_level": "Vineyard",
+        "climat": "Montecillo Vineyard",
+        "country": "USA",
+        "latitude": 38.36,
+        "longitude": -122.5
+    },
+    {
+        "name": "Arnot-Roberts",
+        "vintage": 2024,
+        "drinkYear": 2026,
+        "varietals": [
+            "Ribolla Gialla"
+        ],
+        "main_varietal": "Ribolla Gialla",
+        "appellation": "Napa Valley",
+        "aoc_level": "Vineyard",
+        "climat": "Bengier Vineyard",
+        "country": "USA",
+        "latitude": 38.39,
+        "longitude": -122.45
+    },
+    {
+        "name": "Arnot-Roberts",
+        "vintage": 2024,
+        "drinkYear": 2028,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "Sonoma Coast",
+        "aoc_level": "Vineyard",
+        "climat": "Baker Lane Vineyard",
+        "country": "USA",
+        "latitude": 37.976475,
+        "longitude": -122.577722
+    },
+    {
+        "name": "Arnot-Roberts",
+        "vintage": 2024,
+        "drinkYear": 2028,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "Petaluma Gap",
+        "aoc_level": "Vineyard",
+        "climat": "Clary Ranch",
+        "country": "USA",
+        "latitude": 38.257,
+        "longitude": -122.747
+    },
+    {
+        "name": "Arnot-Roberts",
+        "vintage": 2024,
+        "drinkYear": 2028,
+        "varietals": [
+            "Syrah"
+        ],
+        "main_varietal": "Syrah",
+        "appellation": "West Sonoma Coast",
+        "aoc_level": "AVA",
+        "climat": "Que Syrah Vineyard",
+        "country": "USA",
+        "latitude": 38.4,
+        "longitude": -123.08
+    },
+    {
+        "name": "Drew",
+        "vintage": 2024,
+        "drinkYear": 2028,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "appellation": "Mendocino Ridge",
+        "aoc_level": "AVA",
+        "climat": "Mendocino Ridge",
+        "country": "USA",
+        "latitude": 39.133262155912576,
+        "longitude": -123.64898962356192
     }
 ]

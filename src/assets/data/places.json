@@ -485,17 +485,31 @@
     "sortKey": 1
   },
   {
-    "name": "Anderson Valley, CA",
+    "name": "Anderson Valley",
     "label": "Anderson Valley",
     "latitude": 39.105895,
     "longitude": -123.5009177,
     "sortKey": 1
   },
   {
-    "name": "Fort Ross-Seaview, CA",
+    "name": "Fort Ross-Seaview",
     "label": "Fort Ross-Seaview",
     "latitude": 38.566485072810536,
     "longitude": -123.24292602195536,
+    "sortKey": 1
+  },
+  {
+    "name": "Sonoma Coast",
+    "label": "Sonoma Coast",
+    "latitude": 38.34214459236924,
+    "longitude": -122.90319503663122,
+    "sortKey": 1
+  },
+  {
+    "name": "Napa Valley",
+    "label": "Napa Valley",
+    "latitude": 38.35881991030655,
+    "longitude": -122.33116919650695,
     "sortKey": 1
   }
 ]

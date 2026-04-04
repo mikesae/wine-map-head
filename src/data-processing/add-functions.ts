@@ -4,7 +4,7 @@ import type { Marker } from "../types/mapping";
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
     const dataSource = new atlas.source.DataSource(sourceId, {
-        cluster: true,
+        cluster: false,
         clusterRadius: 45,
         clusterMaxZoom: 15,
     });
@@ -31,8 +31,11 @@ export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSour
                 'match',
                 ['get', 'main_varietal'], // Get the 'varietal' property from the data
                 'Pinot Noir', 'pinot-noir-varietal', // If 'varietal' is 'pinot noir', use 'pinot-noir-icon'
-                'Syrah', 'pinot-noir-varietal', // If 'varietal' is 'syrah', use 'pinot-noir-icon'
+                'Syrah', 'red-varietal',
+                'Cabernet Sauvignon', 'red-varietal',
                 'Chardonnay', 'chardonnay-varietal', // If 'varietal' is 'chardonnay', use 'chardonnay-icon'
+                'Ribolla Gialla', 'chardonnay-varietal',
+                'Riesling', 'chardonnay-varietal',
                 'default-icon' // Default icon if no match
             ],
             anchor: 'center',
@@ -135,6 +138,7 @@ export async function addFillTemplates(map: atlas.Map) {
     await map.imageSprite.createFromTemplate('PremierCru-Mixed', 'diagonal-lines-up', premierCruVarietalColors.Mixed, premierCruVarietalColors.Chardonnay, scale);
     await map.imageSprite.add('pinot-noir-varietal', '/icons/pinot-noir-varietal.svg');
     await map.imageSprite.add('chardonnay-varietal', '/icons/chardonnay-varietal.svg');
+    await map.imageSprite.add('red-varietal', '/icons/red-varietal.svg');
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any, layerOpacity: number) {
