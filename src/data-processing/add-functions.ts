@@ -36,6 +36,7 @@ export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSour
                 'Chardonnay', 'chardonnay-varietal', // If 'varietal' is 'chardonnay', use 'chardonnay-icon'
                 'Ribolla Gialla', 'chardonnay-varietal',
                 'Riesling', 'chardonnay-varietal',
+                'Sparkling', 'sparkling-varietal',
                 'default-icon' // Default icon if no match
             ],
             anchor: 'center',
@@ -139,6 +140,7 @@ export async function addFillTemplates(map: atlas.Map) {
     await map.imageSprite.add('pinot-noir-varietal', '/icons/pinot-noir-varietal.svg');
     await map.imageSprite.add('chardonnay-varietal', '/icons/chardonnay-varietal.svg');
     await map.imageSprite.add('red-varietal', '/icons/red-varietal.svg');
+    await map.imageSprite.add('sparkling-varietal', '/icons/sparkling-varietal.svg');
 }
 
 function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, featureSetName: string, aocLevel: string, colors: any, layerOpacity: number) {

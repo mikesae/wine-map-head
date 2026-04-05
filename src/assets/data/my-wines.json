@@ -657,8 +657,8 @@
         "aoc_level": "Vineyard",
         "climat": "Montecillo Vineyard",
         "country": "USA",
-        "latitude": 38.36,
-        "longitude": -122.5
+        "latitude": 38.4155315,
+        "longitude": -122.5092377
     },
     {
         "name": "Arnot-Roberts",
@@ -672,8 +672,8 @@
         "aoc_level": "Vineyard",
         "climat": "Bengier Vineyard",
         "country": "USA",
-        "latitude": 38.39,
-        "longitude": -122.45
+        "latitude": 38.3505702882089,
+        "longitude": -122.37197985498872
     },
     {
         "name": "Arnot-Roberts",
@@ -684,11 +684,11 @@
         ],
         "main_varietal": "Syrah",
         "appellation": "Sonoma Coast",
-        "aoc_level": "Vineyard",
+        "aoc_level": "AVA",
         "climat": "Baker Lane Vineyard",
         "country": "USA",
-        "latitude": 37.976475,
-        "longitude": -122.577722
+        "latitude": 38.36993139448359,
+        "longitude": -122.82097068400344
     },
     {
         "name": "Arnot-Roberts",
@@ -699,11 +699,11 @@
         ],
         "main_varietal": "Syrah",
         "appellation": "Petaluma Gap",
-        "aoc_level": "Vineyard",
+        "aoc_level": "AVA",
         "climat": "Clary Ranch",
         "country": "USA",
-        "latitude": 38.257,
-        "longitude": -122.747
+        "latitude": 38.241540472790376,
+        "longitude": -122.72534611353618
     },
     {
         "name": "Arnot-Roberts",
@@ -717,8 +717,8 @@
         "aoc_level": "AVA",
         "climat": "Que Syrah Vineyard",
         "country": "USA",
-        "latitude": 38.4,
-        "longitude": -123.08
+        "latitude": 38.3978,
+        "longitude": -122.9961
     },
     {
         "name": "Drew",
@@ -730,9 +730,25 @@
         "main_varietal": "Pinot Noir",
         "appellation": "Mendocino Ridge",
         "aoc_level": "AVA",
-        "climat": "Mendocino Ridge",
+        "climat": "",
         "country": "USA",
         "latitude": 39.133262155912576,
         "longitude": -123.64898962356192
+    },
+    {
+        "name": "Roederer Estate",
+        "vintage": 2026,
+        "drinkYear": 2026,
+        "varietals": [
+            "Pinot Noir",
+            "Chardonnay"
+        ],
+        "main_varietal": "Sparkling",
+        "appellation": "Anderson Valley",
+        "aoc_level": "AVA",
+        "climat": "",
+        "country": "USA",
+        "latitude": 39.1092921,
+        "longitude": -123.499407
     }
 ]
