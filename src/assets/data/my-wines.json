@@ -750,5 +750,20 @@
         "country": "USA",
         "latitude": 39.1092921,
         "longitude": -123.499407
+    },
+    {
+        "name": "Domaine Collotte",
+        "appellation": "Marsannay",
+        "climat": "Les Boivins",
+        "vintage": 2023,
+        "drinkYear": 2033,
+        "varietals": [
+            "Pinot Noir"
+        ],
+        "main_varietal": "Pinot Noir",
+        "country": "France",
+        "aoc_level": "Village",
+        "latitude": 47.273965696557184,
+        "longitude": 4.979105019395234
     }
 ]
