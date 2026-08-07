@@ -197,7 +197,14 @@ export function addPlacesLabelLayer(map: atlas.Map, dataSource: atlas.source.Dat
         textOptions: {
             textField: ['get', 'label'],
             offset: [0, 0],
-            color: 'gray',
+            color: [
+                'match',
+                ['get', 'region'],
+                'Champagne', 'purple',
+                'Bordeaux', 'blue',
+                'Bourgogne', 'red',
+                'gray'
+            ],
             haloColor: 'white',
             haloWidth: 1,
             font: ['StandardCondensedSegoeUi-Regular'],

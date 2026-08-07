@@ -149,7 +149,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             addSymbolLayer(map, myMarkersDataSource, "markers-layer", false);
 
             const placesDataSource = addDataSource(map, places, "places");
-            addPlacesLabelLayer(map, placesDataSource, "places", 18, showPlaceNames);
+            addPlacesLabelLayer(map, placesDataSource, "places", 22, showPlaceNames);
 
             adjustLayerOrder(map);
         });
