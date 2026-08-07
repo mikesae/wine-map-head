@@ -307,6 +307,8 @@
     "label": "Reims",
     "latitude": 49.25695289602251,
     "longitude": 4.040881170725754,
+    "region": "Champagne",
+    "subregion": "Montagne de Reims",
     "sortKey": 1
   },
   {
@@ -363,6 +365,7 @@
     "label": "Bordeaux",
     "latitude": 44.837789,
     "longitude": -0.57918,
+    "region": "Bordeaux",
     "sortKey": 1
   },
   {
@@ -377,13 +380,6 @@
     "label": "Rennes",
     "latitude": 48.117266,
     "longitude": -1.677792,
-    "sortKey": 1
-  },
-  {
-    "name": "Reims",
-    "label": "Reims",
-    "latitude": 49.258329,
-    "longitude": 4.031696,
     "sortKey": 1
   },
   {
@@ -510,6 +506,294 @@
     "label": "Napa Valley",
     "latitude": 38.35881991030655,
     "longitude": -122.33116919650695,
+    "sortKey": 1
+  },
+  {
+    "name": "Verzenay",
+    "label": "Verzenay",
+    "latitude": 49.1588,
+    "longitude": 4.1482,
+    "region": "Champagne",
+    "subregion": "Montagne de Reims",
+    "sortKey": 1
+  },
+  {
+    "name": "Verzy",
+    "label": "Verzy",
+    "latitude": 49.1451,
+    "longitude": 4.1619,
+    "region": "Champagne",
+    "subregion": "Montagne de Reims",
+    "sortKey": 1
+  },
+  {
+    "name": "Bouzy",
+    "label": "Bouzy",
+    "latitude": 49.0861,
+    "longitude": 4.1297,
+    "region": "Champagne",
+    "subregion": "Montagne de Reims",
+    "sortKey": 1
+  },
+  {
+    "name": "Ambonnay",
+    "label": "Ambonnay",
+    "latitude": 49.0926,
+    "longitude": 4.1778,
+    "region": "Champagne",
+    "subregion": "Montagne de Reims",
+    "sortKey": 1
+  },
+  {
+    "name": "Aÿ-Champagne",
+    "label": "Aÿ",
+    "latitude": 49.049939,
+    "longitude": 4.037171,
+    "region": "Champagne",
+    "subregion": "Grande Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Mareuil-sur-Ay",
+    "label": "Mareuil-sur-Aÿ",
+    "latitude": 49.048785,
+    "longitude": 4.028763,
+    "region": "Champagne",
+    "subregion": "Grande Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Dizy",
+    "label": "Dizy",
+    "latitude": 49.0699,
+    "longitude": 3.9716,
+    "region": "Champagne",
+    "subregion": "Grande Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Hautvillers",
+    "label": "Hautvillers",
+    "latitude": 49.0839,
+    "longitude": 3.942,
+    "region": "Champagne",
+    "subregion": "Grande Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Cumières",
+    "label": "Cumières",
+    "latitude": 49.0715,
+    "longitude": 3.9214,
+    "region": "Champagne",
+    "subregion": "Grande Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Damery",
+    "label": "Damery",
+    "latitude": 49.0841,
+    "longitude": 3.8852,
+    "region": "Champagne",
+    "subregion": "Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Châtillon-sur-Marne",
+    "label": "Châtillon-sur-Marne",
+    "latitude": 49.1044,
+    "longitude": 3.7734,
+    "region": "Champagne",
+    "subregion": "Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Dormans",
+    "label": "Dormans",
+    "latitude": 49.0636,
+    "longitude": 3.6447,
+    "region": "Champagne",
+    "subregion": "Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Château-Thierry",
+    "label": "Château-Thierry",
+    "latitude": 49.0556,
+    "longitude": 3.3784,
+    "region": "Champagne",
+    "subregion": "Vallée de la Marne",
+    "sortKey": 1
+  },
+  {
+    "name": "Cramant",
+    "label": "Cramant",
+    "latitude": 48.9879,
+    "longitude": 4.0004,
+    "region": "Champagne",
+    "subregion": "Côte des Blancs",
+    "sortKey": 1
+  },
+  {
+    "name": "Avize",
+    "label": "Avize",
+    "latitude": 48.9724,
+    "longitude": 4.0056,
+    "region": "Champagne",
+    "subregion": "Côte des Blancs",
+    "sortKey": 1
+  },
+  {
+    "name": "Oger",
+    "label": "Oger",
+    "latitude": 48.958333,
+    "longitude": 4.008775,
+    "region": "Champagne",
+    "subregion": "Côte des Blancs",
+    "sortKey": 1
+  },
+  {
+    "name": "Le Mesnil-sur-Oger",
+    "label": "Le Mesnil-sur-Oger",
+    "latitude": 48.9404,
+    "longitude": 4.0183,
+    "region": "Champagne",
+    "subregion": "Côte des Blancs",
+    "sortKey": 1
+  },
+  {
+    "name": "Vertus",
+    "label": "Vertus",
+    "latitude": 48.898472,
+    "longitude": 4.005489,
+    "region": "Champagne",
+    "subregion": "Côte des Blancs",
+    "sortKey": 1
+  },
+  {
+    "name": "Épernay",
+    "label": "Épernay",
+    "latitude": 49.0391,
+    "longitude": 3.9282,
+    "region": "Champagne",
+    "subregion": "Coteaux Sud d'Épernay",
+    "sortKey": 1
+  },
+  {
+    "name": "Pierry",
+    "label": "Pierry",
+    "latitude": 49.0195,
+    "longitude": 3.9527,
+    "region": "Champagne",
+    "subregion": "Coteaux Sud d'Épernay",
+    "sortKey": 1
+  },
+  {
+    "name": "Moussy",
+    "label": "Moussy",
+    "latitude": 49.0151,
+    "longitude": 3.9271,
+    "region": "Champagne",
+    "subregion": "Coteaux Sud d'Épernay",
+    "sortKey": 1
+  },
+  {
+    "name": "Vinay",
+    "label": "Vinay",
+    "latitude": 49.0125,
+    "longitude": 3.9009,
+    "region": "Champagne",
+    "subregion": "Coteaux Sud d'Épernay",
+    "sortKey": 1
+  },
+  {
+    "name": "Chavot-Courcourt",
+    "label": "Chavot-Courcourt",
+    "latitude": 48.9966,
+    "longitude": 3.9181,
+    "region": "Champagne",
+    "subregion": "Coteaux Sud d'Épernay",
+    "sortKey": 1
+  },
+  {
+    "name": "Sézanne",
+    "label": "Sézanne",
+    "latitude": 48.724,
+    "longitude": 3.7244,
+    "region": "Champagne",
+    "subregion": "Other districts",
+    "sortKey": 1
+  },
+  {
+    "name": "Montmirail",
+    "label": "Montmirail",
+    "latitude": 48.8713,
+    "longitude": 3.5639,
+    "region": "Champagne",
+    "subregion": "Other districts",
+    "sortKey": 1
+  },
+  {
+    "name": "Vitry-le-François",
+    "label": "Vitry-le-François",
+    "latitude": 48.7292,
+    "longitude": 4.5947,
+    "region": "Champagne",
+    "subregion": "Other districts",
+    "sortKey": 1
+  },
+  {
+    "name": "Montgueux",
+    "label": "Montgueux",
+    "latitude": 48.2967,
+    "longitude": 3.9551,
+    "region": "Champagne",
+    "subregion": "Other districts",
+    "sortKey": 1
+  },
+  {
+    "name": "Bar-sur-Seine",
+    "label": "Bar-sur-Seine",
+    "latitude": 48.1144,
+    "longitude": 4.3787,
+    "region": "Champagne",
+    "subregion": "Côte des Bar",
+    "sortKey": 1
+  },
+  {
+    "name": "Les Riceys",
+    "label": "Les Riceys",
+    "latitude": 47.9907,
+    "longitude": 4.3793,
+    "region": "Champagne",
+    "subregion": "Côte des Bar",
+    "sortKey": 1
+  },
+  {
+    "name": "Essoyes",
+    "label": "Essoyes",
+    "latitude": 48.0473,
+    "longitude": 4.5426,
+    "region": "Champagne",
+    "subregion": "Côte des Bar",
+    "sortKey": 1
+  },
+  {
+    "name": "Bar-sur-Aube",
+    "label": "Bar-sur-Aube",
+    "latitude": 48.233,
+    "longitude": 4.7166,
+    "region": "Champagne",
+    "subregion": "Côte des Bar",
+    "sortKey": 1
+  },
+  {
+    "name": "Urville",
+    "label": "Urville",
+    "latitude": 48.1706,
+    "longitude": 4.6712,
+    "region": "Champagne",
+    "subregion": "Côte des Bar",
     "sortKey": 1
   }
 ]

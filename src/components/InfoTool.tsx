@@ -40,6 +40,8 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
     const aocLevel = props && props.hasOwnProperty('aoc_level') ? props['aoc_level'] : null;
     const climat = props && props.hasOwnProperty('climat') ? props['climat'] : null;
     const name = props && props.hasOwnProperty('name') ? props['name'] : null;
+    const region = props && props.hasOwnProperty('region') ? props['region'] : null;
+    const subregion = props && props.hasOwnProperty('subregion') ? props['subregion'] : null;
     const vintage = props && props.hasOwnProperty('vintage') ? props['vintage'] : null;
 
     let title = null;
@@ -55,6 +57,8 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
             {appellation && <h3>{appellation}</h3>}
             {climat && <h3>{climat}</h3>}
             {aocLevel && <h3>{aocLevel}</h3>}
+            {region && <h3>{region}</h3>}
+            {subregion && <h3>{subregion}</h3>}
             <a
                 href={url}
                 onClick={(e) => {

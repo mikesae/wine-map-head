@@ -5,6 +5,7 @@ export interface Marker {
     latitude: number;
     longitude: number;
     region?: string;
+    subregion?: string;
     label?: string;
 }
 
