@@ -6,6 +6,7 @@ interface MapSettings {
     zoom: number;
     pitch: number;
     bearing: number;
+    mapType: string;
     layerOpacity: number;
     showPlaceNames: boolean;
     setMapSettings: (settings: Partial<MapSettings>) => void;
@@ -18,6 +19,7 @@ export const useMapStore = create<MapSettings>()(
             zoom: 12, // Default zoom
             pitch: 0,
             bearing: 290,
+            mapType: "road_shaded_relief",
             layerOpacity: 100, // Default layer opacity
             showPlaceNames: false,
             setMapSettings: (settings) =>

@@ -13,7 +13,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
     // Store the root instance globally or in a closure
     let infoToolRoot: ReturnType<typeof createRoot> | null = null;
-    const { center, zoom, bearing, pitch, layerOpacity, showPlaceNames } = useMapStore();
+    const { center, zoom, bearing, pitch, mapType, layerOpacity, showPlaceNames } = useMapStore();
 
     useEffect(() => {
         if (!mapRef.current) return;
@@ -28,13 +28,13 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             const bearing = parseFloat(params.get("bearing") || "290"); // Default to bearing 0 if not provided
             const pitch = parseFloat(params.get("pitch") || "0"); // Default to pitch 0 if not provided
 
-            map = createMap(mapRef.current, lat, lng, zoom, bearing);
+            map = createMap(mapRef.current, lat, lng, zoom, bearing, mapType);
             map.setCamera({ pitch: pitch });
 
         } else {
             const [lng, lat] = center;
 
-            map = createMap(mapRef.current, lat, lng, zoom, bearing);
+            map = createMap(mapRef.current, lat, lng, zoom, bearing, mapType);
             map.setCamera({ pitch: pitch });
         }
 
@@ -61,6 +61,12 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             });
         }
 
+        function updateMapTypeInStore(event: atlas.StyleChangedEvent) {
+            useMapStore.getState().setMapSettings({
+                mapType: event.style,
+            });
+        }
+
         // trap map zoom, pan, and bearing changes to update the store
         map.events.add('moveend', () => {
             updateMapSettings();
@@ -77,6 +83,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         map.events.add('wheel', () => {
             updateMapSettings();
         });
+        map.events.add('stylechanged', updateMapTypeInStore);
 
         let mouseDownPosition: [number, number] | null = null;
         const CLICK_THRESHOLD = 5; // Maximum distance in pixels to consider it a click

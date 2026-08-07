@@ -14,7 +14,7 @@ export function addMapControls(map: atlas.Map) {
     });
     map.controls.add(
         new atlas.control.StyleControl({
-            mapStyles: ["road_shaded_relief", "satellite", "satellite_road_labels"]
+            mapStyles: ["road", "road_shaded_relief", "satellite", "satellite_road_labels"]
         }),
         { position: atlas.ControlPosition.TopRight }
     );
@@ -31,13 +31,13 @@ export function adjustLayerOrder(map: atlas.Map) {
 }
 
 // Function to create the map
-export const createMap = (element: HTMLDivElement, lat: number, lon: number, zoom: number, bearing: number) => {
+export const createMap = (element: HTMLDivElement, lat: number, lon: number, zoom: number, bearing: number, mapType: string) => {
     return new atlas.Map(element, {
         center: [lon, lat],
         zoom: zoom,
         view: "Auto",
         bearing: bearing,
-        style: "road_shaded_relief", // built-in style
+        style: mapType, // built-in style
         styleOverrides: {
             roadDetails: { visible: false },
             adminDistrict: { borderVisible: true },
