@@ -40,6 +40,7 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
     const aocLevel = props && props.hasOwnProperty('aoc_level') ? props['aoc_level'] : null;
     const climat = props && props.hasOwnProperty('climat') ? props['climat'] : null;
     const name = props && props.hasOwnProperty('name') ? props['name'] : null;
+    const label = typeof props?.label === 'string' ? props.label : null;
     const region = props && props.hasOwnProperty('region') ? props['region'] : null;
     const subregion = props && props.hasOwnProperty('subregion') ? props['subregion'] : null;
     const vintage = props && props.hasOwnProperty('vintage') ? props['vintage'] : null;
@@ -49,6 +50,8 @@ const InfoTool: React.FC<InfoToolProps> = ({ shape, event }) => {
         title = `${vintage} ${name}`;
     } else if (name) {
         title = name;
+    } else if (label && !appellation && !climat) {
+        title = label;
     }
 
     return (
