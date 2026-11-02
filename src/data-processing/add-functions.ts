@@ -80,7 +80,11 @@ export function addFeatureSet(map: atlas.Map, featureSet: any, layerOpacity: num
         }
     }
 
-    // Add polygons to the data source
+    // Batch each source's polygons to avoid repeated SDK data updates.
+    const shapesByLevel: Record<string, atlas.Shape[]> = {};
+    const queueShape = (level: string, shape: atlas.Shape) => {
+        (shapesByLevel[level] ??= []).push(shape);
+    };
     featureSet.features.forEach((feature: any, idx: number) => {
         if (feature.geometry.type === "MultiPolygon") {
             const coordinates = feature.geometry.coordinates;
@@ -93,13 +97,16 @@ export function addFeatureSet(map: atlas.Map, featureSet: any, layerOpacity: num
             });
             // Use separate data source for mixed varietal so we put it in a layer with pattern fill.
             if (mixedVarietal) {
-                dataSources['Mixed Varietal'].add(new atlas.Shape(atlasFeature));
+                queueShape('Mixed Varietal', new atlas.Shape(atlasFeature));
             } else if (['Village', 'Premier Cru', 'Grand Cru', 'Grand Cru L2'].includes(aoc_level)) {
-                dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
+                queueShape(aoc_level, new atlas.Shape(atlasFeature));
             } else if (featureSet.name === 'bordeaux' && ['', 'Subregional', 'Communal'].includes(aoc_level)) {
-                dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
+                queueShape(aoc_level, new atlas.Shape(atlasFeature));
             }
         }
+    });
+    Object.entries(shapesByLevel).forEach(([level, shapes]) => {
+        dataSources[level].add(shapes);
     });
     if (featureSet.name === 'bordeaux') {
         addRegionLayers(map, dataSources[''], featureSet.name, 'Unclassified', { ...villageVarietalColors, Mixed: bordeauxLevelColors.Regional }, layerOpacity);

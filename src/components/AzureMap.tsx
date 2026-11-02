@@ -1,6 +1,6 @@
 import atlas from "azure-maps-control";
 import 'azure-maps-control/dist/atlas.min.css';
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { addDataSource, addFeatureSet, addFillTemplates, addPlacesLabelLayer, addSymbolLayer } from "../data-processing/add-functions";
 import { useMapStore } from "../hooks/useMapStore";
@@ -8,16 +8,20 @@ import type { AzureMapProps } from "../types/mapping";
 import events from "./events";
 import InfoTool from "./InfoTool";
 import { addMapControls, adjustLayerOrder, createMap } from "./mapping/controls";
+import bordeauxDataUrl from '../assets/data/bordeaux-enriched.json?url';
+
+// Envelope of the Bordeaux appellations, available without loading their geometry.
+const bordeauxBounds = atlas.data.BoundingBox.fromEdges(-1.1, 44, 0.9, 45.5);
 
 const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
     const mapRef = useRef<HTMLDivElement>(null);
-    // Store the root instance globally or in a closure
-    let infoToolRoot: ReturnType<typeof createRoot> | null = null;
+    const [bordeauxStatus, setBordeauxStatus] = useState<'idle' | 'loading' | 'error'>('idle');
     const { center, zoom, bearing, pitch, mapType, layerOpacity, showPlaceNames } = useMapStore();
 
     useEffect(() => {
         if (!mapRef.current) return;
 
+        let infoToolRoot: ReturnType<typeof createRoot> | null = null;
         let map: atlas.Map;
         const params = new URLSearchParams(window.location.search);
 
@@ -44,10 +48,52 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         });
         map.popups.add(popup);
 
+        const bordeauxRequest = new AbortController();
+        let disposed = false;
+        let bordeauxLoaded = false;
+        let bordeauxLoading = false;
+
+        async function loadBordeauxIfVisible() {
+            const bounds = map.getCamera().bounds;
+            if (disposed || bordeauxLoaded || bordeauxLoading || !bounds || !atlas.data.BoundingBox.intersect(bounds, bordeauxBounds)) {
+                return;
+            }
+
+            bordeauxLoading = true;
+            setBordeauxStatus('loading');
+            try {
+                const response = await fetch(bordeauxDataUrl, { signal: bordeauxRequest.signal });
+                if (!response.ok) {
+                    throw new Error(`Bordeaux data request failed: ${response.status}`);
+                }
+                const bordeaux: atlas.data.FeatureCollection = await response.json();
+                if (disposed) return;
+
+                addFeatureSet(map, bordeaux, useMapStore.getState().layerOpacity);
+                // Keep newly loaded polygons below wine markers and place names.
+                map.layers.getLayers().forEach((layer) => {
+                    if (layer.getId().includes('bordeaux')) {
+                        map.layers.move(layer, 'markers-layer');
+                    }
+                });
+                bordeauxLoaded = true;
+                adjustLayerOrder(map);
+                setBordeauxStatus('idle');
+            } catch (error) {
+                if (!disposed) {
+                    console.error('Error loading Bordeaux polygons:', error);
+                    setBordeauxStatus('error');
+                }
+            } finally {
+                bordeauxLoading = false;
+            }
+        }
+
         const regionBounds = regions.map((region) => ({
             name: region.name,
             bounds: atlas.data.BoundingBox.fromData(region),
         }));
+        regionBounds.push({ name: 'bordeaux', bounds: bordeauxBounds });
 
         // function to update map settings in the store
         function updateMapSettings() {
@@ -159,6 +205,7 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
 
             addMapControls(map);
             await addFillTemplates(map);
+            if (disposed) return;
 
             regions.forEach((region) => {
                 addFeatureSet(map, region, layerOpacity);
@@ -171,6 +218,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
             addPlacesLabelLayer(map, placesDataSource, "places", 22, showPlaceNames);
 
             adjustLayerOrder(map);
+            map.events.add('moveend', loadBordeauxIfVisible);
+            void loadBordeauxIfVisible();
         });
 
         // Subscribe to the recenter event
@@ -211,12 +260,23 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         });
 
         return () => {
+            disposed = true;
+            bordeauxRequest.abort();
+            map.events.remove('moveend', loadBordeauxIfVisible);
             events.off('recenter', handleRecenter);
+            infoToolRoot?.unmount();
             map.dispose();
         }
     }, [markers, regions]);
 
-    return <div ref={mapRef} id="map" />;
+    return <>
+        <div ref={mapRef} id="map" />
+        {bordeauxStatus !== 'idle' && (
+            <div role="status" className="absolute top-2 left-1/2 -translate-x-1/2 z-40 rounded-lg bg-white px-3 py-2 text-sm text-gray-700 shadow-md">
+                {bordeauxStatus === 'loading' ? 'Loading Bordeaux polygons…' : 'Unable to load Bordeaux polygons. Move the map to retry.'}
+            </div>
+        )}
+    </>;
 };
 
 function updateLayerOpacity(map: atlas.Map, opacity: number) {

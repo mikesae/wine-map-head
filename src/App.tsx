@@ -26,7 +26,6 @@ const App: FC = () => {
         regions.push(await import('./assets/data/cote-d-or-enriched.json'));
         regions.push(await import('./assets/data/chalonnaise-enriched.json'));
         regions.push(await import('./assets/data/chablis-enriched.json'));
-        regions.push(await import('./assets/data/bordeaux-enriched.json'));
         setRegions(regions);
       } catch (error) {
         console.error('Error loading vineyard data:', error);
