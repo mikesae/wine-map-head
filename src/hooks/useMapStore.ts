@@ -9,6 +9,7 @@ interface MapSettings {
     mapType: string;
     layerOpacity: number;
     showPlaceNames: boolean;
+    showBordeauxLegend: boolean;
     setMapSettings: (settings: Partial<MapSettings>) => void;
 }
 
@@ -22,6 +23,7 @@ export const useMapStore = create<MapSettings>()(
             mapType: "road_shaded_relief",
             layerOpacity: 100, // Default layer opacity
             showPlaceNames: false,
+            showBordeauxLegend: false,
             setMapSettings: (settings) =>
                 set((state) => ({
                     ...state,

@@ -44,14 +44,24 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         });
         map.popups.add(popup);
 
+        const regionBounds = regions.map((region) => ({
+            name: region.name,
+            bounds: atlas.data.BoundingBox.fromData(region),
+        }));
+
         // function to update map settings in the store
         function updateMapSettings() {
             const camera = map.getCamera();
+            const bounds = camera.bounds;
+            const visibleRegions = bounds
+                ? regionBounds.filter((region) => atlas.data.BoundingBox.intersect(bounds, region.bounds))
+                : [];
             useMapStore.getState().setMapSettings({
                 center: camera.center as [number, number],
                 zoom: camera.zoom as number,
                 bearing: camera.bearing as number,
                 pitch: camera.pitch as number,
+                showBordeauxLegend: visibleRegions.length > 0 && visibleRegions.every((region) => region.name === 'bordeaux'),
             });
         }
 
@@ -144,6 +154,8 @@ const AzureMap: React.FC<AzureMapProps> = ({ markers, regions, places }) => {
         });
 
         map.events.add("ready", async () => {
+
+            updateMapSettings();
 
             addMapControls(map);
             await addFillTemplates(map);

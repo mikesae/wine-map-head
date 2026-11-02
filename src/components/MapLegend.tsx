@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { villageVarietalColors, vinsBlancs, vinsRouges } from "../types/legendColors"
+import { bordeauxLevelColors, villageVarietalColors, vinsBlancs, vinsRouges } from "../types/legendColors"
 import { CircleX, Layers } from "lucide-react"
+import { useMapStore } from "../hooks/useMapStore"
 
 const LegendRow = ({ label, color, hatchColor }: { label: string; color?: string; hatchColor?: string }) => (
-    <div className="flex justify-between items-center py-1">
+    <div className="flex justify-between items-center gap-3 py-1">
         <span className="text-xs text-gray-700">{label}</span>
         <svg
             className="ml-auto"
@@ -56,6 +57,7 @@ const LegendRow = ({ label, color, hatchColor }: { label: string; color?: string
 
 export const MapLegend: React.FC = () => {
     const [isLegendVisible, setIsLegendVisible] = useState(false)
+    const showBordeauxLegend = useMapStore((state) => state.showBordeauxLegend)
 
     const toggleLegend = () => {
         setIsLegendVisible(!isLegendVisible)
@@ -85,6 +87,15 @@ export const MapLegend: React.FC = () => {
                             <CircleX className="w-5 h-5 text-gray-500" />
                         </button>
                     </div>
+                    {showBordeauxLegend ? (
+                        <div className="space-y-1">
+                            <div className="py-1 text-sm text-gray-700">Bordeaux</div>
+                            <LegendRow label="Regional — Bordeaux" color={bordeauxLevelColors.Regional} />
+                            <LegendRow label="Subregional — Médoc, Haut-Médoc" color={bordeauxLevelColors.Subregional} />
+                            <LegendRow label="Communal — Pauillac, Margaux, Saint-Julien" color={bordeauxLevelColors.Communal} />
+                            <LegendRow label="Grand Cru" color={bordeauxLevelColors.GrandCru} />
+                        </div>
+                    ) : (
                     <div className="flex space-x-3">
                         {/* Vin Rouge Column */}
                         <div>
@@ -109,6 +120,7 @@ export const MapLegend: React.FC = () => {
                         </div>
 
                     </div>
+                    )}
                 </div>
             )}
         </div>

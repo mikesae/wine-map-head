@@ -1,5 +1,5 @@
 import atlas from "azure-maps-control";
-import { grandCruVarietalColors, premierCruVarietalColors, villageVarietalColors } from "../types/legendColors";
+import { bordeauxLevelColors, grandCruVarietalColors, premierCruVarietalColors, villageVarietalColors } from "../types/legendColors";
 import type { Marker } from "../types/mapping";
 
 export function addDataSource(map: atlas.Map, markers: Marker[], sourceId: string): any {
@@ -56,7 +56,7 @@ export function addSymbolLayer(map: atlas.Map, dataSource: atlas.source.DataSour
 
 export function addFeatureSet(map: atlas.Map, featureSet: any, layerOpacity: number) {
 
-    // Create a data source for three levels of appellations
+    // Create separate data sources for appellation levels.
     const dataSources: { [key: string]: atlas.source.DataSource } = {};
 
     dataSources['Village'] = new atlas.source.DataSource(featureSet.name + '-Village');
@@ -70,6 +70,15 @@ export function addFeatureSet(map: atlas.Map, featureSet: any, layerOpacity: num
     map.sources.add(dataSources['Premier Cru']);
     map.sources.add(dataSources['Grand Cru']);
     map.sources.add(dataSources['Grand Cru L2']);
+
+    if (featureSet.name === 'bordeaux') {
+        dataSources[''] = new atlas.source.DataSource(featureSet.name + '-Unclassified');
+        map.sources.add(dataSources['']);
+        for (const level of ['Subregional', 'Communal']) {
+            dataSources[level] = new atlas.source.DataSource(featureSet.name + '-' + level);
+            map.sources.add(dataSources[level]);
+        }
+    }
 
     // Add polygons to the data source
     featureSet.features.forEach((feature: any, idx: number) => {
@@ -87,17 +96,32 @@ export function addFeatureSet(map: atlas.Map, featureSet: any, layerOpacity: num
                 dataSources['Mixed Varietal'].add(new atlas.Shape(atlasFeature));
             } else if (['Village', 'Premier Cru', 'Grand Cru', 'Grand Cru L2'].includes(aoc_level)) {
                 dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
+            } else if (featureSet.name === 'bordeaux' && ['', 'Subregional', 'Communal'].includes(aoc_level)) {
+                dataSources[aoc_level].add(new atlas.Shape(atlasFeature));
             }
         }
     });
+    if (featureSet.name === 'bordeaux') {
+        addRegionLayers(map, dataSources[''], featureSet.name, 'Unclassified', { ...villageVarietalColors, Mixed: bordeauxLevelColors.Regional }, layerOpacity);
+        addRegionLayers(map, dataSources['Subregional'], featureSet.name, 'Subregional', { ...villageVarietalColors, Mixed: bordeauxLevelColors.Subregional }, layerOpacity);
+        addRegionLayers(map, dataSources['Communal'], featureSet.name, 'Communal', { ...premierCruVarietalColors, Mixed: bordeauxLevelColors.Communal }, layerOpacity);
+    }
     addRegionLayers(map, dataSources['Village'], featureSet.name, 'Village', villageVarietalColors, layerOpacity);
     addRegionLayers(map, dataSources['Premier Cru'], featureSet.name, 'Premier Cru', premierCruVarietalColors, layerOpacity);
     addMixedLayers(map, dataSources['Mixed Varietal'], featureSet.name, 'Mixed Varietal', layerOpacity);
-    addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruVarietalColors, layerOpacity);
+    const grandCruColors = featureSet.name === 'bordeaux'
+        ? { ...grandCruVarietalColors, Mixed: bordeauxLevelColors.GrandCru }
+        : grandCruVarietalColors;
+    addRegionLayers(map, dataSources['Grand Cru'], featureSet.name, 'Grand Cru', grandCruColors, layerOpacity);
     addRegionLayers(map, dataSources['Grand Cru L2'], featureSet.name, 'Grand Cru L2', grandCruVarietalColors, layerOpacity);
 
     // Add label layers last so they are on top.
     // Note: none for village level
+    if (featureSet.name === 'bordeaux') {
+        addRegionLabelLayer(map, dataSources[''], featureSet.name + 'Unclassified', 11);
+        addRegionLabelLayer(map, dataSources['Subregional'], featureSet.name + 'Subregional', 11);
+        addRegionLabelLayer(map, dataSources['Communal'], featureSet.name + 'Communal', 12);
+    }
     addRegionLabelLayer(map, dataSources['Premier Cru'], featureSet.name + 'Premier Cru', 11);
     addRegionLabelLayer(map, dataSources['Mixed Varietal'], featureSet.name + 'Mixed Varietal', 11);
     addRegionLabelLayer(map, dataSources['Grand Cru'], featureSet.name + 'Grand Cru', 13, true);
@@ -151,6 +175,8 @@ function addRegionLayers(map: atlas.Map, dataSource: atlas.source.DataSource, fe
             ['==', ['get', 'varietal'], 'Chardonnay'], colors.Chardonnay,
             ['==', ['get', 'varietal'], 'Pinot Noir'], colors.PinotNoir,
             ['==', ['get', 'varietal'], 'Aligoté'], colors.Aligote,
+            ['==', ['get', 'main_varietal'], 'semillon'], colors.Chardonnay,
+            ['==', ['get', 'main_varietal'], 'mixed'], colors.Mixed ?? colors.PinotNoir,
             // Default color
             'transparent'
         ],

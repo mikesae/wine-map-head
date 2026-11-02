@@ -14,6 +14,13 @@ export const vinsRouges = {
 
 const vinAligote = '#c8cde9';
 
+export const bordeauxLevelColors = {
+    Regional: '#F6D6D9',
+    Subregional: '#DF9AA7',
+    Communal: '#B95673',
+    GrandCru: '#7B1E3C',
+};
+
 export const grandCruVarietalColors = {
     Chardonnay: vinsBlancs.GrandCru,
     PinotNoir: vinsRouges.GrandCru,
